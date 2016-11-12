@@ -45,6 +45,9 @@
     /*display: flex;*/
     align-items: stretch;
     flex: 1;
+    position: absolute;
+    top: 130px;
+    bottom: 0;
   }
 
   .nav {

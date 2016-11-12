@@ -1,5 +1,5 @@
 <template>
-  <div id="mask">
+  <div id="mask" v-if="isMaskShow">
     <div id="modal">
       <img src="../public/img/detail-food.png" id="detail-img">
       <a href="javascript:;" class="glyphicon glyphicon-remove modal-close"></a>
@@ -132,3 +132,10 @@
   }
 
 </style>
+<script>
+  export default {
+    data(){
+      isMaskShow:true
+    }
+  }
+</script>

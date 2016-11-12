@@ -32,18 +32,16 @@
     /*width: 25%;*/
     /*min-height: 100vh;*/
     margin:0;
+    bottom: 0;
+    top:0;
     padding: 0;
     position: absolute;
     align-self: stretch;
     align-items: stretch;
-    /*flex: 1;*/
     background-color: rgba(0,0,0,.4);
-    /*position: absolute;*/
     overflow-y: auto;
     width: 70px;
     overflow-x: hidden;
-    top:130px;
-    bottom: 0;
   }
   .menu li{
     height: 60px;
