@@ -1,12 +1,13 @@
 <template>
   <div id="app">
 
-    <!--<mt-button type="default">default</mt-button>-->
+    <!--<mt-button type="default" ref="default-button" @click="something">default</mt-button>-->
     <!--<mt-button type="primary">primary</mt-button>-->
     <!--<mt-button type="danger">danger</mt-button>-->
 
 
     <Ad class="ad"></Ad>
+    <Modal></Modal>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
       <Container class="cont"></Container>
@@ -20,14 +21,18 @@
   import Ad from './components/Ad.vue'
   import NavBar from './components/NavBar.vue'
   import Container from './components/Container.vue'
+  import Modal from './components/Modal.vue'
   export default {
     name: 'app',
     components: {
-      Ad, NavBar, Container
+      Ad, NavBar, Container,Modal
+    },
+    methods:{
+      something: function () {
+        alert(this)
+      }
     }
   }
-
-
 </script>
 <style>
   body, ul {

@@ -14,7 +14,8 @@
     "element-ui": "^1.0.0-rc.7",
     "jquery": "^3.1.1",
     "mint-ui": "^2.0.2",
-    "vue": "^2.0.1"
+    "vue": "^2.0.1",
+    "vue-server-renderer": "^2.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

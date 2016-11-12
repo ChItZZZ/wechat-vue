@@ -11,6 +11,7 @@
       return {
         doSomething: function () {
           console.log('asdasdas');
+          console.log(this.$props);
         }
       }
     }
