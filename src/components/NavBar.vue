@@ -1,6 +1,6 @@
 <template>
   <ul class="menu" id="ul" v-show="curBarCount==1">
-    <li v-for="item in menu"  >{{item}}</li>
+    <li v-for="(item,index) in menu" :class="{active:isCur == index}" @click="isCur=index">{{item}}</li>
   </ul>
 </template>
 <script>
@@ -29,19 +29,10 @@
     },
     data(){
       return {
-        menus: [{
-          name: 'ncz'
-        }, {
-          name: 'nicky'
-        }, {
-          name: "cherry"
-        },{
-          name: "test"
-        }]
+        isCur: 0
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -65,7 +56,6 @@
   .menu li {
     height: 60px;
     font-size: 16px;
-    /*background-color: rgba(0,0,0,.4);*/
     list-style: none;
     line-height: 60px;
     min-width: 55px;

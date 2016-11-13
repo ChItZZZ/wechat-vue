@@ -9,3 +9,9 @@ export const setNavBarCount = ({ commit }, count) => commit('SET_NAVBAR_COUNT',c
 
 export const setItemData = ({commit}, item_data) => commit('SET_ITEM_DATA',item_data)
 
+export const showMinus = ({ commit }, isShow) => {
+  commit('SHOW_MINUS', isShow)
+}
+export const showCart = ({ commit }, isShow) => {
+  commit('SHOW_CART', isShow)
+}

@@ -5,7 +5,9 @@
 import {
   SHOW_MODAL,
   SET_NAVBAR_COUNT,
-  SET_ITEM_DATA
+  SET_ITEM_DATA,
+  SHOW_MINUS,
+  SHOW_CART
 } from './mutation-type'
 
 const mutations = {
@@ -20,6 +22,12 @@ const mutations = {
   // 设置菜品信息数据
   [SET_ITEM_DATA] (state,item_data){
     state.item_data = item_data
+  },
+  [SHOW_MINUS] (state, isShow){
+    state.isMinusShow = isShow;
+  },
+  [SHOW_CART] (state, isShow){
+    state.isCartShow = isShow
   }
 }
 

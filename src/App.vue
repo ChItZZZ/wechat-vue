@@ -8,11 +8,11 @@
 
     <Ad class="ad"></Ad>
     <Modal slot="test"></Modal>
+    <Cart></Cart>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
-
       <BtmBar></BtmBar>
       <Container class="cont"></Container>
 
@@ -31,11 +31,12 @@
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
+  import Cart from './components/Cart.vue'
 
   export default {
     name: 'app',
     components: {
-      Ad, NavBar,NavBar2,NavBar3,BtmBar,Container,Modal
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart
     },
     data(){
       return {
@@ -54,7 +55,6 @@
           // error callback
           console.log('get server items error');
         });
-
       }
     },
     created:function(){
@@ -77,6 +77,8 @@
     position: absolute;
     top: 130px;
     bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .nav {
@@ -86,7 +88,6 @@
   .cont {
     flex-grow: 5;
   }
-
 
   #app {
     /*display: flex;*/

@@ -5,10 +5,9 @@
       <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="closeModal"></a>
       <div id="detail-food">
         <div class="part-one">
-          <div class="food-size">
-            <div class="select-food active">牛肉面小份</div>
-            <div class="select-food">牛肉面大份</div>
-          </div>
+          <ul class="food-size">
+            <li v-for="(size,index) in sizes" class="select-food" :class=" {active:isCur==index}" @click="isCur=index">{{size.name}}</li>
+          </ul>
         </div>
         <div class="part-two">
           <div class="recommend-food">
@@ -20,7 +19,7 @@
         </div>
         <div class="part-three">
           <div class="food-act">
-            <button class="cart">购物车</button>
+            <button class="cart" @click="showCart">购物车</button>
             <button class="pay">直接结算</button>
           </div>
         </div>
@@ -57,7 +56,9 @@
     width: 100%;
     height: 50%
   }
-
+  li{
+    list-style: none;
+  }
   .modal-close {
     position: absolute !important;
     right: 2px;
@@ -140,9 +141,29 @@
     computed: mapGetters({
       isModalShow: 'isModalShow'
     }),
+    data(){
+      return {
+        isCur:0,
+        sizes:[{
+          name:'牛肉面大份'
+        },{
+          name:"牛肉面小份"
+        }]
+      }
+    },
     methods: {
       closeModal: function () {
         this.$store.dispatch("showModal", false)
+      },
+      showCart: function () {
+        this.$store.dispatch("showModal",false);
+        this.$store.dispatch('showCart',true);
+      },
+      selectFood: function () {
+//        var $this = $(".select-food.active")
+//        $this.removeClass('active');
+//        console.log(this);
+//        this.$set("class",'active')
       }
     }
   }
