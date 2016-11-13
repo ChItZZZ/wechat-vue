@@ -135,7 +135,9 @@
 <script>
   export default {
     data(){
-      isMaskShow:true
+      return{
+          isMaskShow:true
+      }
     }
   }
 </script>
