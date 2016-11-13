@@ -7,7 +7,7 @@
 
 
     <Ad class="ad"></Ad>
-    <Modal></Modal>
+    <Modal slot="test"></Modal>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
@@ -37,9 +37,13 @@
     components: {
       Ad, NavBar,NavBar2,NavBar3,BtmBar,Container,Modal
     },
+    data(){
+      return {
+
+      }
+    },
     methods:{
       something: function () {
-        alert(this)
       }
     }
   }

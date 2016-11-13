@@ -1,8 +1,8 @@
 <template>
-  <div id="mask" v-if="isMaskShow">
+  <div id="mask" v-show="isModalShow">
     <div id="modal">
       <img src="../public/img/detail-food.png" id="detail-img">
-      <a href="javascript:;" class="glyphicon glyphicon-remove modal-close"></a>
+      <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="closeModal"></a>
       <div id="detail-food">
         <div class="part-one">
           <div class="food-size">
@@ -110,33 +110,46 @@
     position: relative;
     bottom: 0;
   }
-  .food-act button{
+
+  .food-act button {
     color: darkred;
-    background-color: rgba(255,233,249,.9);
+    background-color: rgba(255, 233, 249, .9);
     border-radius: 15px;
     width: 80px;
-    font-size: 11px;
+    font-size: 13px;
     border: 0;
   }
 
   .part-one {
     height: 40%;
   }
-  .part-two{
+
+  .part-two {
     height: 40%;
     position: relative;
   }
 
-  .part-three{
+  .part-three {
     height: 20%;
   }
 
 </style>
 <script>
+  import { mapGetters } from 'vuex'
+  var mask = document.getElementById('mask');
+  console.log(mask);
   export default {
+    computed: mapGetters({
+      isModalShow: 'showModal'
+    }),
     data(){
-      return{
-          isMaskShow:false
+      return {
+        isModalShow: true
+      }
+    },
+    methods: {
+      closeModal: function () {
+        this.$store.commit("SHOW_MODAL", false)
       }
     }
   }

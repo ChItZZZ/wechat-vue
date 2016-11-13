@@ -3,11 +3,11 @@ import App from './App'
 import VueRouter from 'vue-router'
 
 import routeConfig from './routeConfig'
-
+import 'vuex'
 import './public/css/bootstrap.min.css'
 import './public/js/jquery.min.js'
 import './public/js/bootstrap.min.js'
-import store from './store'
+import store from './vuex/store'
 import $ from 'jquery'
 import Element from 'element-ui'
 import { Cell, Button } from 'mint-ui';
@@ -24,8 +24,8 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App },
-  store
+  store,
+  components: { App }
 })
 
 
