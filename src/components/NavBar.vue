@@ -43,7 +43,7 @@
     width: 70px;
     overflow-x: hidden;
     top:130px;
-    bottom: 0;
+    bottom: 40px;
   }
   .menu li{
     height: 60px;
