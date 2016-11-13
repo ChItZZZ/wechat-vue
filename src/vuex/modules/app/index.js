@@ -8,7 +8,8 @@ import * as getters from './getters'
 import mutations from './mutations'
 
 const state = {
-  isModalShow: false
+  isModalShow: false,
+  navBarCount: 1
 }
 
 export default{
@@ -17,3 +18,4 @@ export default{
   getters,
   mutations
 }
+

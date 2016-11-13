@@ -33,15 +33,6 @@
     },
     data(){
       return {
-        items: [{
-          name: 'ncz'
-        }, {
-          name: 'nicky'
-        }, {
-          name: "cherry"
-        },{
-          name: "test"
-        }]
       }
     },
     methods: {

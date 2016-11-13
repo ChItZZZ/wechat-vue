@@ -1,71 +1,62 @@
 <template>
-  <!--<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" >-->
-    <!--<el-submenu index="1">-->
-      <!--<template slot="title"><i class="el-icon-message"></i>导航一</template>-->
-      <!--<el-menu-item-group title="分组一">-->
-        <!--<el-menu-item index="1-1">选项1</el-menu-item>-->
-        <!--<el-menu-item index="1-2">选项2</el-menu-item>-->
-      <!--</el-menu-item-group>-->
-      <!--<el-menu-item-group title="分组2">-->
-        <!--<el-menu-item index="1-3">选项3</el-menu-item>-->
-      <!--</el-menu-item-group>-->
-    <!--</el-submenu>-->
-    <!--<el-menu-item index="2">导航一</el-menu-item>-->
-    <!--<el-menu-item index="2">导航二</el-menu-item>-->
-    <!--<el-menu-item index="3">导航三</el-menu-item>-->
-  <!--</el-menu>-->
   <ul class="menu" id="ul">
-    <li v-for="type in types" @click="selectType">{{menu.name}}</li>
+    <li v-for="item in menus" @click="selectType">{{item.name}}</li>
   </ul>
 </template>
 <script>
   export default {
-    props:{
-      type:Array,
-      required:true
+    props: {
+      items: {
+        type: Array,
+        required: true
+      }
     },
     data(){
-      return{
-        types:[{
-          name:"面类"
+      return {
+        menus: [{
+          name: 'ncz'
+        }, {
+          name: 'nicky'
+        }, {
+          name: "cherry"
         },{
-          name:"饮料"
-        },{
-          name:"小菜"
+          name: "test"
         }]
       }
     }
   }
 </script>
 <style scoped>
-  .menu{
+  .menu {
     /*width: 25%;*/
     /*min-height: 100vh;*/
-    margin:0;
+    margin: 0;
     padding: 0;
     position: absolute;
     align-self: stretch;
     align-items: stretch;
-    background-color: rgba(0,0,0,.4);
+    background-color: rgba(0, 0, 0, .4);
     overflow-y: auto;
     width: 70px;
     overflow-x: hidden;
-    top:0;
+    top: 0;
     bottom: 40px;
 
   }
-  .menu li{
+
+  .menu li {
     height: 60px;
     font-size: 16px;
     /*background-color: rgba(0,0,0,.4);*/
     list-style: none;
     line-height: 60px;
-    min-width:55px;
+    min-width: 55px;
     color: white;
-    border-bottom:1px solid black;
+    border-bottom: 1px solid black;
 
   }
-  .menu li.active{
-    background-color: rgba(0,0,0,.8);
+
+  .menu li.active {
+    background-color: rgba(0, 0, 0, .8);
   }
 </style>

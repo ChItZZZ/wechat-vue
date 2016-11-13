@@ -16,12 +16,6 @@
 <script>
   import ItemAct from '../components/ItemAct.vue'
   export default {
-    props:{
-      films:{
-        type:Array,
-        required:true
-      }
-    },
     data(){
       return {
         items: [{
