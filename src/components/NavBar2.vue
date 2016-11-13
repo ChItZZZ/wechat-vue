@@ -1,9 +1,9 @@
 <template>
 
-  <ul class="menu" id="ul" v-show="curBarCount==1">
-    <li class="active">111</li>
-    <li>111</li>
-    <li>111</li>
+  <ul class="menu" id="ul" v-show="curBarCount==2">
+    <li class="active">222</li>
+    <li>222</li>
+    <li>222</li>
   </ul>
 </template>
 

@@ -136,7 +136,7 @@
   export default {
     data(){
       return{
-          isMaskShow:true
+          isMaskShow:false
       }
     }
   }

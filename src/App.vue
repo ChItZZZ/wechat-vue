@@ -10,6 +10,9 @@
     <Modal></Modal>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
+      <NavBar2 class="nav" id="nav"></NavBar2>
+      <NavBar3 class="nav" id="nav"></NavBar3>
+
       <BtmBar></BtmBar>
       <Container class="cont"></Container>
 
@@ -22,6 +25,9 @@
   import Hello from './components/Hello'
   import Ad from './components/Ad.vue'
   import NavBar from './components/NavBar.vue'
+  import NavBar2 from './components/NavBar2.vue'
+  import NavBar3 from './components/NavBar3.vue'
+
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
@@ -29,7 +35,7 @@
   export default {
     name: 'app',
     components: {
-      Ad, NavBar,BtmBar,Container,Modal
+      Ad, NavBar,NavBar2,NavBar3,BtmBar,Container,Modal
     },
     methods:{
       something: function () {

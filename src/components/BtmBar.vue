@@ -1,19 +1,48 @@
 <template>
   <table class="bar">
       <tr>
-         <th>快速点餐</th>
-         <th>我是面粉</th>
-         <th>魔都的面</th>
+         <th :class="{active:curCount==1}" @click="clickBar(1)">快速点餐</th>
+         <th :class="{active:curCount==2}" @click="clickBar(2)">我是面粉</th>
+         <th :class="{active:curCount==3}" @click="clickBar(3)">魔都的面</th>
        </tr>
   </table>
 
   
 </template>
 <script>
-  export default {
+import { mapActions } from 'vuex'
 
+export default {
+    data () {
+        return {
+        curCount: 1
+        }
+    },
+    methods: {
+        ...mapActions([
+        'setBar1',
+        'setBar2',
+        'setBar3'
+        ]),
+        clickBar(count)
+        {
+            this.curCount = count;
+            switch(count)
+            {
+                case 1:
+                    this.setBar1();
+                    break;
+                case 2:
+                    this.setBar2();
+                    break;
+                case 3:
+                    this.setBar3();
+            }
+        }
 
-  }
+    }
+
+}
 
 </script>
 <style scoped>
@@ -43,7 +72,7 @@
     text-align:center;
 
   }
-  .menu li.active{
+  .bar th.active{
     background-color: rgba(0,0,0,.8);
   }
 </style>
