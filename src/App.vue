@@ -27,9 +27,13 @@
     components: {
       Ad, NavBar, Container,Modal
     },
+    data(){
+      return {
+
+      }
+    },
     methods:{
       something: function () {
-        alert(this)
       }
     }
   }

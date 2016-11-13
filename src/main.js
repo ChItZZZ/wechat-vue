@@ -7,6 +7,7 @@ import routeConfig from './routeConfig'
 import './public/css/bootstrap.min.css'
 import './public/js/jquery.min.js'
 import './public/js/bootstrap.min.js'
+import store from './vuex/store'
 import $ from 'jquery'
 import Element from 'element-ui'
 import { Cell, Button } from 'mint-ui';
@@ -23,6 +24,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   template: '<App/>',
+  store,
   components: { App }
 })
 

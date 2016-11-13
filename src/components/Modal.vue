@@ -1,8 +1,8 @@
 <template>
-  <div id="mask" v-if="isMaskShow">
+  <div id="mask" v-show="isModalShow">
     <div id="modal">
       <img src="../public/img/detail-food.png" id="detail-img">
-      <a href="javascript:;" class="glyphicon glyphicon-remove modal-close"></a>
+      <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="isModalShow=false"></a>
       <div id="detail-food">
         <div class="part-one">
           <div class="food-size">
@@ -115,7 +115,7 @@
     background-color: rgba(255,233,249,.9);
     border-radius: 15px;
     width: 80px;
-    font-size: 11px;
+    font-size: 13px;
     border: 0;
   }
 
@@ -133,9 +133,21 @@
 
 </style>
 <script>
+  import '../public/js/Modal'
+  var mask = document.getElementById('mask');
+  console.log(mask);
   export default {
     data(){
-      isMaskShow:true
+      return {
+        isModalShow:true
+      }
+    },
+    methods:{
+      closeModal: function () {
+        return {
+          isModalShow:false
+        }
+      }
     }
   }
 </script>

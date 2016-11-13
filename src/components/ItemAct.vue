@@ -1,18 +1,20 @@
 <template>
   <div class="item-action">
-    <div class="item-minus" id="test" @click="doSomething">-</div>
-    <div class="item-num">12</div>
-    <div class="item-plus">+</div>
+    <div class="item-minus" id="test">-</div>
+    <div class="item-num">{{ num }}</div>
+    <div class="item-plus" @click="showModal">+</div>
   </div>
 </template>
 <script>
   export default {
     data(){
       return {
-        doSomething: function () {
-          console.log('asdasdas');
-          console.log(this.$props);
-        }
+        num:1
+      }
+    },
+    methods:{
+      showModal: function () {
+        this.$store.dispatch("showModal",true);
       }
     }
   }
