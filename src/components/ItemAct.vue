@@ -14,7 +14,7 @@
     },
     methods:{
       showModal: function () {
-        this.$store.commit("SHOW_MODAL",true);
+        this.$store.dispatch("showModal",true);
       }
     }
   }
