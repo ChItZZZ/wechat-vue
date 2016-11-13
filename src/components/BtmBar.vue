@@ -20,24 +20,12 @@ export default {
     },
     methods: {
         ...mapActions([
-        'setBar1',
-        'setBar2',
-        'setBar3'
+        'setNavBarCount'
         ]),
         clickBar(count)
         {
             this.curCount = count;
-            switch(count)
-            {
-                case 1:
-                    this.setBar1();
-                    break;
-                case 2:
-                    this.setBar2();
-                    break;
-                case 3:
-                    this.setBar3();
-            }
+            this.setNavBarCount(count);
         }
 
     }
