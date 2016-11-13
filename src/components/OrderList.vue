@@ -10,7 +10,17 @@
         <td style="width:10%">状态</td>
     </tr>
     <hr/>
-    <div id='ordersDiv'></div>
+    <div id='ordersDiv'>
+      <tr v-for="order in orderslist">
+        <td style="width:15%">{{ order.date }</td>
+        <td style="width:15%">{{ order.name }}</td>
+        <td style="width:15%">{{ order.isCoupon }}</td>
+        <td style="width:15%">{{ order.payNum }}</td>
+        <td style="width:20%">{{ order.payWay }}</td>
+        <td style="width:10%">{{ order.orderID }}</td>
+        <td style="width:10%">{{ order.state }}</td> 
+      </tr>
+    </div>
     <tr class="orderList">
         <td style="width:15%">8/30</td>
         <td style="width:15%">牛肉面</td>

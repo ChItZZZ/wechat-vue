@@ -136,20 +136,13 @@
 </style>
 <script>
   import { mapGetters } from 'vuex'
-  var mask = document.getElementById('mask');
-  console.log(mask);
   export default {
     computed: mapGetters({
-      isModalShow: 'showModal'
+      isModalShow: 'isModalShow'
     }),
-    data(){
-      return {
-        isModalShow: true
-      }
-    },
     methods: {
       closeModal: function () {
-        this.$store.commit("SHOW_MODAL", false)
+        this.$store.dispatch("showModal", false)
       }
     }
   }
