@@ -36,14 +36,13 @@
     position: absolute;
     align-self: stretch;
     align-items: stretch;
-    /*flex: 1;*/
     background-color: rgba(0,0,0,.4);
-    /*position: absolute;*/
     overflow-y: auto;
     width: 70px;
     overflow-x: hidden;
-    top:130px;
+    top:0;
     bottom: 40px;
+
   }
   .menu li{
     height: 60px;

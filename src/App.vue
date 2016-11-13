@@ -1,12 +1,13 @@
 <template>
   <div id="app">
 
-    <!--<mt-button type="default">default</mt-button>-->
+    <!--<mt-button type="default" ref="default-button" @click="something">default</mt-button>-->
     <!--<mt-button type="primary">primary</mt-button>-->
     <!--<mt-button type="danger">danger</mt-button>-->
 
 
     <Ad class="ad"></Ad>
+    <Modal></Modal>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
       <BtmBar></BtmBar>
@@ -23,15 +24,19 @@
   import NavBar from './components/NavBar.vue'
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
+  import Modal from './components/Modal.vue'
 
   export default {
     name: 'app',
     components: {
-      Ad, NavBar,BtmBar,Container
+      Ad, NavBar,BtmBar,Container,Modal
+    },
+    methods:{
+      something: function () {
+        alert(this)
+      }
     }
   }
-
-
 </script>
 <style>
   body, ul {
@@ -44,6 +49,9 @@
     /*display: flex;*/
     align-items: stretch;
     flex: 1;
+    position: absolute;
+    top: 130px;
+    bottom: 0;
   }
 
   .nav {

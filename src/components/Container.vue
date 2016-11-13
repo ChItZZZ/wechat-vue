@@ -15,6 +15,7 @@
       return {
         doSomething: function () {
           $('.item-action').html('asdas')
+          console.log(this.children);
         }
       }
     },

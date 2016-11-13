@@ -5,7 +5,6 @@ import VueRouter from 'vue-router'
 import routeConfig from './routeConfig'
 
 import './public/css/bootstrap.min.css'
-import './public/css/font-awesome.min.css'
 import './public/js/jquery.min.js'
 import './public/js/bootstrap.min.js'
 import $ from 'jquery'
@@ -26,3 +25,5 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+
