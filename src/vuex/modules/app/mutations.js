@@ -5,7 +5,8 @@
 import {
   SHOW_MODAL,
   SET_NAVBAR_COUNT,
-  SHOW_MINUS
+  SHOW_MINUS,
+  SHOW_CART
 } from './mutation-type'
 
 const mutations = {
@@ -18,6 +19,9 @@ const mutations = {
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;
+  },
+  [SHOW_CART] (state, isShow){
+    state.isCartShow = isShow
   }
 }
 

@@ -20,7 +20,7 @@
         </div>
         <div class="part-three">
           <div class="food-act">
-            <button class="cart">购物车</button>
+            <button class="cart" @click="showCart">购物车</button>
             <button class="pay">直接结算</button>
           </div>
         </div>
@@ -143,6 +143,10 @@
     methods: {
       closeModal: function () {
         this.$store.dispatch("showModal", false)
+      },
+      showCart: function () {
+        this.$store.dispatch("showModal",false);
+        this.$store.dispatch('showCart',true);
       }
     }
   }

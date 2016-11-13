@@ -10,7 +10,13 @@ import mutations from './mutations'
 const state = {
   isModalShow: false,
   navBarCount: 1,
-  isMinusShow: true
+  isMinusShow: true,
+  isCartShow: false,
+  cart:[{
+    name:"牛肉面",
+    count:2,
+    price:12
+  }]
 }
 
 export default{
