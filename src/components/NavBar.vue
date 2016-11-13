@@ -1,6 +1,6 @@
 <template>
   <ul class="menu" id="ul" v-show="curBarCount==1">
-    <li v-for="menu in menus" @click="selectType">{{menu.name}}</li>
+    <li v-for="(menu,index) in menus" :class="{active:isCur == index}" @click="isCur=index">{{menu.name}}</li>
   </ul>
 </template>
 <script>
@@ -9,13 +9,10 @@
     computed: mapGetters({
       curBarCount: 'navBarCount',
     }),
-    methods:{
-      selectType: function () {
-        console.log(this);
-      }
-    },
+    methods: {},
     data(){
       return {
+        isCur: 0,
         menus: [{
           name: 'ncz'
         }, {
@@ -51,7 +48,6 @@
   .menu li {
     height: 60px;
     font-size: 16px;
-    /*background-color: rgba(0,0,0,.4);*/
     list-style: none;
     line-height: 60px;
     min-width: 55px;
