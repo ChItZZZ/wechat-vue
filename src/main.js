@@ -3,7 +3,7 @@ import App from './App'
 import VueRouter from 'vue-router'
 
 import routeConfig from './routeConfig'
-
+import 'vuex'
 import './public/css/bootstrap.min.css'
 import './public/js/jquery.min.js'
 import './public/js/bootstrap.min.js'

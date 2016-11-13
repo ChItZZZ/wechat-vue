@@ -8,8 +8,8 @@ import {
 
 const mutations = {
   // 显示模态框
-  [SHOW_MODAL] (state) {
-    state.isModalShow = true
+  [SHOW_MODAL] (state, isShow) {
+    state.isModalShow = isShow
   }
 }
 export default mutations

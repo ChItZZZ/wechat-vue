@@ -2,7 +2,7 @@
   <div id="mask" v-show="isModalShow">
     <div id="modal">
       <img src="../public/img/detail-food.png" id="detail-img">
-      <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="isModalShow=false"></a>
+      <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="closeModal"></a>
       <div id="detail-food">
         <div class="part-one">
           <div class="food-size">
@@ -133,10 +133,13 @@
 
 </style>
 <script>
-  import '../public/js/Modal'
+  import { mapGetters } from 'vuex'
   var mask = document.getElementById('mask');
   console.log(mask);
   export default {
+    computed: mapGetters({
+      isModalShow: 'showModal'
+    }),
     data(){
       return {
         isModalShow:true
@@ -144,9 +147,7 @@
     },
     methods:{
       closeModal: function () {
-        return {
-          isModalShow:false
-        }
+        this.$store.commit("SHOW_MODAL",false)
       }
     }
   }

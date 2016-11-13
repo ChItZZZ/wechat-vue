@@ -7,7 +7,7 @@
 
 
     <Ad class="ad"></Ad>
-    <Modal></Modal>
+    <Modal slot="test"></Modal>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
       <Container class="cont"></Container>
