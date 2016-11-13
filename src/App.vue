@@ -10,7 +10,9 @@
     <Modal slot="test"></Modal>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
+      <BtmBar></BtmBar>
       <Container class="cont"></Container>
+
     </div>
   </div>
 
@@ -20,12 +22,14 @@
   import Hello from './components/Hello'
   import Ad from './components/Ad.vue'
   import NavBar from './components/NavBar.vue'
+  import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
+
   export default {
     name: 'app',
     components: {
-      Ad, NavBar, Container,Modal
+      Ad, NavBar,BtmBar,Container,Modal
     },
     data(){
       return {

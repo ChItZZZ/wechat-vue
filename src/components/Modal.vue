@@ -110,9 +110,10 @@
     position: relative;
     bottom: 0;
   }
-  .food-act button{
+
+  .food-act button {
     color: darkred;
-    background-color: rgba(255,233,249,.9);
+    background-color: rgba(255, 233, 249, .9);
     border-radius: 15px;
     width: 80px;
     font-size: 13px;
@@ -122,12 +123,13 @@
   .part-one {
     height: 40%;
   }
-  .part-two{
+
+  .part-two {
     height: 40%;
     position: relative;
   }
 
-  .part-three{
+  .part-three {
     height: 20%;
   }
 
@@ -142,12 +144,12 @@
     }),
     data(){
       return {
-        isModalShow:true
+        isModalShow: true
       }
     },
-    methods:{
+    methods: {
       closeModal: function () {
-        this.$store.commit("SHOW_MODAL",false)
+        this.$store.commit("SHOW_MODAL", false)
       }
     }
   }

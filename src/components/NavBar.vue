@@ -32,8 +32,6 @@
     /*width: 25%;*/
     /*min-height: 100vh;*/
     margin:0;
-    bottom: 0;
-    top:0;
     padding: 0;
     position: absolute;
     align-self: stretch;
@@ -42,6 +40,9 @@
     overflow-y: auto;
     width: 70px;
     overflow-x: hidden;
+    top:0;
+    bottom: 40px;
+
   }
   .menu li{
     height: 60px;
