@@ -12,7 +12,7 @@
       <NavBar class="nav" id="nav"></NavBar>
       <BtmBar></BtmBar>
       <Container class="cont"></Container>
-
+      <OrderContainer></Ordercontainer>
     </div>
   </div>
 
@@ -25,11 +25,12 @@
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
+  import OrderContainer from './components/OrderContainer.vue'
 
   export default {
     name: 'app',
     components: {
-      Ad, NavBar,BtmBar,Container,Modal
+      Ad, NavBar,BtmBar,Container,OrderContainer,Modal
     },
     data(){
       return {
