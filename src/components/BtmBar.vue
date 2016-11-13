@@ -1,13 +1,13 @@
 <template>
   <table class="bar">
       <tr>
-         <th>快速点餐</th>
+         <th class="active">快速点餐</th>
          <th>我是面粉</th>
          <th>魔都的面</th>
        </tr>
   </table>
 
-  
+
 </template>
 <script>
   export default {
@@ -43,7 +43,7 @@
     text-align:center;
 
   }
-  .menu li.active{
+  .bar .active{
     background-color: rgba(0,0,0,.8);
   }
 </style>

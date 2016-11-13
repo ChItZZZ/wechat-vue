@@ -15,17 +15,27 @@
     <!--<el-menu-item index="3">导航三</el-menu-item>-->
   <!--</el-menu>-->
   <ul class="menu" id="ul">
-    <li class="active">123</li>
-    <li>123</li>
-    <li>123</li>
+    <li v-for="type in types" @click="selectType">{{menu.name}}</li>
   </ul>
 </template>
 <script>
   export default {
-
-
+    props:{
+      type:Array,
+      required:true
+    },
+    data(){
+      return{
+        types:[{
+          name:"面类"
+        },{
+          name:"饮料"
+        },{
+          name:"小菜"
+        }]
+      }
+    }
   }
-
 </script>
 <style scoped>
   .menu{

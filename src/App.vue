@@ -5,14 +5,14 @@
     <!--<mt-button type="primary">primary</mt-button>-->
     <!--<mt-button type="danger">danger</mt-button>-->
 
-
     <Ad class="ad"></Ad>
     <Modal slot="test"></Modal>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
       <BtmBar></BtmBar>
-      <Container class="cont"></Container>
-
+      <ul>
+        <Container class="cont"  ></Container>
+      </ul>
     </div>
   </div>
 
@@ -29,14 +29,22 @@
   export default {
     name: 'app',
     components: {
-      Ad, NavBar,BtmBar,Container,Modal
+      Ad, NavBar, BtmBar, Container, Modal
     },
     data(){
       return {
-
+        items: [{
+          name: 'ncz'
+        }, {
+          name: 'nicky'
+        }, {
+          name: "cherry"
+        },{
+          name: "test"
+        }]
       }
     },
-    methods:{
+    methods: {
       something: function () {
       }
     }
@@ -65,7 +73,6 @@
   .cont {
     flex-grow: 5;
   }
-
 
   #app {
     /*display: flex;*/

@@ -14,6 +14,7 @@
     },
     methods:{
       showModal: function () {
+        console.log(this.$data);
         this.$store.dispatch("showModal",true);
       }
     }
