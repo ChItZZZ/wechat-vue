@@ -8,3 +8,6 @@ export const showModal = ({commit}, isShow) => {
 
 export const setNavBarCount = ({ commit }, count) => commit('SET_NAVBAR_COUNT',count)
 
+export const showMinus = ({ commit }, isShow) => {
+  commit('SHOW_MINUS', isShow)
+}

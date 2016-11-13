@@ -28,7 +28,6 @@
         }]
       }
     },
-
     components: {
       ItemAct
     }

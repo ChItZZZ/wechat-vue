@@ -4,7 +4,8 @@
  */
 import {
   SHOW_MODAL,
-  SET_NAVBAR_COUNT
+  SET_NAVBAR_COUNT,
+  SHOW_MINUS
 } from './mutation-type'
 
 const mutations = {
@@ -14,6 +15,9 @@ const mutations = {
   },
   [SET_NAVBAR_COUNT] (state,count){
     state.navBarCount = count;
+  },
+  [SHOW_MINUS] (state, isShow){
+    state.isMinusShow = isShow;
   }
 }
 

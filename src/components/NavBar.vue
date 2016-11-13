@@ -1,20 +1,17 @@
 <template>
   <ul class="menu" id="ul" v-show="curBarCount==1">
-    <li v-for="item in menus" @click="selectType" >{{item.name}}</li>
+    <li v-for="menu in menus" @click="selectType">{{menu.name}}</li>
   </ul>
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
   export default {
-    computed: {
-      ...mapGetters({
-        curBarCount: 'navBarCount',
-      })
-    },
-    props: {
-      items: {
-        type: Array,
-        required: true
+    computed: mapGetters({
+      curBarCount: 'navBarCount',
+    }),
+    methods:{
+      selectType: function () {
+        console.log(this);
       }
     },
     data(){
@@ -25,13 +22,12 @@
           name: 'nicky'
         }, {
           name: "cherry"
-        },{
+        }, {
           name: "test"
         }]
       }
     }
   }
-
 </script>
 
 <style scoped>
