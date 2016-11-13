@@ -36,14 +36,12 @@
   export default {
     name: 'app',
     components: {
-      Ad, NavBar,NavBar2,NavBar3,BtmBar,Container,Modal,Cart
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart
     },
     data(){
-      return {
-
-      }
+      return {}
     },
-    methods:{
+    methods: {
       something: function () {
       }
     }
@@ -63,6 +61,8 @@
     position: absolute;
     top: 130px;
     bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .nav {
@@ -72,7 +72,6 @@
   .cont {
     flex-grow: 5;
   }
-
 
   #app {
     /*display: flex;*/

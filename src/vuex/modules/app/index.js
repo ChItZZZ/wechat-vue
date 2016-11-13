@@ -16,7 +16,8 @@ const state = {
     name:"牛肉面",
     count:2,
     price:12
-  }]
+  }],
+  isCur:1
 }
 
 export default{
