@@ -9,7 +9,8 @@ import mutations from './mutations'
 
 const state = {
   isModalShow: false,
-  navBarCount: 1
+  navBarCount: 1,
+  item_data: {}
 }
 
 export default{

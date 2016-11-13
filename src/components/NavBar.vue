@@ -1,6 +1,6 @@
 <template>
   <ul class="menu" id="ul" v-show="curBarCount==1">
-    <li v-for="item in menus" @click="selectType" >{{item.name}}</li>
+    <li v-for="item in menu"  >{{item}}</li>
   </ul>
 </template>
 <script>
@@ -9,7 +9,17 @@
     computed: {
       ...mapGetters({
         curBarCount: 'navBarCount',
-      })
+        item_data:'item_data'
+      }),
+      menu: function(){
+        var data = [];
+        for(var i in this.item_data)
+        {
+          data.push(i);
+        }
+        return data;
+      }
+
     },
     props: {
       items: {

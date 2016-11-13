@@ -5,3 +5,5 @@
 export const SHOW_MODAL = 'SHOW_MODAL'
 
 export const SET_NAVBAR_COUNT = 'SET_NAVBAR_COUNT'
+
+export const SET_ITEM_DATA = 'SET_ITEM_DATA'

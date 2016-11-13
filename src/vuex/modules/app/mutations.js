@@ -4,7 +4,8 @@
  */
 import {
   SHOW_MODAL,
-  SET_NAVBAR_COUNT
+  SET_NAVBAR_COUNT,
+  SET_ITEM_DATA
 } from './mutation-type'
 
 const mutations = {
@@ -12,8 +13,13 @@ const mutations = {
   [SHOW_MODAL] (state, isShow) {
     state.isModalShow = isShow
   },
+  // 选择选项卡
   [SET_NAVBAR_COUNT] (state,count){
     state.navBarCount = count;
+  },
+  // 设置菜品信息数据
+  [SET_ITEM_DATA] (state,item_data){
+    state.item_data = item_data
   }
 }
 

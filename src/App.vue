@@ -22,12 +22,12 @@
 </template>
 
 <script>
-  import Hello from './components/Hello'
+  import { mapActions,mapGetters } from 'vuex'
+
   import Ad from './components/Ad.vue'
   import NavBar from './components/NavBar.vue'
   import NavBar2 from './components/NavBar2.vue'
   import NavBar3 from './components/NavBar3.vue'
-
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
@@ -39,14 +39,29 @@
     },
     data(){
       return {
-
       }
     },
     methods:{
-      something: function () {
+      ...mapActions([
+        'setItemData'
+      ]),
+      getItemsFromServer: function () {
+        this.$http.get('http://wechat.qiancs.cn/items').then((response) => {
+          // success callback
+          this.setItemData(response.data);
+          console.log('get items from server');
+        }, (response) => {
+          // error callback
+          console.log('get server items error');
+        });
+
       }
+    },
+    created:function(){
+       this.getItemsFromServer()
     }
-  }
+}
+
 </script>
 <style>
   body, ul {
