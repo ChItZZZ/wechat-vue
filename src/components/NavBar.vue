@@ -1,6 +1,6 @@
 <template>
   <ul class="menu" id="ul" v-show="curBarCount==1">
-    <li v-for="(item,index) in menu" :class="{active:isCur == index}" @click="isCur=index">{{item}}</li>
+    <li v-for="(item,index) in menu" :class="{active:isCur == index}" @click="clickTab(index)">{{item}}</li>
   </ul>
 </template>
 <script>
@@ -19,7 +19,16 @@
         }
         return data;
       }
-
+    },
+    methods: {
+      ...mapActions([
+        'setTabIndex'
+      ]),
+      clickTab(index)
+      {
+        this.isCur = index;
+        this.setTabIndex(index);
+      }
     },
     props: {
       items: {

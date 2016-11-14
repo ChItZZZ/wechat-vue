@@ -11,6 +11,7 @@ const state = {
   isModalShow: false,
   navBarCount: 1,
   item_data: {},
+  tabIndex: 0,
   isMinusShow: true,
   isCartShow: false,
   cart:[{
