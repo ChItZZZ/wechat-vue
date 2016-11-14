@@ -8,11 +8,11 @@
 
     <Ad class="ad"></Ad>
     <Modal slot="test"></Modal>
+    <Cart></Cart>
     <div class="main">
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
-
       <BtmBar></BtmBar>
       <Container class="cont"></Container>
       <OrderContainer></Ordercontainer>
@@ -22,34 +22,50 @@
 </template>
 
 <script>
-  import Hello from './components/Hello'
+  import { mapActions,mapGetters } from 'vuex'
+
   import Ad from './components/Ad.vue'
   import NavBar from './components/NavBar.vue'
   import NavBar2 from './components/NavBar2.vue'
   import NavBar3 from './components/NavBar3.vue'
-
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
-  import OrderContainer from './components/OrderContainer.vue'
+
+  // import OrderContainer from './components/OrderContainer.vue'
+
+  import Cart from './components/Cart.vue'
 
   export default {
     name: 'app',
     components: {
 
-      Ad, NavBar,NavBar2,NavBar3,BtmBar,Container,OrderContainer,Modal
-
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart
     },
     data(){
       return {
-
       }
     },
     methods:{
-      something: function () {
+      ...mapActions([
+        'setItemData'
+      ]),
+      getItemsFromServer: function () {
+        this.$http.get('http://wechat.qiancs.cn/items').then((response) => {
+          // success callback
+          this.setItemData(response.data);
+          console.log('get items from server');
+        }, (response) => {
+          // error callback
+          console.log('get server items error');
+        });
       }
+    },
+    created:function(){
+       this.getItemsFromServer()
     }
-  }
+}
+
 </script>
 <style>
   body, ul {
@@ -65,6 +81,8 @@
     position: absolute;
     top: 130px;
     bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .nav {
@@ -74,7 +92,6 @@
   .cont {
     flex-grow: 5;
   }
-
 
   #app {
     /*display: flex;*/

@@ -1,34 +1,48 @@
 <template>
-  <ul>
-    <li class="item-info" v-for="item in items">
-      <div class="item-img"><img src="../../src/public/img/item1.png" style="width: 100%;height: 100%"></div>
+  <ul v-show='curNavBar == 1'>
+    <li class="item-info" v-for="item in goods">
+      <div class="item-img"><img :src="item.imageUrl" style="width: 100%;height: 100%"></div>
       <div class="item-text">
         <p class="line-one">{{item.name}}<i class="fa fa-user"></i></p>
-        <p class="line-two">月销量 88 份 <i class="glyphicon glyphicon-thumbs-up"></i></p>
+        <p class="line-two">月销量 {{item.sels}} 份 <i class="glyphicon glyphicon-thumbs-up"></i></p>
         <p class="line-three">{{item.price}} 元/份<span style="text-decoration: line-through;margin-left: 10px">65</span></p>
       </div>
-      <ItemAct></ItemAct>
+      <ItemAct :itemId="item.id"></ItemAct>
     </li>
   </ul>
 </template>
 
 
 <script>
+  import { mapGetters } from 'vuex'
   import ItemAct from '../components/ItemAct.vue'
   export default {
+     computed: {
+        ...mapGetters({
+          curTabIndex: 'curTabIndex',
+          item_data:'item_data',
+          curNavBar:'navBarCount'
+        }),
+        goods: function(){
+          var data = [];
+          var i = 0;
+          for(var key in this.item_data)
+          {
+            if(i == this.curTabIndex)
+            {
+              data = this.item_data[key];
+              break;
+            }
+            ++i;
+          }
+          return data;
+        }
+
+    },
     data(){
       return {
-        items: [{
-          name: "鱼丸面",
-          price:123,
-          src:"../../src/public/img/item2.png"
-        },{
-          name:"牛肉面",
-          price:12
-        }]
       }
     },
-
     components: {
       ItemAct
     }

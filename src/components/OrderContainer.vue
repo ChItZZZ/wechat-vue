@@ -20,15 +20,6 @@
     }
   }
 
-  new Vue({
-    el:'#ordersDiv',
-    data:{
-      orderslist : [
-        {},
-        {}
-      ]
-    }
-  })
 </script>
 
 <style scoped>

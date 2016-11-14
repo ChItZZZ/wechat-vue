@@ -11,8 +11,10 @@ import store from './vuex/store'
 import $ from 'jquery'
 import Element from 'element-ui'
 import { Cell, Button } from 'mint-ui';
-Vue.use($);
 
+var VueResource = require('vue-resource');
+Vue.use(VueResource);
+Vue.use($);
 Vue.use(VueRouter);
 Vue.use(Element);
 Vue.component(Cell.name, Cell);

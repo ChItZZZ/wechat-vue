@@ -5,6 +5,18 @@ export const showModal = ({commit}, isShow) => {
   commit('SHOW_MODAL', isShow)
 }
 
-
 export const setNavBarCount = ({ commit }, count) => commit('SET_NAVBAR_COUNT',count)
+
+export const setItemData = ({commit}, item_data) => commit('SET_ITEM_DATA',item_data)
+
+export const setTabIndex = ({ commit }, index) => commit('SET_TAB_INDEX',index)
+
+export const setItemId = ({ commit }, id) => commit('SET_ITEM_ID',id)
+
+export const showMinus = ({ commit }, isShow) => {
+  commit('SHOW_MINUS', isShow)
+}
+export const showCart = ({ commit }, isShow) => {
+  commit('SHOW_CART', isShow)
+}
 

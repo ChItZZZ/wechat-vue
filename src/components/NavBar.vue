@@ -1,6 +1,6 @@
 <template>
   <ul class="menu" id="ul" v-show="curBarCount==1">
-    <li v-for="item in menus" @click="selectType" >{{item.name}}</li>
+    <li v-for="(item,index) in menu" :class="{active:isCur == index}" @click="clickTab(index)">{{item}}</li>
   </ul>
 </template>
 <script>
@@ -9,7 +9,26 @@
     computed: {
       ...mapGetters({
         curBarCount: 'navBarCount',
-      })
+        item_data:'item_data'
+      }),
+      menu: function(){
+        var data = [];
+        for(var i in this.item_data)
+        {
+          data.push(i);
+        }
+        return data;
+      }
+    },
+    methods: {
+      ...mapActions([
+        'setTabIndex'
+      ]),
+      clickTab(index)
+      {
+        this.isCur = index;
+        this.setTabIndex(index);
+      }
     },
     props: {
       items: {
@@ -19,19 +38,10 @@
     },
     data(){
       return {
-        menus: [{
-          name: 'ncz'
-        }, {
-          name: 'nicky'
-        }, {
-          name: "cherry"
-        },{
-          name: "test"
-        }]
+        isCur: 0
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -55,7 +65,6 @@
   .menu li {
     height: 60px;
     font-size: 16px;
-    /*background-color: rgba(0,0,0,.4);*/
     list-style: none;
     line-height: 60px;
     min-width: 55px;

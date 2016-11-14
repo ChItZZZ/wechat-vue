@@ -22,13 +22,12 @@
       ...mapActions([
         'setNavBarCount'
       ]),
-    clickBar(count)
-    {
-      this.curCount = count;
-      this.setNavBarCount(count);
+      clickBar(count)
+      {
+        this.curCount = count;
+        this.setNavBarCount(count);
+      }
     }
-
-  }
 
   }
 

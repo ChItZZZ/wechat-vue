@@ -34,6 +34,33 @@
   </div>
 </template>
 
+<script>
+  import { mapGetters, mapActions } from 'vuex'
+  export default {
+    computed: {
+      ...mapGetters({
+        curBarCount: 'navBarCount',
+      })
+    },
+    props: {
+      items: {
+        type: Array,
+        required: true
+      }
+    },
+    data(){
+      return{
+      orderslist:[
+        {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'},
+        {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'},
+        {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'},
+        {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'}
+      ]}
+    }
+  }
+
+</script>
+
 <style scoped>
   .item-text {
     flex: 7;
