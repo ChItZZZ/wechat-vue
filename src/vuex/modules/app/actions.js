@@ -11,6 +11,8 @@ export const setItemData = ({commit}, item_data) => commit('SET_ITEM_DATA',item_
 
 export const setTabIndex = ({ commit }, index) => commit('SET_TAB_INDEX',index)
 
+export const setItemId = ({ commit }, id) => commit('SET_ITEM_ID',id)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }

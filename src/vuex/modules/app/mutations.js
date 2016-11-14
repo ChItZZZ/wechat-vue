@@ -8,7 +8,8 @@ import {
   SET_ITEM_DATA,
   SHOW_MINUS,
   SHOW_CART,
-  SET_TAB_INDEX
+  SET_TAB_INDEX,
+  SET_ITEM_ID
 } from './mutation-type'
 
 const mutations = {
@@ -27,6 +28,10 @@ const mutations = {
   // 设置菜品分类索引
   [SET_TAB_INDEX] (state,index){
     state.tabIndex = index
+  },
+  // 设置当前选中菜品id
+  [SET_ITEM_ID] (state,id){
+    state.itemId = id
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

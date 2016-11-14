@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul v-show='curNavBar == 1'>
     <li class="item-info" v-for="item in goods">
       <div class="item-img"><img :src="item.imageUrl" style="width: 100%;height: 100%"></div>
       <div class="item-text">
@@ -7,7 +7,7 @@
         <p class="line-two">月销量 {{item.sels}} 份 <i class="glyphicon glyphicon-thumbs-up"></i></p>
         <p class="line-three">{{item.price}} 元/份<span style="text-decoration: line-through;margin-left: 10px">65</span></p>
       </div>
-      <ItemAct></ItemAct>
+      <ItemAct :itemId="item.id"></ItemAct>
     </li>
   </ul>
 </template>
@@ -20,7 +20,8 @@
      computed: {
         ...mapGetters({
           curTabIndex: 'curTabIndex',
-          item_data:'item_data'
+          item_data:'item_data',
+          curNavBar:'navBarCount'
         }),
         goods: function(){
           var data = [];

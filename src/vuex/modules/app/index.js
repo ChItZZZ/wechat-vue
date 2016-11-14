@@ -12,6 +12,7 @@ const state = {
   navBarCount: 1,
   item_data: {},
   tabIndex: 0,
+  itemId : "1",
   isMinusShow: true,
   isCartShow: false,
   cart:[{

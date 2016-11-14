@@ -9,7 +9,7 @@
   import {mapGetters} from 'vuex';
   export default {
     computed:mapGetters({
-      isMinusShow:'isMinusShow'
+      isMinusShow:'isMinusShow',
     }),
     data(){
       return {
@@ -20,6 +20,7 @@
     methods:{
       showModal: function () {
         console.log(this.$data);
+        this.$store.dispatch("setItemId",this.itemId);
         this.$store.dispatch("showModal",true);
         this.$store.dispatch("showMinus",true);
       },
@@ -34,7 +35,9 @@
       hideMinusAndNum: function () {
         this.$store.dispatch("showMinus",false)
       }
-    }
+    },
+    props:['itemId']
+
   }
 </script>
 <style scoped>

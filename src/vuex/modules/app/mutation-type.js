@@ -13,3 +13,5 @@ export const SHOW_MINUS = "SHOW_MINUS"
 export const SHOW_CART = "SHOW_CART"
 
 export const SET_TAB_INDEX = "SET_TAB_INDEX"
+
+export const SET_ITEM_ID = "SET_ITEM_ID"

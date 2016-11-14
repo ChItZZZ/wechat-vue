@@ -4,3 +4,4 @@ export const item_data = state => state.item_data
 export const isMinusShow = state => state.isMinusShow
 export const isCartShow = state => state.isCartShow
 export const curTabIndex = state => state.tabIndex
+export const curItemId = state => state.itemId

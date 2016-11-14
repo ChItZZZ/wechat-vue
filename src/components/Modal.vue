@@ -1,7 +1,7 @@
 <template>
   <div id="mask" v-show="isModalShow">
     <div id="modal">
-      <img src="../public/img/detail-food.png" id="detail-img">
+      <img :src="curItem.imageUrl" id="detail-img">
       <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="closeModal"></a>
       <div id="detail-food">
         <div class="part-one">
@@ -138,9 +138,38 @@
 <script>
   import { mapGetters } from 'vuex'
   export default {
-    computed: mapGetters({
-      isModalShow: 'isModalShow'
-    }),
+    computed: {
+      ...mapGetters({
+        isModalShow: 'isModalShow',
+        item_data:'item_data',
+        itemId:'curItemId',
+        tabIndex:'curTabIndex'
+      }),
+      curItem: function(){
+        var item = {};
+        var items = [];
+        var i = 0;
+        for(var key in this.item_data)
+        {
+          if(i == this.tabIndex)
+          {
+            items = this.item_data[key];
+            break;
+          }
+          ++i;
+        }
+        for(var index in items)
+        {
+          if(items[index].id == this.itemId)
+          {
+            item = items[index];
+            break;
+          }
+        }
+        console.log('item '+JSON.stringify(item));
+        return item;
+      }
+    },
     data(){
       return {
         isCur:0,
