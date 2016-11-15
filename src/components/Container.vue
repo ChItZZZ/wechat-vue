@@ -62,7 +62,6 @@
     height: 100px;
     display: flex;
     flex: 5;
-    padding: 0;
   }
 
   .item-img {

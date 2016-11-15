@@ -16,7 +16,8 @@
       <BtmBar></BtmBar>
     </div>
     <div class="fixed-cart">购物车</div>
-    <Container class="cont"></Container>
+    <Container class="cont" v-show="true"></Container>
+    <Message class="cont" v-if="false"></Message>
   </div>
 
 </template>
@@ -32,11 +33,12 @@
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
   import Cart from './components/Cart.vue'
+  import Message from './components/Message.vue'
 
   export default {
     name: 'app',
     components: {
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message
     },
     data(){
       return {
