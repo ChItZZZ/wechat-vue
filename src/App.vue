@@ -52,7 +52,6 @@
         this.$http.get('http://wechat.qiancs.cn/items').then((response) => {
           // success callback
           this.setItemData(response.data);
-        console.log(response.data);
           console.log('get items from server');
         }, (response) => {
           // error callback
@@ -81,7 +80,7 @@
     top: 130px;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 40;
     height: 100%;
   }
 
