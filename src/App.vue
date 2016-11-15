@@ -9,7 +9,7 @@
     <Ad class="ad"></Ad>
     <Modal slot="test"></Modal>
     <Cart></Cart>
-    <div class="main">
+    <div class="main" >
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
@@ -57,11 +57,15 @@
           // error callback
           console.log('get server items error');
         });
-      }
+      },
+    haha: function () {
+      console.log('adsasd');
+    }
     },
     created:function(){
        this.getItemsFromServer()
-    }
+    },
+
 }
 
 </script>
@@ -80,7 +84,6 @@
     top: 130px;
     bottom: 0;
     left: 0;
-    right: 40;
     height: 100%;
   }
 

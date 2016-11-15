@@ -1,6 +1,6 @@
 <template>
-  <ul v-show='curNavBar == 1' style="margin-bottom: 0">
-    <li class="item-info" v-for="item in goods">
+  <ul v-if='curNavBar == 1' style="padding-bottom: 40px;;margin-bottom: 0" >
+    <li class="item-info" v-for="item in goods" @click="test">
       <div class="item-img"><img :src="item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
       <div class="item-text">
         <p class="line-one">{{item.name}}<i class="fa fa-user"></i></p>
@@ -40,10 +40,14 @@
     },
     methods:{
       showModal: function (id) {
+        console.log('showmodal');
         this.$store.dispatch("setItemId",id);
         this.$store.dispatch("showModal",true);
         console.log('touch');
       },
+      test:function (){
+        console.log('test');
+      }
     },
     data(){
       return {
