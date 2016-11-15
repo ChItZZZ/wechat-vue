@@ -214,7 +214,6 @@
             order.push(json);
           }
         }
-        console.log('order '+ JSON.stringify(order));
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);

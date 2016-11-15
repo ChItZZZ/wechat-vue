@@ -16,7 +16,7 @@
       <BtmBar></BtmBar>
     </div>
     <div class="fixed-cart">购物车</div>
-    <Container class="cont" v-show="true"></Container>
+    <Container class="cont"></Container>
     <Message class="cont" v-if="false"></Message>
   </div>
 
@@ -58,9 +58,6 @@
           console.log('get server items error');
         });
       },
-    haha: function () {
-      console.log('adsasd');
-    }
     },
     created:function(){
        this.getItemsFromServer()

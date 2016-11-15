@@ -17,16 +17,6 @@ const state = {
   orderInfo:[],
   isMinusShow: true,
   isCartShow: false,
-  cart:[{
-    name:"牛肉面",
-    count:2,
-    price:12
-  },{
-    name:"叉烧面",
-    count:1,
-    price:122
-  }],
-  isCur:1
 }
 
 export default{
