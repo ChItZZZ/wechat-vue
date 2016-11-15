@@ -182,6 +182,7 @@
     methods: {
       closeModal: function () {
         this.$store.dispatch("showModal", false)
+//        store.commit("showModal",false)
       },
       showCart: function () {
         this.$store.dispatch("showModal",false);

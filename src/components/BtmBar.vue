@@ -38,7 +38,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    position: absolute;
+    position: fixed;
     align-self: stretch;
     align-items: stretch;
     /*flex: 1;*/
@@ -48,6 +48,7 @@
     /*  width: 70px; */
     overflow-x: hidden;
     bottom: 0;
+    z-index: 1000;
   }
 
   .bar th {

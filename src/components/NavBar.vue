@@ -30,12 +30,6 @@
         this.setTabIndex(index);
       }
     },
-    props: {
-      items: {
-        type: Array,
-        required: true
-      }
-    },
     data(){
       return {
         isCur: 0
