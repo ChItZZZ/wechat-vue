@@ -166,7 +166,6 @@
             break;
           }
         }
-        console.log('item '+JSON.stringify(item));
         return item;
       }
     },
