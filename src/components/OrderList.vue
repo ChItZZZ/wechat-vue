@@ -48,14 +48,19 @@
         required: true
       }
     },
-    data(){
-      return{
-      orderslist:[
+    orderslist:function(){
+      var data = [];
+      data =[
         {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'},
         {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'},
         {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'},
         {date:'8/30',name:'牛肉面'，isCoupon:'无'，payNum:'35',payWay:'AliPay',orderID:'0011',state:'未付'}
-      ]}
+        ];
+      
+      return data;
+    }
+
+
     }
   }
 

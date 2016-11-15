@@ -32,7 +32,7 @@
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
 
-  // import OrderContainer from './components/OrderContainer.vue'
+  import OrderContainer from './components/OrderContainer.vue'
 
   import Cart from './components/Cart.vue'
 
@@ -40,7 +40,7 @@
     name: 'app',
     components: {
 
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container,OrderContainer, Modal, Cart
     },
     data(){
       return {
