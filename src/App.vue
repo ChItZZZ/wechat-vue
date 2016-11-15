@@ -14,9 +14,11 @@
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
-      <Container class="cont"></Container>
-      <OrderContainer></Ordercontainer>
+      <!--<Container class="cont"></Container>-->
+      <!--<OrderContainer></Ordercontainer>-->
     </div>
+    <div class="fixed-cart">购物车</div>
+    <Container class="cont"></Container>
   </div>
 
 </template>
@@ -40,7 +42,7 @@
     name: 'app',
     components: {
 
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container,OrderContainer, Modal, Cart
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart
     },
     data(){
       return {
@@ -54,6 +56,7 @@
         this.$http.get('http://wechat.qiancs.cn/items').then((response) => {
           // success callback
           this.setItemData(response.data);
+        console.log(response.data);
           console.log('get items from server');
         }, (response) => {
           // error callback
@@ -78,11 +81,12 @@
     /*display: flex;*/
     align-items: stretch;
     flex: 1;
-    position: absolute;
+    position: fixed;
     top: 130px;
     bottom: 0;
     left: 0;
     right: 0;
+    height: 100%;
   }
 
   .nav {
@@ -90,7 +94,12 @@
   }
 
   .cont {
+    margin-left: 70px;
+    padding-top: 130px;
     flex-grow: 5;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
   }
 
   #app {
@@ -102,5 +111,23 @@
     color: #2c3e50;
     background: #000 url(public/img/bg3.png) 0 / cover fixed;
     min-height: 100vh;
+  }
+  .ad{
+    position: fixed;
+    top:0;
+  }
+  .fixed-cart{
+    z-index: 10002;
+    position: fixed;
+    bottom: 50px;
+    color: white;
+    right: 15px;
+    border-radius: 50%;
+    line-height: 65px;
+    width: 65px;
+    height: 65px;
+    background-color: rgba(177,0,0,.8);
+    border: 2px solid black;
+    box-shadow: 5px 5px 10px #888888;
   }
 </style>

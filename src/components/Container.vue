@@ -1,5 +1,5 @@
 <template>
-  <ul v-show='curNavBar == 1'>
+  <ul v-if='curNavBar == 1' style="margin-bottom: 0">
     <li class="item-info" v-for="item in goods">
       <div class="item-img"><img :src="item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
       <div class="item-text">
@@ -56,7 +56,7 @@
 
 <style scoped>
   .item-info {
-    margin-left: 70px;
+    border-bottom: 0.5px solid black;
     color: black;
     background-color: rgba(255, 255, 255, .6);
     height: 100px;
