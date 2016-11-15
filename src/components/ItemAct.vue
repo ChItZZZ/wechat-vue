@@ -2,7 +2,7 @@
   <div class="item-action">
     <div class="item-minus" id="test" @click="minusItem" v-show="isMinusShow">-</div>
     <div class="item-num" v-show="isMinusShow">{{ num }}</div>
-    <div class="item-plus" @click="showModal">+</div>
+    <div class="item-plus" @click="incItem">+</div>
   </div>
 </template>
 <script>
@@ -13,23 +13,20 @@
     }),
     data(){
       return {
-        num:1,
+        num:0,
         isMinusShow:true
       }
     },
     methods:{
-      showModal: function () {
-        console.log(this.$data);
-        this.$store.dispatch("setItemId",this.itemId);
-        this.$store.dispatch("showModal",true);
-        this.$store.dispatch("showMinus",true);
+      incItem:function(){       
+        this.num++;
       },
       minusItem: function () {
-        if(this.num>1){
+        if(this.num > 0){
           this.num--;
         }
         else {
-          this.hideMinusAndNum();
+          //this.hideMinusAndNum();
         }
       },
       hideMinusAndNum: function () {

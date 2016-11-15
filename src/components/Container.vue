@@ -1,7 +1,7 @@
 <template>
   <ul v-show='curNavBar == 1'>
     <li class="item-info" v-for="item in goods">
-      <div class="item-img"><img :src="item.imageUrl" style="width: 100%;height: 100%"></div>
+      <div class="item-img"><img :src="item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
       <div class="item-text">
         <p class="line-one">{{item.name}}<i class="fa fa-user"></i></p>
         <p class="line-two">月销量 {{item.sels}} 份 <i class="glyphicon glyphicon-thumbs-up"></i></p>
@@ -37,7 +37,12 @@
           }
           return data;
         }
-
+    },
+    methods:{
+      showModal: function (id) {
+        this.$store.dispatch("setItemId",id);
+        this.$store.dispatch("showModal",true);
+      },
     },
     data(){
       return {
