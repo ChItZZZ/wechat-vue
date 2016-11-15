@@ -14,9 +14,8 @@
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
-
-      <div class="fixed-cart">购物车</div>
     </div>
+    <div class="fixed-cart">购物车</div>
     <Container class="cont"></Container>
   </div>
 
@@ -82,7 +81,6 @@
     left: 0;
     right: 0;
     height: 100%;
-    z-index: 100;
   }
 
   .nav {
@@ -90,12 +88,12 @@
   }
 
   .cont {
+    margin-left: 70px;
     padding-top: 130px;
     flex-grow: 5;
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
-    position: relative;
   }
 
   #app {

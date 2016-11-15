@@ -57,7 +57,6 @@
 <style scoped>
   .item-info {
     border-bottom: 0.5px solid black;
-    margin-left: 70px;
     color: black;
     background-color: rgba(255, 255, 255, .6);
     height: 100px;
