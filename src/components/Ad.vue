@@ -1,7 +1,7 @@
 <template>
   <!--<img src="../public/img/bg2.png">-->
   <!--<div id="ad"><img src="../public/img/bg2.png"></div>-->
-  <div style="height: 130px;position: absolute">
+  <div style="height: 130px;z-index: 1000">
     <img src="../public/img/bg2.png">
   </div>
 </template>

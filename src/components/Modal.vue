@@ -183,6 +183,7 @@
     methods: {
       closeModal: function () {
         this.$store.dispatch("showModal", false)
+//        store.commit("showModal",false)
       },
       showCart: function () {
         var obj = this.itemAddedCount;

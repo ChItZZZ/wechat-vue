@@ -25,7 +25,7 @@ const mutations = {
   },
   // 设置菜品信息数据
   [SET_ITEM_DATA] (state,item_data){
-    state.item_data = item_data
+      state.item_data = item_data
   },
   // 设置菜品分类索引
   [SET_TAB_INDEX] (state,index){

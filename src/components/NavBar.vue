@@ -30,12 +30,6 @@
         this.setTabIndex(index);
       }
     },
-    props: {
-      items: {
-        type: Array,
-        required: true
-      }
-    },
     data(){
       return {
         isCur: 0
@@ -46,8 +40,6 @@
 
 <style scoped>
   .menu {
-    /*width: 25%;*/
-    /*min-height: 100vh;*/
     margin: 0;
     padding: 0;
     position: absolute;
@@ -59,7 +51,7 @@
     overflow-x: hidden;
     top: 0;
     bottom: 40px;
-
+    z-index: 100;
   }
 
   .menu li {
