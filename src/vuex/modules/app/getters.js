@@ -6,3 +6,4 @@ export const isCartShow = state => state.isCartShow
 export const curTabIndex = state => state.tabIndex
 export const curItemId = state => state.itemId
 export const itemAddedCount = state => state.itemAddedCount
+export const orderInfo = state => state.orderInfo

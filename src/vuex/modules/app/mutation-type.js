@@ -17,3 +17,5 @@ export const SET_TAB_INDEX = "SET_TAB_INDEX"
 export const SET_ITEM_ID = "SET_ITEM_ID"
 
 export const SET_ITEM_COUNT = "SET_ITEM_COUNT"
+
+export const SET_ORDER_INFO = "SET_ORDER_INFO"

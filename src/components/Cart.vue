@@ -1,19 +1,15 @@
 <template>
-  <div id="cart-mask" v-show="isCartShow">
+  <div id="cart-mask" v-if="isCartShow">
     <div id="cart-modal">
       <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="closeCart"></a>
       <div style="margin-top: 22px;padding: 10px">
         <ul class="cart-ul" style="padding: 10px">
-          <li class="cart-li">
-            <div class="cart-info cart-name">牛肉面</div>
-            <div class="cart-info cart-num">X2</div>
-            <div class="cart-info cart-price">12</div>
+          <li class="cart-li" v-for="order in orderInfo">
+            <div class="cart-info cart-name">{{order.name}}</div>
+            <div class="cart-info cart-num">{{order.count}}</div>
+            <div class="cart-info cart-price">{{order.price}}</div>
           </li>
-          <li class="cart-li">
-            <div class="cart-info cart-name">牛肉面</div>
-            <div class="cart-info cart-num">X2</div>
-            <div class="cart-info cart-price">12</div>
-          </li>
+
         </ul>
         <div class="coupon">
           <select>
@@ -26,6 +22,33 @@
     </div>
   </div>
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+  export default {
+    computed: {
+      ...mapGetters({
+        isCartShow: 'isCartShow',
+        orderInfo:'orderInfo'
+      }),
+    },
+    data(){
+      return{
+      }
+    },
+    methods: {
+      closeCart: function () {
+        this.$store.dispatch("showCart", false)
+      },
+      showCart: function () {
+        this.$store.dispatch("showModal", false);
+        this.$store.dispatch('showCart', true);
+      },
+       
+    }
+  }
+</script>
+
 <style>
   #cart-mask {
     background-color: rgba(0, 0, 0, .4);
@@ -107,20 +130,4 @@
 
   }
 </style>
-<script>
-  import { mapGetters } from 'vuex'
-  export default {
-    computed: mapGetters({
-      isCartShow: 'isCartShow'
-    }),
-    methods: {
-      closeCart: function () {
-        this.$store.dispatch("showCart", false)
-      },
-      showCart: function () {
-        this.$store.dispatch("showModal", false);
-        this.$store.dispatch('showCart', true);
-      }
-    }
-  }
-</script>
+

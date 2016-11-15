@@ -10,7 +10,8 @@ import {
   SHOW_CART,
   SET_TAB_INDEX,
   SET_ITEM_ID,
-  SET_ITEM_COUNT
+  SET_ITEM_COUNT,
+  SET_ORDER_INFO
 } from './mutation-type'
 
 const mutations = {
@@ -37,6 +38,10 @@ const mutations = {
   // 设置选中物品数量
   [SET_ITEM_COUNT] (state,itemAddedCount){
     state.itemAddedCount = itemAddedCount
+  },
+  // 设置订单信息
+  [SET_ORDER_INFO] (state,orderInfo){
+    state.orderInfo = orderInfo
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

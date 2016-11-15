@@ -15,6 +15,8 @@ export const setItemId = ({ commit }, id) => commit('SET_ITEM_ID',id)
 
 export const setItemAddedCount = ({ commit }, itemAddedCount) => commit('SET_ITEM_COUNT',itemAddedCount)
 
+export const setOrderInfo = ({ commit }, orderInfo) => commit('SET_ORDER_INFO',orderInfo)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }

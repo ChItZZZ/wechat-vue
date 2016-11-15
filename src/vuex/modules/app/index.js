@@ -14,6 +14,7 @@ const state = {
   tabIndex: 0,
   itemId : "1",
   itemAddedCount :{},
+  orderInfo:[],
   isMinusShow: true,
   isCartShow: false,
   cart:[{
