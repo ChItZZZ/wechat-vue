@@ -1,33 +1,68 @@
 <template>
   <div class="item-action">
     <div class="item-minus" id="test" @click="minusItem" v-show="isMinusShow">-</div>
-    <div class="item-num" v-show="isMinusShow">{{ num }}</div>
+    <div class="item-num" v-show="isMinusShow">{{ _num }}</div>
     <div class="item-plus" @click="incItem">+</div>
   </div>
 </template>
 <script>
-  import {mapGetters} from 'vuex';
+  import {mapGetters,mapActions} from 'vuex';
   export default {
-    computed:mapGetters({
-      isMinusShow:'isMinusShow',
-    }),
+    computed: {
+      ...mapGetters({
+        isMinusShow:'isMinusShow',
+        itemAddedCount:'itemAddedCount'
+      }),
+      _num:function(){
+        var change = this.num;
+        var obj = this.itemAddedCount;
+        var id = this.itemId;
+        if(id in obj)
+          return obj[id];
+        else
+          return 0;
+      }
+    },
     data(){
       return {
         num:0,
-        isMinusShow:true
+        isMinusShow:true,
       }
     },
     methods:{
-      incItem:function(){       
-        this.num++;
+      ...mapActions([
+        'setItemAddedCount'
+      ]),
+      incItem:function(){ 
+        var obj = this.itemAddedCount;
+        var id = this.itemId;
+        if(id in obj)
+          ++obj[id];
+        else
+          obj[id] = 1;
+          
+        this.changeNum();
+        this.setItemAddedCount(obj);
+        console.log("obj "+ JSON.stringify(obj));
       },
       minusItem: function () {
-        if(this.num > 0){
-          this.num--;
+        var obj = this.itemAddedCount;
+        var id = this.itemId;
+        if(id in obj && obj[id] > 0)
+        {
+          --obj[id];
+          this.changeNum();
+          this.setItemAddedCount(obj);
         }
         else {
           //this.hideMinusAndNum();
         }
+      },
+      changeNum:function(){
+        if(this.num == 0)
+          this.num = 1;
+        else
+          this.num = 0;
       },
       hideMinusAndNum: function () {
         this.$store.dispatch("showMinus",false)

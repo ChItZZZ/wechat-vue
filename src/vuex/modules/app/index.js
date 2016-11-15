@@ -13,6 +13,7 @@ const state = {
   item_data: {},
   tabIndex: 0,
   itemId : "1",
+  itemAddedCount :{},
   isMinusShow: true,
   isCartShow: false,
   cart:[{
