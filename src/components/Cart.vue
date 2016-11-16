@@ -15,9 +15,13 @@
           <select>
           </select>
         </div>
-        <div class="cart-sum">实付: 122 元</div>
+        <div class="cart-sum">总计: {{totalMoney}}</div>
       </div>
-      <div class="pay-sub"><button>确认支付</button></div>
+      <div class="pay-sub">
+        <button @click="pay('alipay_wap')">支付宝</button>
+        <button @click="pay('wx_pub')">微信支付</button>
+        <button @click="pay('balance')">余额支付</button>
+      </div>
 
     </div>
   </div>
@@ -25,11 +29,13 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  var pingpp = require('pingpp-js');
   export default {
     computed: {
       ...mapGetters({
         isCartShow: 'isCartShow',
-        orderInfo:'orderInfo'
+        orderInfo:'orderInfo',
+        totalMoney:'totalMoney'
       }),
     },
     data(){
@@ -44,6 +50,38 @@
         this.$store.dispatch("showModal", false);
         this.$store.dispatch('showCart', true);
       },
+      pay:function(payWay){
+        if(payWay == 'balance'){
+
+        }
+        else{
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", 'http://120.27.120.60:3000/getCharge', true);
+          xhr.setRequestHeader("Content-type", "application/json");
+          xhr.send(JSON.stringify({
+              channel: payWay,
+              amount: 30 * 100,
+              order_str: {name:'nnn',count:2},
+              desk_id: 1,
+              store_id: 1,
+              price:30
+          }));
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
+                pingpp.createPayment(xhr.responseText, function(result, err) {
+                  if (result == "success") {
+                      alert('successed');
+                    } else if (result == "fail") {
+                      alert('failed');
+                    } else if (result == "cancel") {
+                      alert('canceled');
+                    }              
+		            });
+            }
+          }
+        }
+      }
        
     }
   }

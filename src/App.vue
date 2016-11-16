@@ -49,7 +49,7 @@
         'setItemData'
       ]),
       getItemsFromServer: function () {
-        this.$http.get('http://wechat.qiancs.cn/items').then((response) => {
+        this.$http.get('http://120.27.120.60:3000/items').then((response) => {
           // success callback
           this.setItemData(response.data);
           console.log('get items from server');

@@ -214,6 +214,11 @@
             order.push(json);
           }
         }
+        var totalMoney = 0;
+        for(var index in order)
+          totalMoney += order[index].count * order[index].price;
+        
+        this.$store.dispatch("setTotalMoney",totalMoney);
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);

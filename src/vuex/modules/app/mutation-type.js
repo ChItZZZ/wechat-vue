@@ -19,3 +19,5 @@ export const SET_ITEM_ID = "SET_ITEM_ID"
 export const SET_ITEM_COUNT = "SET_ITEM_COUNT"
 
 export const SET_ORDER_INFO = "SET_ORDER_INFO"
+
+export const SET_TOTAL_MONEY = "SET_TOTAL_MONEY"

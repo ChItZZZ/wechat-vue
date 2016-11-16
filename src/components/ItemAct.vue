@@ -43,7 +43,6 @@
           
         this.changeNum();
         this.setItemAddedCount(obj);
-        console.log("obj "+ JSON.stringify(obj));
       },
       minusItem: function () {
         var obj = this.itemAddedCount;

@@ -15,6 +15,7 @@ const state = {
   itemId : "1",
   itemAddedCount :{},
   orderInfo:[],
+  totalMoney:0,
   isMinusShow: true,
   isCartShow: false,
 }

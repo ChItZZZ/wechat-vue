@@ -11,7 +11,8 @@ import {
   SET_TAB_INDEX,
   SET_ITEM_ID,
   SET_ITEM_COUNT,
-  SET_ORDER_INFO
+  SET_ORDER_INFO,
+  SET_TOTAL_MONEY
 } from './mutation-type'
 
 const mutations = {
@@ -42,6 +43,10 @@ const mutations = {
   // 设置订单信息
   [SET_ORDER_INFO] (state,orderInfo){
     state.orderInfo = orderInfo
+  },
+  // 设置总金额
+  [SET_TOTAL_MONEY] (state,money){
+    state.totalMoney = money
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;
