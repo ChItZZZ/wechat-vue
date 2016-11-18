@@ -23,6 +23,20 @@ export default {
   methods:{
     clickTab:function(item){
       this.curFuncTab = item;
+      switch(this.curFuncTab){
+        case "我的订单":
+          this.getHistoryOrder();
+          break;
+
+      }
+    },
+    getHistoryOrder:function(){
+      this.$http.get('http://120.27.120.60:3000/order').then((response) => {
+          console.log('get history order from server');
+          console.log('history order '+ JSON.stringify(response.data));
+        }, (response) => {
+          console.log('get history order error');
+        });
     }
   }
 

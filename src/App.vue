@@ -15,7 +15,7 @@
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
     </div>
-    <div class="fixed-cart">购物车</div>
+    <div class="fixed-cart" @click="showCart">购物车</div>
     <Container class="cont"></Container>
     <Message class="cont" v-if="false"></Message>
   </div>
@@ -44,6 +44,12 @@
       return {
       }
     },
+    computed: {
+      ...mapGetters({
+        item_data:'item_data',
+        itemAddedCount:'itemAddedCount',
+      }),
+    },
     methods:{
       ...mapActions([
         'setItemData'
@@ -57,6 +63,44 @@
           // error callback
           console.log('get server items error');
         });
+      },
+      showCart: function () {
+        var obj = this.itemAddedCount;
+        var items = this.item_data;
+        var order = [];
+        for(var id in obj)
+        {
+          if(obj[id] != 0)
+          {
+            var json = {};
+            json.count = obj[id];
+            json.id = id;
+            for ( var key in items)
+            {
+              var isBreak = false;
+              for(var index in items[key])
+              {
+                if(items[key][index].id == id)
+                {
+                  json.name = items[key][index].name;
+                  json.price = items[key][index].price;
+                  isBreak = true;
+                  break;
+                }
+              }
+              if(isBreak)
+                break;
+            }
+            order.push(json);
+          }
+        }
+        console.log('order' + JSON.stringify(order));
+        var totalMoney = 0;
+        for(var index in order)
+          totalMoney += order[index].count * order[index].price;
+        this.$store.dispatch("setTotalMoney",totalMoney);
+        this.$store.dispatch("setOrderInfo",order);
+        this.$store.dispatch('showCart',true);
       },
     },
     created:function(){

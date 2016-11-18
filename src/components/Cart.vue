@@ -51,36 +51,38 @@
         this.$store.dispatch('showCart', true);
       },
       pay:function(payWay){
-        if(payWay == 'balance'){
+        if(this.orderInfo.length != 0){
+          if(payWay == 'balance'){
 
-        }
-        else{
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", 'http://120.27.120.60:3000/getChargeNew', true);
-          xhr.setRequestHeader("Content-type", "application/json");
-          xhr.send(JSON.stringify({
-              channel: payWay,
-              amount: 30 * 100,
-              orderInfo: this.orderInfo,
-              desk_id: 1,
-              store_id: 1,
-              price:30
-          }));
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                pingpp.createPayment(xhr.responseText, function(result, err) {
-                  if (result == "success") {
-                      alert('successed');
-                    } else if (result == "fail") {
-                      alert('failed');
-                    } else if (result == "cancel") {
-                      alert('canceled');
-                    }              
-		            });
+          }
+          else{
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", 'http://120.27.120.60:3000/getChargeNew', true);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.send(JSON.stringify({
+                channel: payWay,
+                amount: 30 * 100,
+                orderInfo: this.orderInfo,
+                desk_id: 1,
+                store_id: 1,
+                price:30
+            }));
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4 && xhr.status == 200) {
+                  pingpp.createPayment(xhr.responseText, function(result, err) {
+                    if (result == "success") {
+                        alert('successed');
+                      } else if (result == "fail") {
+                        alert('failed');
+                      } else if (result == "cancel") {
+                        alert('canceled');
+                      }              
+                  });
+              }
             }
           }
         }
-      }
+      },
        
     }
   }
