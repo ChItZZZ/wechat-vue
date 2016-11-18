@@ -195,6 +195,7 @@
           {
             var json = {};
             json.count = obj[id];
+            json.id = id;
             for ( var key in items)
             {
               var isBreak = false;
@@ -214,6 +215,7 @@
             order.push(json);
           }
         }
+        console.log('order' + JSON.stringify(order));
         var totalMoney = 0;
         for(var index in order)
           totalMoney += order[index].count * order[index].price;

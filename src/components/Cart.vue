@@ -56,19 +56,18 @@
         }
         else{
           var xhr = new XMLHttpRequest();
-          xhr.open("POST", 'http://120.27.120.60:3000/getCharge', true);
+          xhr.open("POST", 'http://120.27.120.60:3000/getChargeNew', true);
           xhr.setRequestHeader("Content-type", "application/json");
           xhr.send(JSON.stringify({
               channel: payWay,
               amount: 30 * 100,
-              order_str: {name:'nnn',count:2},
+              orderInfo: this.orderInfo,
               desk_id: 1,
               store_id: 1,
               price:30
           }));
           xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(xhr.responseText);
                 pingpp.createPayment(xhr.responseText, function(result, err) {
                   if (result == "success") {
                       alert('successed');
