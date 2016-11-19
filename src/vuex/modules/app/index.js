@@ -16,6 +16,7 @@ const state = {
   itemAddedCount :{},
   orderInfo:[],
   totalMoney:0,
+  itemConfig:{},
   isMinusShow: true,
   isCartShow: false,
 }

@@ -19,6 +19,8 @@ export const setOrderInfo = ({ commit }, orderInfo) => commit('SET_ORDER_INFO',o
 
 export const setTotalMoney = ({ commit }, money) => commit('SET_TOTAL_MONEY',money)
 
+export const setItemConfig = ({ commit }, itemConfig) => commit('SET_ITEM_CONFIG',itemConfig)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }

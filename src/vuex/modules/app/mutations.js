@@ -12,7 +12,8 @@ import {
   SET_ITEM_ID,
   SET_ITEM_COUNT,
   SET_ORDER_INFO,
-  SET_TOTAL_MONEY
+  SET_TOTAL_MONEY,
+  SET_ITEM_CONFIG
 } from './mutation-type'
 
 const mutations = {
@@ -47,6 +48,10 @@ const mutations = {
   // 设置总金额
   [SET_TOTAL_MONEY] (state,money){
     state.totalMoney = money
+  },
+  // 设置菜品配置信息
+  [SET_ITEM_CONFIG] (state,itemConfig){
+    state.itemConfig = itemConfig
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

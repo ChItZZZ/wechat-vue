@@ -6,15 +6,14 @@
       <div id="detail-food">
         <div class="part-one">
           <ul class="food-size">
-            <li v-for="(size,index) in sizes" class="select-food" :class=" {active:isCur==index}" @click="isCur=index">{{size.name}}</li>
+            <li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:isCur==index}" @click="isCur=index">{{size}}</li>
           </ul>
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
+            <img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">
+            <!--<img src="../public/img/egg.jpeg" class="recommend-img">-->
+            
           </div>
         </div>
         <div class="part-three">
@@ -145,6 +144,7 @@
         itemId:'curItemId',
         tabIndex:'curTabIndex',
         itemAddedCount:'itemAddedCount',
+        itemConfig:'itemConfig',
       }),
       curItem: function(){
         var item = {};
@@ -168,17 +168,42 @@
           }
         }
         return item;
+      },
+      curItemConfig : function(){
+        var id = this.itemId;
+        if(id in this.itemConfig)
+          return this.itemConfig[id];
+        else{
+          var temp = {size: ['加载中...'], };
+          return temp;
+        }
+      },
+      configItemInfo : function(){
+        var itemsName = this.curItemConfig.recommend;
+        var data = this.item_data;
+        var info = [];
+        for(var i in itemsName){
+          for(var key in data){
+            for(var index in data[key]){
+              if(data[key][index].name == itemsName[i]){
+                var obj = {};
+                obj.name = data[key][index].name;
+                obj.price = data[key][index].price;
+                obj.id = data[key][index].id;
+                obj.imageUrl = data[key][index].imageUrl;
+                info.push(obj);
+              }
+            }
+          }
+        }
+        return info;
       }
+
     },
     data(){
       return {
         isCur:0,
-        sizes:[{
-          name:'牛肉面大份'
-        },{
-          name:"牛肉面小份"
-        }]
-      }
+      };
     },
     methods: {
       closeModal: function () {

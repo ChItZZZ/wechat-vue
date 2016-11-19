@@ -21,7 +21,8 @@
         ...mapGetters({
           curTabIndex: 'curTabIndex',
           item_data:'item_data',
-          curNavBar:'navBarCount'
+          curNavBar:'navBarCount',
+          itemConfig:'itemConfig'
         }),
         goods: function(){
           var data = [];
@@ -40,9 +41,23 @@
     },
     methods:{
       showModal: function (id) {
+        if( !(id in this.itemConfig) ){
+          var url = 'http://120.27.120.60:3000/itemConfig?item_id=' + parseInt(id);
+          this.$http.get(url).then((response) => {
+            this.addItemConfig(response.data,id);
+          }, (response) => {
+            console.log('get server item config error');
+          });
+        }
+  
         this.$store.dispatch("setItemId",id);
         this.$store.dispatch("showModal",true);
       },
+      addItemConfig: function (data,id){
+        var obj = {};
+        obj[id] = data;
+        this.$store.dispatch("setItemConfig",obj);
+      }
      
     },
     data(){
