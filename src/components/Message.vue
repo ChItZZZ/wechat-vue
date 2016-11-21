@@ -1,5 +1,5 @@
 <template>
-  <div class="msg">
+  <div class="msg" v-if='isCurFuncTab '>
     <div class="tag" style="margin: 18px auto;">请留言</div>
     <textarea class="text"></textarea>
     <div class="btn-msg">
@@ -7,6 +7,24 @@
     </div>
   </div>
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+  export default {
+     computed: {
+      ...mapGetters({
+        curNavBar:'navBarCount',
+        curFuncTab:'curFuncTab'
+      }),
+      isCurFuncTab:function(){
+        if(this.curFuncTab == '倾听留言' && this.curNavBar == 3)
+          return true;
+        return false;
+      },
+    },
+  }
+
+</script>
 <style scoped>
   .btn-msg {
     text-align: center;

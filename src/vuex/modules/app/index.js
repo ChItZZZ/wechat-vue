@@ -17,6 +17,7 @@ const state = {
   orderInfo:[],
   totalMoney:0,
   itemConfig:{},
+  curFuncTab:"",
   isMinusShow: true,
   isCartShow: false,
 }

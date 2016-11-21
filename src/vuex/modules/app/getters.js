@@ -9,3 +9,4 @@ export const itemAddedCount = state => state.itemAddedCount
 export const orderInfo = state => state.orderInfo
 export const totalMoney = state => state.totalMoney
 export const itemConfig = state => state.itemConfig
+export const curFuncTab = state => state.curFuncTab

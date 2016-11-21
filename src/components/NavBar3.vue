@@ -23,6 +23,7 @@ export default {
   methods:{
     clickTab:function(item){
       this.curFuncTab = item;
+      this.$store.dispatch('setFuncTab',this.curFuncTab);
     }
   }
 

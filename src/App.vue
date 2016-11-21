@@ -17,7 +17,7 @@
     </div>
     <div class="fixed-cart" @click="showCart">购物车</div>
     <Container class="cont"></Container>
-    <Message class="cont" v-if="false"></Message>
+    <Message class="cont" ></Message>
   </div>
 
 </template>

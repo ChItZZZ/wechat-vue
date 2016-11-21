@@ -13,7 +13,8 @@ import {
   SET_ITEM_COUNT,
   SET_ORDER_INFO,
   SET_TOTAL_MONEY,
-  SET_ITEM_CONFIG
+  SET_ITEM_CONFIG,
+  SET_FUNC_TAB
 } from './mutation-type'
 
 const mutations = {
@@ -52,6 +53,10 @@ const mutations = {
   // 设置菜品配置信息
   [SET_ITEM_CONFIG] (state,itemConfig){
     state.itemConfig = itemConfig
+  },
+  // 设置功能选项卡
+  [SET_FUNC_TAB] (state,funcTab){
+    state.curFuncTab = funcTab
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

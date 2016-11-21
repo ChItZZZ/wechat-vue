@@ -21,6 +21,8 @@ export const setTotalMoney = ({ commit }, money) => commit('SET_TOTAL_MONEY',mon
 
 export const setItemConfig = ({ commit }, itemConfig) => commit('SET_ITEM_CONFIG',itemConfig)
 
+export const setFuncTab = ({ commit }, funcTab) => commit('SET_FUNC_TAB',funcTab)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }
