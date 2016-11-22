@@ -14,7 +14,8 @@ import {
   SET_ORDER_INFO,
   SET_TOTAL_MONEY,
   SET_ITEM_CONFIG,
-  SET_FUNC_TAB
+  SET_FUNC_TAB,
+  ADD_CONFIG_ITEM_ADDED 
 } from './mutation-type'
 
 const mutations = {
@@ -57,6 +58,10 @@ const mutations = {
   // 设置功能选项卡
   [SET_FUNC_TAB] (state,funcTab){
     state.curFuncTab = funcTab
+  },
+  // 添加订单中选过配置的菜品
+  [ADD_CONFIG_ITEM_ADDED] (state,configItemAdded){
+    state.configItemAdded.push(configItemAdded)
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

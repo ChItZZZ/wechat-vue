@@ -7,7 +7,7 @@
 
 
     <Ad class="ad"></Ad>
-    <Modal slot="test"></Modal>
+    <Modal ></Modal>
     <Cart></Cart>
     <div class="main" >
       <NavBar class="nav" id="nav"></NavBar>
@@ -48,7 +48,11 @@
       ...mapGetters({
         item_data:'item_data',
         itemAddedCount:'itemAddedCount',
+        configItemAdded:'configItemAdded',
       }),
+    },
+    created:function(){
+       this.getItemsFromServer()
     },
     methods:{
       ...mapActions([
@@ -68,20 +72,15 @@
         var obj = this.itemAddedCount;
         var items = this.item_data;
         var order = [];
-        for(var id in obj)
-        {
-          if(obj[id] != 0)
-          {
+        for(var id in obj){
+          if(obj[id] != 0){
             var json = {};
             json.count = obj[id];
             json.id = id;
-            for ( var key in items)
-            {
+            for ( var key in items){
               var isBreak = false;
-              for(var index in items[key])
-              {
-                if(items[key][index].id == id)
-                {
+              for(var index in items[key]){
+                if(items[key][index].id == id){
                   json.name = items[key][index].name;
                   json.price = items[key][index].price;
                   isBreak = true;
@@ -94,17 +93,31 @@
             order.push(json);
           }
         }
+        
+        var data = this.configItemAdded;
+        for(var i in data){
+          if(data[i].count != 0){
+            var json = {};
+            json.count = data[i].count;
+            json.name = data[i].name;
+            json.price = data[i].price;
+            json.id = data[i].id;
+            var des = data[i].size;
+            json.des = des;
+            order.push(json);
+          }
+        }
         console.log('order' + JSON.stringify(order));
         var totalMoney = 0;
         for(var index in order)
           totalMoney += order[index].count * order[index].price;
+  
         this.$store.dispatch("setTotalMoney",totalMoney);
         this.$store.dispatch("setOrderInfo",order);
+        this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
-      },
-    },
-    created:function(){
-       this.getItemsFromServer()
+      }
+
     },
 
 }

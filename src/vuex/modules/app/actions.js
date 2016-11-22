@@ -23,6 +23,8 @@ export const setItemConfig = ({ commit }, itemConfig) => commit('SET_ITEM_CONFIG
 
 export const setFuncTab = ({ commit }, funcTab) => commit('SET_FUNC_TAB',funcTab)
 
+export const addConfigItemAdded = ({ commit }, configItemAdded) => commit('ADD_CONFIG_ITEM_ADDED',configItemAdded)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }

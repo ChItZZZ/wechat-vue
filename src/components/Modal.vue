@@ -6,7 +6,7 @@
       <div id="detail-food">
         <div class="part-one">
           <ul class="food-size">
-            <li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:isCur==index}" @click="isCur=index">{{size}}</li>
+            <li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:curSizeIndex==index}" @click="curSizeIndex=index">{{size}}</li>
           </ul>
         </div>
         <div class="part-two">
@@ -18,8 +18,8 @@
         </div>
         <div class="part-three">
           <div class="food-act">
-            <button class="cart" @click="showCart">购物车</button>
-            <button class="pay">直接结算</button>
+            <button class="cart" @click="addToCart">加入购物车</button>
+            <button class="pay" @click="showCart">直接结算</button>
           </div>
         </div>
       </div>
@@ -145,6 +145,7 @@
         tabIndex:'curTabIndex',
         itemAddedCount:'itemAddedCount',
         itemConfig:'itemConfig',
+        configItemAdded:'configItemAdded'
       }),
       curItem: function(){
         var item = {};
@@ -202,32 +203,26 @@
     },
     data(){
       return {
-        isCur:0,
+        curSizeIndex:0,
       };
     },
     methods: {
       closeModal: function () {
-        this.$store.dispatch("showModal", false)
-//        store.commit("showModal",false)
+        this.$store.dispatch("showModal", false);
       },
       showCart: function () {
         var obj = this.itemAddedCount;
         var items = this.item_data;
         var order = [];
-        for(var id in obj)
-        {
-          if(obj[id] != 0)
-          {
+        for(var id in obj){
+          if(obj[id] != 0){
             var json = {};
             json.count = obj[id];
             json.id = id;
-            for ( var key in items)
-            {
+            for ( var key in items){
               var isBreak = false;
-              for(var index in items[key])
-              {
-                if(items[key][index].id == id)
-                {
+              for(var index in items[key]){
+                if(items[key][index].id == id){
                   json.name = items[key][index].name;
                   json.price = items[key][index].price;
                   isBreak = true;
@@ -240,22 +235,40 @@
             order.push(json);
           }
         }
+        
+        var data = this.configItemAdded;
+        for(var i in data){
+          if(data[i].count != 0){
+            var json = {};
+            json.count = data[i].count;
+            json.name = data[i].name;
+            json.price = data[i].price;
+            json.id = data[i].id;
+            var des = data[i].size;
+            json.des = des;
+            order.push(json);
+          }
+        }
         console.log('order' + JSON.stringify(order));
         var totalMoney = 0;
         for(var index in order)
           totalMoney += order[index].count * order[index].price;
-        
+  
         this.$store.dispatch("setTotalMoney",totalMoney);
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
       },
-      selectFood: function () {
-//        var $this = $(".select-food.active")
-//        $this.removeClass('active');
-//        console.log(this);
-//        this.$set("class",'active')
-      },
+      addToCart: function(){
+        var obj = {};
+        var item = this.curItem;
+        obj.id = item.id;
+        obj.name = item.name;
+        obj.price = item.price;
+        obj.size = this.curItemConfig.size[this.curSizeIndex];
+        obj.count = 1;
+        this.$store.dispatch("addConfigItemAdded",obj);
+      }
       
     }
   }
