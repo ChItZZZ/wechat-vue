@@ -1,9 +1,9 @@
 <template>
   <div class="msg" v-if='isCurFuncTab '>
     <div class="tag" style="margin: 18px auto;">请留言</div>
-    <textarea class="text"></textarea>
+    <textarea class="text" id="content"></textarea>
     <div class="btn-msg">
-      <button class="btn btn-default btn-sub">提交</button>
+      <button class="btn btn-default btn-sub" @click="submit">提交</button>
     </div>
   </div>
 </template>
@@ -22,6 +22,25 @@
         return false;
       },
     },
+    data(){
+      return{
+      }
+    },
+    methods:{
+      submit: function(){
+        // var url = "";
+        // var param = {};
+        // param.content = document.getElementById("content").value;
+        // this.$http.post(url,param).then((response) => {
+        //   console.log('post comment ' + response.status);
+        //   //this.setPersonalInfo(response.data);
+        // }, (response) => {
+        //   console.log('post comment error');
+        // });
+      },
+
+    },
+
   }
 
 </script>

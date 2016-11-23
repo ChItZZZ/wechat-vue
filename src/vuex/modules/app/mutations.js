@@ -15,7 +15,9 @@ import {
   SET_TOTAL_MONEY,
   SET_ITEM_CONFIG,
   SET_FUNC_TAB,
-  ADD_CONFIG_ITEM_ADDED 
+  ADD_CONFIG_ITEM_ADDED,
+  SET_PERSONAL_INFO,
+  SET_ACTIVITY_INFO
 } from './mutation-type'
 
 const mutations = {
@@ -62,6 +64,14 @@ const mutations = {
   // 添加订单中选过配置的菜品
   [ADD_CONFIG_ITEM_ADDED] (state,configItemAdded){
     state.configItemAdded.push(configItemAdded)
+  },
+  // 设置个人信息
+  [SET_PERSONAL_INFO] (state,personalInfo){
+    state.personalInfo = personalInfo
+  },
+  // 设置活动信息
+  [SET_ACTIVITY_INFO] (state,activityInfo){
+    state.activityInfo = activityInfo
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

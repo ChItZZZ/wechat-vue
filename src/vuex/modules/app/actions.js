@@ -25,6 +25,10 @@ export const setFuncTab = ({ commit }, funcTab) => commit('SET_FUNC_TAB',funcTab
 
 export const addConfigItemAdded = ({ commit }, configItemAdded) => commit('ADD_CONFIG_ITEM_ADDED',configItemAdded)
 
+export const setPersonalInfo = ({ commit }, personalInfo) => commit('SET_PERSONAL_INFO',personalInfo)
+
+export const setActivityInfo = ({ commit }, activityInfo) => commit('SET_ACTIVITY_INFO',activityInfo)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }

@@ -11,3 +11,5 @@ export const totalMoney = state => state.totalMoney
 export const itemConfig = state => state.itemConfig
 export const curFuncTab = state => state.curFuncTab
 export const configItemAdded = state => state.configItemAdded
+export const personalInfo = state => state.personalInfo
+export const activityInfo = state => state.activityInfo

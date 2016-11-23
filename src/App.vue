@@ -52,11 +52,15 @@
       }),
     },
     created:function(){
-       this.getItemsFromServer()
+       this.getItemsFromServer();
+       //this.getPersonalInfo();
+       //this.getActivityInfo();
     },
     methods:{
       ...mapActions([
-        'setItemData'
+        'setItemData',
+        'setPersonalInfo',
+        'setActivityInfo'
       ]),
       getItemsFromServer: function () {
         this.$http.get('http://120.27.120.60:3000/items').then((response) => {
@@ -66,6 +70,24 @@
         }, (response) => {
           // error callback
           console.log('get server items error');
+        });
+      },
+      getPersonalInfo: function (){
+        var url = "";
+        this.$http.get(url).then((response) => {
+          console.log('get personal info from server ' + response.data);
+          //this.setPersonalInfo(response.data);
+        }, (response) => {
+          console.log('get personal info error');
+        });
+      },
+      getActivityInfo: function (){
+        var url = "";
+        this.$http.get(url).then((response) => {
+          console.log('get Activity info from server ' + response.data);
+          //this.setActivityInfo(response.data);
+        }, (response) => {
+          console.log('get personal info error');
         });
       },
       showCart: function () {

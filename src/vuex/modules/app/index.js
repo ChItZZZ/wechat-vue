@@ -19,6 +19,8 @@ const state = {
   totalMoney:0,
   itemConfig:{},
   curFuncTab:"",
+  personalInfo:{},
+  activityInfo:{},
   isMinusShow: true,
   isCartShow: false,
 }
