@@ -12,6 +12,7 @@ export default {
  computed: {
     ...mapGetters({
       curBarCount: 'navBarCount',
+      shopInfo:'shopInfo',
     })   
   },
   data(){
@@ -24,7 +25,20 @@ export default {
     clickTab:function(item){
       this.curFuncTab = item;
       this.$store.dispatch('setFuncTab',this.curFuncTab);
-    }
+
+      if(item == '伯乐寻马'){
+        if( !('title' in this.shopInfo) ){
+          var api = 'http://api.qiancs.cn/' + 'getRecruit';
+          this.$http.get(api).then((response) => {
+            console.log('get shop info from server' + JSON.stringify(response.data));
+            this.$store.dispatch('setShopInfo',response.data);
+          }, (response) => {
+            console.log('get shop info error');
+          });
+        }
+      }
+    },
+
   }
 
   

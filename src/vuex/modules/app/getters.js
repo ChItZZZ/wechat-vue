@@ -13,3 +13,4 @@ export const curFuncTab = state => state.curFuncTab
 export const configItemAdded = state => state.configItemAdded
 export const personalInfo = state => state.personalInfo
 export const activityInfo = state => state.activityInfo
+export const shopInfo = state => state.shopInfo

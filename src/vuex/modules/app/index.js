@@ -21,6 +21,7 @@ const state = {
   curFuncTab:"",
   personalInfo:{},
   activityInfo:{},
+  shopInfo:{},
   isMinusShow: true,
   isCartShow: false,
 }

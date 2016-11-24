@@ -17,7 +17,8 @@ import {
   SET_FUNC_TAB,
   ADD_CONFIG_ITEM_ADDED,
   SET_PERSONAL_INFO,
-  SET_ACTIVITY_INFO
+  SET_ACTIVITY_INFO,
+  SET_SHOP_INFO 
 } from './mutation-type'
 
 const mutations = {
@@ -72,6 +73,10 @@ const mutations = {
   // 设置活动信息
   [SET_ACTIVITY_INFO] (state,activityInfo){
     state.activityInfo = activityInfo
+  },
+  // 设置店铺(招聘)信息
+  [SET_SHOP_INFO] (state,shopInfo){
+    state.shopInfo = shopInfo
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

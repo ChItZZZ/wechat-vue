@@ -29,6 +29,8 @@ export const setPersonalInfo = ({ commit }, personalInfo) => commit('SET_PERSONA
 
 export const setActivityInfo = ({ commit }, activityInfo) => commit('SET_ACTIVITY_INFO',activityInfo)
 
+export const setShopInfo = ({ commit },shopInfo) => commit('SET_SHOP_INFO',shopInfo)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }

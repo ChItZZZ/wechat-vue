@@ -10,6 +10,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+
   export default {
      computed: {
       ...mapGetters({
@@ -24,19 +25,21 @@
     },
     data(){
       return{
+        url : 'http://api.qiancs.cn/'
       }
     },
     methods:{
       submit: function(){
-        // var url = "";
-        // var param = {};
-        // param.content = document.getElementById("content").value;
-        // this.$http.post(url,param).then((response) => {
-        //   console.log('post comment ' + response.status);
-        //   //this.setPersonalInfo(response.data);
-        // }, (response) => {
-        //   console.log('post comment error');
-        // });
+        var api = this.url + 'addComment';
+        var param = {};
+        param.content = document.getElementById("content").value;
+        param.name = 'haha';
+        param.phone = '110';
+        this.$http.post(api,param).then((response) => {
+          console.log('post comment ' + response.status);
+        }, (response) => {
+          console.log('post comment error');
+        });
       },
 
     },
