@@ -13,7 +13,7 @@
           <div class="recommend-food">
             <img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">
             <!--<img src="../public/img/egg.jpeg" class="recommend-img">-->
-            
+
           </div>
         </div>
         <div class="part-three">
@@ -235,7 +235,7 @@
             order.push(json);
           }
         }
-        
+
         var data = this.configItemAdded;
         for(var i in data){
           if(data[i].count != 0){
@@ -253,7 +253,6 @@
         var totalMoney = 0;
         for(var index in order)
           totalMoney += order[index].count * order[index].price;
-  
         this.$store.dispatch("setTotalMoney",totalMoney);
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
@@ -269,7 +268,6 @@
         obj.count = 1;
         this.$store.dispatch("addConfigItemAdded",obj);
       }
-      
     }
   }
 </script>
