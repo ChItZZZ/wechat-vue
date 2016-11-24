@@ -4,9 +4,9 @@ import VueRouter from 'vue-router'
 
 import routeConfig from './routeConfig'
 import 'vuex'
-import './public/css/bootstrap.min.css'
-import './public/js/jquery.min.js'
-import './public/js/bootstrap.min.js'
+import './public/static/bootstrap.min.css'
+import './public/static/jquery.min.js'
+import './public/static/bootstrap.min.js'
 import store from './vuex/store'
 
 import Element from 'element-ui'

@@ -15,7 +15,8 @@
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
     </div>
-    <div class="fixed-cart" @click="showCart">购物车</div>
+    <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
+    <fixed-cart></fixed-cart>
     <Container></Container>
     <Message class="cont" ></Message>
   </div>
@@ -34,11 +35,12 @@
   import Modal from './components/Modal.vue'
   import Cart from './components/Cart.vue'
   import Message from './components/Message.vue'
+  import FixedCart from './components/FixedCart.vue'
 
   export default {
     name: 'app',
     components: {
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart
     },
     data(){
       return {
@@ -192,18 +194,18 @@
     position: fixed;
     top:0;
   }
-  .fixed-cart{
-    z-index: 10002;
-    position: fixed;
-    bottom: 50px;
-    color: white;
-    right: 15px;
-    border-radius: 50%;
-    line-height: 65px;
-    width: 65px;
-    height: 65px;
-    background-color: rgba(177,0,0,.8);
-    border: 2px solid black;
-    box-shadow: 5px 5px 10px #888888;
-  }
+  /*.fixed-cart{*/
+    /*z-index: 10002;*/
+    /*position: fixed;*/
+    /*bottom: 50px;*/
+    /*color: white;*/
+    /*right: 15px;*/
+    /*border-radius: 50%;*/
+    /*line-height: 65px;*/
+    /*width: 65px;*/
+    /*height: 65px;*/
+    /*background-color: rgba(177,0,0,.8);*/
+    /*border: 2px solid black;*/
+    /*box-shadow: 5px 5px 10px #888888;*/
+  /*}*/
 </style>
