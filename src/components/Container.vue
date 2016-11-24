@@ -1,5 +1,5 @@
 <template>
-  <ul v-if='curNavBar == 1' style="padding-bottom: 40px;;margin-bottom: 0" >
+  <ul v-if='curNavBar == 1'  style="padding-bottom: 40px;;margin-bottom: 0"  :class="{active:isModalShow,inactive:!isModalShow}">
     <li class="item-info" v-for="item in goods" >
       <div class="item-img"><img :src="item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
       <div class="item-text">
@@ -22,7 +22,8 @@
           curTabIndex: 'curTabIndex',
           item_data:'item_data',
           curNavBar:'navBarCount',
-          itemConfig:'itemConfig'
+          itemConfig:'itemConfig',
+          isModalShow:'isModalShow'
         }),
         goods: function(){
           var data = [];
@@ -49,7 +50,7 @@
             console.log('get server item config error');
           });
         }
-  
+
         this.$store.dispatch("setItemId",id);
         this.$store.dispatch("showModal",true);
       },
@@ -58,7 +59,7 @@
         obj[id] = data;
         this.$store.dispatch("setItemConfig",obj);
       }
-     
+
     },
     data(){
       return {
@@ -71,6 +72,24 @@
 </script>
 
 <style scoped>
+  body{
+    overflow-y: hidden;
+  }
+  .active{
+    margin-left: 70px;
+    flex-grow: 5;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  .inactive{
+    margin-left: 70px;
+    padding-top: 130px;
+    flex-grow: 5;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+  }
   .item-info {
     border-bottom: 0.5px solid black;
     color: black;

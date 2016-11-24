@@ -16,7 +16,7 @@
       <BtmBar></BtmBar>
     </div>
     <div class="fixed-cart" @click="showCart">购物车</div>
-    <Container class="cont"></Container>
+    <Container></Container>
     <Message class="cont" ></Message>
   </div>
 

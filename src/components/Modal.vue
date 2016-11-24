@@ -33,15 +33,17 @@
     width: 100%;
     height: 100%;
     margin: auto;
+    overflow: hidden;
   }
 
   #modal {
-    position: relative;
+    position: absolute;
     z-index: 1000;
     margin: auto;
     height: 60%;
-    width: 70%;
     top: 20%;
+    left:15%;
+    right:15%;
     border: 2px solid darkred;
   }
 
