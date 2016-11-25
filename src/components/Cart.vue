@@ -7,7 +7,7 @@
         <p class="cart-title" style="">取餐方式</p>
         <div class="cart-cont" style="display: flex">
           <div class="cart-self" style="">收银台自取</div>
-          <input type="text" style="width: 15%"><span style="margin-top: 4px">&nbsp;号座位</span>
+          <input type="text" style="width: 15%;color: black"><span style="margin-top: 4px">&nbsp;号座位</span>
           <div class="cart-send" style="flex: 2;">送餐</div>
         </div>
       </div>
@@ -15,20 +15,14 @@
       <div class="part">
         <p class="cart-title">购物清单</p>
         <ul class="cart-cont" style="clear: both;">
-          <li class="" style="display: flex">
-            <div class="cart-item" style="flex: 3;">一二三四五六七</div>
-            <div style="flex: 1;">188元</div>
-            <div class="cart-act" style="flex: 1;">送餐</div>
-          </li>
-          <li class="" style="display: flex">
-            <div class="cart-item" style="flex: 3;">一二三四五六七</div>
-            <div style="flex: 1;">188元</div>
-            <div class="cart-act" style="flex: 1;">送餐</div>
-          </li>
-          <li class="" style="display: flex">
-            <div class="cart-item" style="flex: 3;">一二三四五六七</div>
-            <div style="flex: 1;">188元</div>
-            <div class="cart-act" style="flex: 1;">送餐</div>
+          <li class="" style="display: flex;flex-wrap: nowrap;font-size: 11px">
+            <div class="cart-item" style="flex: 2;">一二三四五六</div>
+            <div style="flex: 1;">18元</div>
+            <div class="cart-act" style="flex: 1">
+              <span class="item-act item-minus" id="test" >-</span>
+              <span class="item-num">11</span>
+              <span class="item-act item-plus" >+</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -52,7 +46,7 @@
 
       <div class="pay-sub">
         <button @click="pay('alipay_wap')">支付宝</button>
-        <button @click="pay('wx_pub')">微信支付</button>
+        <button @click="pay('wx_pub')">微信</button>
         <button @click="pay('balance')">余额支付</button>
       </div>
 
@@ -164,7 +158,7 @@
   }
 
   #cart-modal {
-    padding: 14px;
+    padding: 8px;
     position: relative;
     z-index: 1000;
     margin: auto;
@@ -237,7 +231,9 @@
   }
 
   .pay-sub button {
+    background-color: darkred;
     color: black;
+    border:0;
   }
 
   .pay-sub button {
@@ -252,9 +248,11 @@
   }
   .cart-title{
     float: left;
+    font-size: 13px;
   }
   .cart-cont{
     clear: both;
+    font-size: 11px;
   }
   .part{
     margin-top: 20px;
@@ -269,10 +267,26 @@
   }
   .dropdown-toggle{
     color: white;margin-left: 25px;width: 60%;border: 1px solid black;padding: 5px;
-    position: absolute;
-    right: 15px;
+    /*position: absolute;*/
+    display: inline-block;
+    /*right: 15px;*/
     bottom: 0;
+    margin-left: 5px;
     font-size: 9px;
+  }
+  .item-act{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    color: #000;
+
+  }
+  .dropdown .cart-title{
+    font-size: 13px;
+    margin-top: 3px;
   }
 </style>
 
