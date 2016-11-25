@@ -6,14 +6,24 @@
       <div id="detail-food">
         <div class="part-one">
           <ul class="food-size">
-            <li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:curSizeIndex==index}" @click="curSizeIndex=index">{{size}}</li>
+            <li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:curSizeIndex==index}"
+                @click="curSizeIndex=index">{{size}}
+            </li>
           </ul>
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">
-            <!--<img src="../public/img/egg.jpeg" class="recommend-img">-->
-
+            <!--<div class="left-part"><i class="glyphicon glyphicon-chevron-left"></i></div>-->
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            <!--<img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">-->
+            <!--<div class="img">-->
+            <img src="../public/img/egg.jpeg" class="recommend-img">
+            <img src="../public/img/egg.jpeg" class="recommend-img">
+            <img src="../public/img/egg.jpeg" class="recommend-img">
+            <img src="../public/img/egg.jpeg" class="recommend-img">
+            <!--</div>-->
+            <!--<div class="right-part"><i class="glyphicon glyphicon-chevron-right"></i></div>-->
+            <i class="glyphicon glyphicon-chevron-right"></i>
           </div>
         </div>
         <div class="part-three">
@@ -42,11 +52,15 @@
     margin: auto;
     height: 60%;
     top: 20%;
-    left:15%;
-    right:15%;
+    left: 15%;
+    right: 15%;
     border: 2px solid darkred;
   }
-
+  .recommend-food i{
+    color: white;
+    padding: 12px 6px;
+    /*background-color: rgba(0,0,0,.6);*/
+  }
   #detail-food {
     height: 50%;
     position: relative;
@@ -57,8 +71,21 @@
     width: 100%;
     height: 50%
   }
-  li{
+
+  li {
     list-style: none;
+  }
+
+  .left-part {
+    position: absolute;
+    left: 5px;
+    height: 100%
+  }
+
+  .right-part {
+    position: absolute;
+    right: 5px;
+    height: 100%;
   }
   .modal-close {
     position: absolute !important;
@@ -72,16 +99,21 @@
     line-height: 29px !important;
   }
 
-  .recommend-food {
-    bottom: 12px;
+  .img {
+    left: 40px;
+    height: 100%;
     position: absolute;
+    right: 40px;
+  }
 
+  .recommend-food {
+    position: absolute;
+    bottom: 10px;
   }
 
   .recommend-img {
-    width: 20%;
+    width: 18%;
     height: 100%;
-
   }
 
   .food-size {
@@ -151,46 +183,42 @@
         personalInfo:'personalInfo',
         couponInfo:'couponInfo'
       }),
-      curItem: function(){
+      curItem: function () {
         var item = {};
         var items = [];
         var i = 0;
-        for(var key in this.item_data)
-        {
-          if(i == this.tabIndex)
-          {
+        for (var key in this.item_data) {
+          if (i == this.tabIndex) {
             items = this.item_data[key];
             break;
           }
           ++i;
         }
-        for(var index in items)
-        {
-          if(items[index].id == this.itemId)
-          {
+        for (var index in items) {
+          if (items[index].id == this.itemId) {
             item = items[index];
             break;
           }
         }
         return item;
       },
-      curItemConfig : function(){
+      curItemConfig: function () {
         var id = this.itemId;
-        if(id in this.itemConfig)
+        if (id in this.itemConfig)
           return this.itemConfig[id];
-        else{
-          var temp = {size: ['加载中...'], };
+        else {
+          var temp = {size: ['加载中...'],};
           return temp;
         }
       },
-      configItemInfo : function(){
+      configItemInfo: function () {
         var itemsName = this.curItemConfig.recommend;
         var data = this.item_data;
         var info = [];
-        for(var i in itemsName){
-          for(var key in data){
-            for(var index in data[key]){
-              if(data[key][index].name == itemsName[i]){
+        for (var i in itemsName) {
+          for (var key in data) {
+            for (var index in data[key]) {
+              if (data[key][index].name == itemsName[i]) {
                 var obj = {};
                 obj.name = data[key][index].name;
                 obj.price = data[key][index].price;
@@ -203,7 +231,6 @@
         }
         return info;
       }
-
     },
     data(){
       return {
@@ -240,10 +267,10 @@
             order.push(json);
           }
         }
-
+         
         var data = this.configItemAdded;
-        for(var i in data){
-          if(data[i].count != 0){
+        for (var i in data) {
+          if (data[i].count != 0) {
             var json = {};
             json.count = data[i].count;
             json.name = data[i].name;

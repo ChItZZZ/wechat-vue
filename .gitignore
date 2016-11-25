@@ -3,3 +3,5 @@ node_modules/
 dist/
 npm-debug.log
 test/unit/coverage
+/src/public/static/bootstrap.min.js
+/src/public/static/jquery.min.js
