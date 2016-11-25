@@ -4,8 +4,6 @@
     <!--<mt-button type="default" ref="default-button" @click="something">default</mt-button>-->
     <!--<mt-button type="primary">primary</mt-button>-->
     <!--<mt-button type="danger">danger</mt-button>-->
-
-
     <Ad class="ad"></Ad>
     <Modal ></Modal>
     <Cart></Cart>
@@ -16,6 +14,7 @@
       <BtmBar></BtmBar>
     </div>
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
+    <vip-card></vip-card>
     <fixed-cart></fixed-cart>
     <Container></Container>
     <Message class="cont" ></Message>
@@ -36,11 +35,12 @@
   import Cart from './components/Cart.vue'
   import Message from './components/Message.vue'
   import FixedCart from './components/FixedCart.vue'
+  import VipCard from './components/VipCard.vue'
 
   export default {
     name: 'app',
     components: {
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard
     },
     data(){
       return {

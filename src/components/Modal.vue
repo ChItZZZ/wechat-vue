@@ -6,23 +6,21 @@
       <div id="detail-food">
         <div class="part-one">
           <ul class="food-size">
-            <li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:curSizeIndex==index}"
-                @click="curSizeIndex=index">{{size}}
-            </li>
+            <!--<li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:curSizeIndex==index}"-->
+                <!--@click="curSizeIndex=index">{{size}}-->
+            <!--</li>-->
+            <li class="select-food active">1123123123</li>
+            <li class="select-food">1123123123</li>
           </ul>
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <!--<div class="left-part"><i class="glyphicon glyphicon-chevron-left"></i></div>-->
             <i class="glyphicon glyphicon-chevron-left"></i>
             <!--<img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">-->
-            <!--<div class="img">-->
             <img src="../public/img/egg.jpeg" class="recommend-img">
             <img src="../public/img/egg.jpeg" class="recommend-img">
             <img src="../public/img/egg.jpeg" class="recommend-img">
             <img src="../public/img/egg.jpeg" class="recommend-img">
-            <!--</div>-->
-            <!--<div class="right-part"><i class="glyphicon glyphicon-chevron-right"></i></div>-->
             <i class="glyphicon glyphicon-chevron-right"></i>
           </div>
         </div>
@@ -267,7 +265,7 @@
             order.push(json);
           }
         }
-         
+
         var data = this.configItemAdded;
         for (var i in data) {
           if (data[i].count != 0) {
@@ -295,7 +293,7 @@
       getCouponList: function(){
         if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
           return;
-        
+
         var api = this.url + 'coupon';
         var param = {};
         param.card_id = this.personalInfo.cardNumber;
@@ -321,7 +319,7 @@
           this.$store.dispatch("addConfigItemAdded",obj);
         }
       },
-     
+
     },
   }
 </script>

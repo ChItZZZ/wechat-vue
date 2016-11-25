@@ -147,7 +147,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   #cart-mask {
     color: white;
     background-color: rgba(0, 0, 0, .4);
