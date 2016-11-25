@@ -35,11 +35,13 @@
       ...mapGetters({
         isCartShow: 'isCartShow',
         orderInfo:'orderInfo',
-        totalMoney:'totalMoney'
+        totalMoney:'totalMoney',
+        personalInfo: 'personalInfo'
       }),
     },
     data(){
       return{
+        url: 'http://api.qiancs.cn/'
       }
     },
     methods: {
@@ -51,36 +53,62 @@
         this.$store.dispatch('showCart', true);
       },
       pay:function(payWay){
-        if(this.orderInfo.length != 0){
-          if(payWay == 'balance'){
+        if(this.orderInfo.length == 0)
+          return;
+        if( !window.confirm('确定支付?') )
+          return;
 
-          }
-          else{
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", 'http://120.27.120.60:3000/getChargeNew', true);
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.send(JSON.stringify({
-                channel: payWay,
-                amount: 30 * 100,
-                orderInfo: this.orderInfo,
-                desk_id: 1,
-                store_id: 1,
-                price:30
-            }));
-            xhr.onreadystatechange = function () {
-              if (xhr.readyState == 4 && xhr.status == 200) {
-                  pingpp.createPayment(xhr.responseText, function(result, err) {
-                    if (result == "success") {
-                        alert('successed');
-                      } else if (result == "fail") {
-                        alert('failed');
-                      } else if (result == "cancel") {
-                        alert('canceled');
-                      }              
-                  });
-              }
+        if(payWay == 'balance'){
+          this.payBalance();
+        }
+        else{
+          var xhr = new XMLHttpRequest();
+          var api = this.url + 'getChargeNew'
+          xhr.open("POST", api, true);
+          xhr.setRequestHeader("Content-type", "application/json");
+          xhr.send(JSON.stringify({
+              channel: payWay,
+              amount: this.totalMoney * 100,
+              orderInfo: this.orderInfo,
+              desk_id: 1,
+              store_id: 1,
+              price: this.totalMoney
+          }));
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                pingpp.createPayment(xhr.responseText, function(result, err) {
+                  if (result == "success") {
+                      alert('successed');
+                    } else if (result == "fail") {
+                      alert('failed');
+                    } else if (result == "cancel") {
+                      alert('canceled');
+                    }              
+                });
             }
           }
+        }
+      },
+      payBalance: function(){
+        if(this.personalInfo.hasCard == 1 && this.personalInfo.balance >= this.totalMoney){
+          var api = this.url + 'deduct';
+          var param = {};
+          param.amount = this.totalMoney;
+          this.$http.post(api,param).then((response) => {
+            console.log('post balance deduct ' + JSON.stringify(response.data));
+            if(response.data.successful == 1){
+              this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
+              alert('支付成功!');
+            }
+            else
+              alert('支付失败');
+
+          }, (response) => {
+            console.log('post balance deduct error');
+          });
+        }
+        else{
+          alert('余额不足请充值');
         }
       },
        

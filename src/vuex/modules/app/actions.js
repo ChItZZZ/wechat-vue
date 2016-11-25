@@ -31,6 +31,10 @@ export const setActivityInfo = ({ commit }, activityInfo) => commit('SET_ACTIVIT
 
 export const setShopInfo = ({ commit },shopInfo) => commit('SET_SHOP_INFO',shopInfo)
 
+export const modifyBalance = ({ commit },amount) => commit('MODIFY_BALANCE',amount)
+
+export const setCouponInfo = ({ commit },coupon) => commit('SET_COUPON_INFO',coupon)
+
 export const showMinus = ({ commit }, isShow) => {
   commit('SHOW_MINUS', isShow)
 }

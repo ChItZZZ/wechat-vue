@@ -9,6 +9,8 @@ import mutations from './mutations'
 
 const state = {
   isModalShow: false,
+  isMinusShow: true,
+  isCartShow: false,
   navBarCount: 1,
   item_data: {},
   tabIndex: 0,
@@ -22,8 +24,8 @@ const state = {
   personalInfo:{},
   activityInfo:{},
   shopInfo:{},
-  isMinusShow: true,
-  isCartShow: false,
+  couponInfo:{isGet: false},
+  
 }
 
 export default{

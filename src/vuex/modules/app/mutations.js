@@ -18,7 +18,9 @@ import {
   ADD_CONFIG_ITEM_ADDED,
   SET_PERSONAL_INFO,
   SET_ACTIVITY_INFO,
-  SET_SHOP_INFO 
+  SET_SHOP_INFO,
+  MODIFY_BALANCE,
+  SET_COUPON_INFO
 } from './mutation-type'
 
 const mutations = {
@@ -77,6 +79,14 @@ const mutations = {
   // 设置店铺(招聘)信息
   [SET_SHOP_INFO] (state,shopInfo){
     state.shopInfo = shopInfo
+  },
+  // 余额变更
+  [MODIFY_BALANCE] (state,amount){
+    state.personalInfo.balance += amount
+  },
+  // 设置优惠券列表信息
+  [SET_COUPON_INFO] (state,coupon){
+    state.couponInfo = coupon
   },
   [SHOW_MINUS] (state, isShow){
     state.isMinusShow = isShow;

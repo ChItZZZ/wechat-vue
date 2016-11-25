@@ -147,7 +147,9 @@
         tabIndex:'curTabIndex',
         itemAddedCount:'itemAddedCount',
         itemConfig:'itemConfig',
-        configItemAdded:'configItemAdded'
+        configItemAdded:'configItemAdded',
+        personalInfo:'personalInfo',
+        couponInfo:'couponInfo'
       }),
       curItem: function(){
         var item = {};
@@ -206,6 +208,7 @@
     data(){
       return {
         curSizeIndex:0,
+        url:'http://api.qiancs.cn/'
       };
     },
     methods: {
@@ -259,17 +262,39 @@
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
+
+        this.getCouponList();
+      },
+      getCouponList: function(){
+        if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
+          return;
+        
+        var api = this.url + 'coupon';
+        var param = {};
+        param.card_id = this.personalInfo.cardNumber;
+        this.$http.post(api,param).then((response) => {
+          console.log('post coupon info' + JSON.stringify(response.data));
+          var data = {};
+          data.isGet = true;
+          data.couponList = response.data.couponList;
+          this.$store.dispatch('setCouponInfo',data)
+        }, (response) => {
+          console.log('post coupon info error');
+        });
       },
       addToCart: function(){
-        var obj = {};
-        var item = this.curItem;
-        obj.id = item.id;
-        obj.name = item.name;
-        obj.price = item.price;
-        obj.size = this.curItemConfig.size[this.curSizeIndex];
-        obj.count = 1;
-        this.$store.dispatch("addConfigItemAdded",obj);
-      }
-    }
+        if(window.confirm('加入购物车?')){
+          var obj = {};
+          var item = this.curItem;
+          obj.id = item.id;
+          obj.name = item.name;
+          obj.price = item.price;
+          obj.size = this.curItemConfig.size[this.curSizeIndex];
+          obj.count = 1;
+          this.$store.dispatch("addConfigItemAdded",obj);
+        }
+      },
+     
+    },
   }
 </script>

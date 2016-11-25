@@ -43,8 +43,8 @@
     methods:{
       showModal: function (id) {
         if( !(id in this.itemConfig) ){
-          var url = 'http://120.27.120.60:3000/itemConfig?item_id=' + parseInt(id);
-          this.$http.get(url).then((response) => {
+          var api = this.url + 'itemConfig?item_id=' + parseInt(id);
+          this.$http.get(api).then((response) => {
             this.addItemConfig(response.data,id);
           }, (response) => {
             console.log('get server item config error');
@@ -63,6 +63,7 @@
     },
     data(){
       return {
+        url:'http://api.qiancs.cn/'
       }
     },
     components: {

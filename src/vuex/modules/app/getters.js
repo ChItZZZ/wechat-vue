@@ -14,3 +14,4 @@ export const configItemAdded = state => state.configItemAdded
 export const personalInfo = state => state.personalInfo
 export const activityInfo = state => state.activityInfo
 export const shopInfo = state => state.shopInfo
+export const couponInfo = state => state.couponInfo
