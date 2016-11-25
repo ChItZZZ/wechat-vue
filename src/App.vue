@@ -96,60 +96,10 @@
           console.log('get Activity info error');
         });
       },
-      showCart: function () {
-        var obj = this.itemAddedCount;
-        var items = this.item_data;
-        var order = [];
-        for(var id in obj){
-          if(obj[id] != 0){
-            var json = {};
-            json.count = obj[id];
-            json.id = id;
-            for ( var key in items){
-              var isBreak = false;
-              for(var index in items[key]){
-                if(items[key][index].id == id){
-                  json.name = items[key][index].name;
-                  json.price = items[key][index].price;
-                  isBreak = true;
-                  break;
-                }
-              }
-              if(isBreak)
-                break;
-            }
-            order.push(json);
-          }
-        }
-
-        var data = this.configItemAdded;
-        for(var i in data){
-          if(data[i].count != 0){
-            var json = {};
-            json.count = data[i].count;
-            json.name = data[i].name;
-            json.price = data[i].price;
-            json.id = data[i].id;
-            var des = data[i].size;
-            json.des = des;
-            order.push(json);
-          }
-        }
-        console.log('order' + JSON.stringify(order));
-        var totalMoney = 0;
-        for(var index in order)
-          totalMoney += order[index].count * order[index].price;
-        this.$store.dispatch("setTotalMoney",totalMoney);
-        this.$store.dispatch("setOrderInfo",order);
-        this.$store.dispatch("showModal",false);
-        this.$store.dispatch('showCart',true);
-
-        this.getCouponList();
-      },
       getCouponList: function(){
         if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
           return;
-        
+
         var api = this.url + 'coupon';
         var param = {};
         param.card_id = this.personalInfo.cardNumber;
@@ -205,7 +155,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    /*color: #2c3e50;*/
     background: #000 url(public/img/bg3.png) 0 / cover fixed;
     min-height: 100vh;
   }
