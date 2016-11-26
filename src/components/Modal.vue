@@ -50,8 +50,8 @@
     margin: auto;
     height: 60%;
     top: 20%;
-    left: 15%;
-    right: 15%;
+    left: 8%;
+    right: 8%;
     border: 2px solid darkred;
   }
   .recommend-food i{

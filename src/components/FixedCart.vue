@@ -1,6 +1,6 @@
 <template>
   <div class="fixed-cart">
-    <div class="pay">直接付款</div>
+    <!--<div class="pay">直接付款</div>-->
     <div class="cart" @click="showCart"><span>11</span><i class="glyphicon glyphicon-shopping-cart"></i></div>
   </div>
 </template>
