@@ -13,7 +13,7 @@
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
       <!--<Container class="cont"></Container>-->
-      <!--<OrderContainer></Ordercontainer>-->
+      <OrderContainer></Ordercontainer>
     </div>
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
@@ -46,7 +46,8 @@
     name: 'app',
     components: {
 
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard
+      // Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard
+      Ad, NavBar, NavBar2, NavBar3, BtmBar,OrderContainer
     },
     data(){
       return {
