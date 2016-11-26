@@ -1,12 +1,12 @@
 <template>
-  <div class="vip-container">
+  <div class="vip-container" v-if='isCurFuncTab'>
     <div class="vip-main vip-one" style="border-top: 1px solid black">
-      <div class="vip-title">目前你是白金会员</div>
+      <div class="vip-title">目前你是{{myInfo.type}}会员</div>
       <table>
         <tr>
           <td>你最爱</td>
           <td>红烧牛肉面</td>
-          <td>余额:88元</td>
+          <td>余额:{{myInfo.balance}}</td>
         </tr>
         <tr>
           <td>本月来店</td>
@@ -45,6 +45,45 @@
     </div>
   </div>
 </template>
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+     computed: {
+      ...mapGetters({
+        curNavBar:'navBarCount',
+        curFuncTab:'curFuncTab',
+        personalInfo:'personalInfo',
+      }),
+      myInfo: function(){
+        var info = {};
+        if(this.personalInfo.hasCard == 0){
+          info.balance = 0;
+          info.type = '普通用户';
+        }
+        else
+          info = this.personalInfo;
+        return info;
+      },
+      isCurFuncTab:function(){
+        if(this.curFuncTab == '我是会员' && this.curNavBar == 2)
+          return true;
+        return false;
+      },
+    },
+    data(){
+      return{
+        url : 'http://api.qiancs.cn/'
+      }
+    },
+    methods:{
+
+    },
+
+  }
+
+</script>
+
 <style scoped>
   .vip-container {
     text-align: center;

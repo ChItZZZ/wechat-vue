@@ -1,5 +1,5 @@
 <template>
-  <ul v-if='curNavBar == 1' v-show="false"  style="padding-bottom: 40px;;margin-bottom: 0"  :class="{active:isModalShow,inactive:!isModalShow}">
+  <ul v-if='curNavBar == 1' style="padding-bottom: 40px;;margin-bottom: 0"  :class="{active:isModalShow,inactive:!isModalShow}">
     <li class="item-info" v-for="item in goods" >
       <div class="item-img"><img :src="item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
       <div class="item-text">
