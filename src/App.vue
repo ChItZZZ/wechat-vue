@@ -4,12 +4,10 @@
     <!--<mt-button type="default" ref="default-button" @click="something">default</mt-button>-->
     <!--<mt-button type="primary">primary</mt-button>-->
     <!--<mt-button type="danger">danger</mt-button>-->
-
-
     <Ad class="ad"></Ad>
-    <Modal slot="test"></Modal>
+    <Modal ></Modal>
     <Cart></Cart>
-    <div class="main">
+    <div class="main" >
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
@@ -17,8 +15,11 @@
       <!--<Container class="cont"></Container>-->
       <!--<OrderContainer></Ordercontainer>-->
     </div>
-    <div class="fixed-cart">购物车</div>
-    <Container class="cont"></Container>
+    <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
+    <vip-card></vip-card>
+    <fixed-cart></fixed-cart>
+    <Container></Container>
+    <Message class="cont" ></Message>
   </div>
 
 </template>
@@ -37,36 +38,89 @@
   import OrderContainer from './components/OrderContainer.vue'
 
   import Cart from './components/Cart.vue'
+  import Message from './components/Message.vue'
+  import FixedCart from './components/FixedCart.vue'
+  import VipCard from './components/VipCard.vue'
 
   export default {
     name: 'app',
     components: {
 
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard
     },
     data(){
       return {
+        url : 'http://api.qiancs.cn/'
       }
+    },
+    computed: {
+      ...mapGetters({
+        item_data:'item_data',
+        itemAddedCount:'itemAddedCount',
+        configItemAdded:'configItemAdded',
+        personalInfo:'personalInfo',
+        couponInfo:'couponInfo'
+      }),
+    },
+    created:function(){
+       this.getItemsFromServer();
+       this.getPersonalInfo();
+       this.getActivityInfo();
     },
     methods:{
       ...mapActions([
-        'setItemData'
+        'setItemData',
+        'setPersonalInfo',
+        'setActivityInfo'
       ]),
       getItemsFromServer: function () {
-        this.$http.get('http://wechat.qiancs.cn/items').then((response) => {
+        var api = this.url + 'items';
+        this.$http.get(api).then((response) => {
           // success callback
           this.setItemData(response.data);
-        console.log(response.data);
           console.log('get items from server');
         }, (response) => {
           // error callback
           console.log('get server items error');
         });
-      }
-    },
-    created:function(){
-       this.getItemsFromServer()
+      },
+      getPersonalInfo: function (){
+        var api = this.url + 'inquire';
+        this.$http.get(api).then((response) => {
+          console.log('get personal info from server ');
+          this.setPersonalInfo(response.data);
+        }, (response) => {
+          console.log('get personal info error');
+        });
+      },
+      getActivityInfo: function (){
+        var api = this.url + 'getActivity';
+        this.$http.get(api).then((response) => {
+          console.log('get Activity info from server ' );
+          this.setActivityInfo(response.data);
+        }, (response) => {
+          console.log('get Activity info error');
+        });
+      },
+      getCouponList: function(){
+        if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
+          return;
+
+        var api = this.url + 'coupon';
+        var param = {};
+        param.card_id = this.personalInfo.cardNumber;
+        this.$http.post(api,param).then((response) => {
+          console.log('post coupon info' + JSON.stringify(response.data));
+          var data = {};
+          data.isGet = true;
+          data.couponList = response.data.couponList;
+          this.$store.dispatch('setCouponInfo',data)
+        }, (response) => {
+          console.log('post coupon info error');
+        });
+      },
     }
+
 }
 
 </script>
@@ -85,7 +139,6 @@
     top: 130px;
     bottom: 0;
     left: 0;
-    right: 0;
     height: 100%;
   }
 
@@ -108,7 +161,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    /*color: #2c3e50;*/
     background: #000 url(public/img/bg3.png) 0 / cover fixed;
     min-height: 100vh;
   }
@@ -116,18 +169,18 @@
     position: fixed;
     top:0;
   }
-  .fixed-cart{
-    z-index: 10002;
-    position: fixed;
-    bottom: 50px;
-    color: white;
-    right: 15px;
-    border-radius: 50%;
-    line-height: 65px;
-    width: 65px;
-    height: 65px;
-    background-color: rgba(177,0,0,.8);
-    border: 2px solid black;
-    box-shadow: 5px 5px 10px #888888;
-  }
+  /*.fixed-cart{*/
+    /*z-index: 10002;*/
+    /*position: fixed;*/
+    /*bottom: 50px;*/
+    /*color: white;*/
+    /*right: 15px;*/
+    /*border-radius: 50%;*/
+    /*line-height: 65px;*/
+    /*width: 65px;*/
+    /*height: 65px;*/
+    /*background-color: rgba(177,0,0,.8);*/
+    /*border: 2px solid black;*/
+    /*box-shadow: 5px 5px 10px #888888;*/
+  /*}*/
 </style>

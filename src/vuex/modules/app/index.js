@@ -9,22 +9,23 @@ import mutations from './mutations'
 
 const state = {
   isModalShow: false,
+  isMinusShow: true,
+  isCartShow: false,
   navBarCount: 1,
   item_data: {},
   tabIndex: 0,
   itemId : "1",
-  isMinusShow: true,
-  isCartShow: false,
-  cart:[{
-    name:"牛肉面",
-    count:2,
-    price:12
-  },{
-    name:"叉烧面",
-    count:1,
-    price:122
-  }],
-  isCur:1
+  itemAddedCount :{},
+  configItemAdded:[],
+  orderInfo:[],
+  totalMoney:0,
+  itemConfig:{},
+  curFuncTab:"",
+  personalInfo:{},
+  activityInfo:{},
+  shopInfo:{},
+  couponInfo:{isGet: false},
+  
 }
 
 export default{

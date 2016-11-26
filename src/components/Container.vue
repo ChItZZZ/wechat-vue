@@ -1,6 +1,6 @@
 <template>
-  <ul v-if='curNavBar == 1' style="margin-bottom: 0">
-    <li class="item-info" v-for="item in goods">
+  <ul v-if='curNavBar == 1' v-show="false"  style="padding-bottom: 40px;;margin-bottom: 0"  :class="{active:isModalShow,inactive:!isModalShow}">
+    <li class="item-info" v-for="item in goods" >
       <div class="item-img"><img :src="item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
       <div class="item-text">
         <p class="line-one">{{item.name}}<i class="fa fa-user"></i></p>
@@ -21,7 +21,9 @@
         ...mapGetters({
           curTabIndex: 'curTabIndex',
           item_data:'item_data',
-          curNavBar:'navBarCount'
+          curNavBar:'navBarCount',
+          itemConfig:'itemConfig',
+          isModalShow:'isModalShow'
         }),
         goods: function(){
           var data = [];
@@ -40,12 +42,28 @@
     },
     methods:{
       showModal: function (id) {
+        if( !(id in this.itemConfig) ){
+          var api = this.url + 'itemConfig?item_id=' + parseInt(id);
+          this.$http.get(api).then((response) => {
+            this.addItemConfig(response.data,id);
+          }, (response) => {
+            console.log('get server item config error');
+          });
+        }
+
         this.$store.dispatch("setItemId",id);
         this.$store.dispatch("showModal",true);
       },
+      addItemConfig: function (data,id){
+        var obj = {};
+        obj[id] = data;
+        this.$store.dispatch("setItemConfig",obj);
+      }
+
     },
     data(){
       return {
+        url:'http://api.qiancs.cn/'
       }
     },
     components: {
@@ -55,6 +73,24 @@
 </script>
 
 <style scoped>
+  body{
+    overflow-y: hidden;
+  }
+  .active{
+    margin-left: 70px;
+    flex-grow: 5;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  .inactive{
+    margin-left: 70px;
+    padding-top: 130px;
+    flex-grow: 5;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+  }
   .item-info {
     border-bottom: 0.5px solid black;
     color: black;
@@ -62,7 +98,6 @@
     height: 100px;
     display: flex;
     flex: 5;
-    padding: 0;
   }
 
   .item-img {

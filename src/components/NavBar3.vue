@@ -1,9 +1,7 @@
 <template>
 
   <ul class="menu" id="ul" v-show="curBarCount==3">
-    <li class="active">333</li>
-    <li>333</li>
-    <li>333</li>
+    <li v-for="item in funcTabIndex" :class="{active:curFuncTab == item}" @click="clickTab(item)">{{item}}</li>
   </ul>
 </template>
 
@@ -14,8 +12,33 @@ export default {
  computed: {
     ...mapGetters({
       curBarCount: 'navBarCount',
-    })
-    
+      shopInfo:'shopInfo',
+    })   
+  },
+  data(){
+    return {
+      curFuncTab: "活动福利",
+      funcTabIndex:["活动福利","倾听留言","伯乐寻马","品牌故事"]
+    }
+  },
+  methods:{
+    clickTab:function(item){
+      this.curFuncTab = item;
+      this.$store.dispatch('setFuncTab',this.curFuncTab);
+
+      if(item == '伯乐寻马'){
+        if( !('title' in this.shopInfo) ){
+          var api = 'http://api.qiancs.cn/' + 'getRecruit';
+          this.$http.get(api).then((response) => {
+            console.log('get shop info from server' + JSON.stringify(response.data));
+            this.$store.dispatch('setShopInfo',response.data);
+          }, (response) => {
+            console.log('get shop info error');
+          });
+        }
+      }
+    },
+
   }
 
   
@@ -41,7 +64,7 @@ export default {
   }
   .menu li{
     height: 60px;
-    font-size: 16px;
+    font-size: 14px;
     /*background-color: rgba(0,0,0,.4);*/
     list-style: none;
     line-height: 60px;

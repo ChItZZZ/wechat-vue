@@ -1,9 +1,7 @@
 <template>
 
   <ul class="menu" id="ul" v-show="curBarCount==2">
-    <li class="active">222</li>
-    <li>222</li>
-    <li>222</li>
+    <li v-for="item in funcTabIndex" :class="{active:curFuncTab == item}" @click="clickTab(item)">{{item}}</li>
   </ul>
 </template>
 
@@ -15,7 +13,31 @@ export default {
     ...mapGetters({
       curBarCount: 'navBarCount',
     })
-    
+  },
+  data(){
+    return {
+      curFuncTab: "购物车",
+      funcTabIndex:["购物车","我的订单","我的优惠","我是会员"]
+    }
+  },
+  methods:{
+    clickTab:function(item){
+      this.curFuncTab = item;
+      switch(this.curFuncTab){
+        case "我的订单":
+          this.getHistoryOrder();
+          break;
+
+      }
+    },
+    getHistoryOrder:function(){
+      this.$http.get('http://120.27.120.60:3000/order').then((response) => {
+          console.log('get history order from server');
+          console.log('history order '+ JSON.stringify(response.data));
+        }, (response) => {
+          console.log('get history order error');
+        });
+    }
   }
 
   
@@ -41,7 +63,7 @@ export default {
   }
   .menu li{
     height: 60px;
-    font-size: 16px;
+    font-size: 14px;
     /*background-color: rgba(0,0,0,.4);*/
     list-style: none;
     line-height: 60px;

@@ -56,7 +56,7 @@
 
   .menu li {
     height: 60px;
-    font-size: 16px;
+    font-size: 14px;
     list-style: none;
     line-height: 60px;
     min-width: 55px;
