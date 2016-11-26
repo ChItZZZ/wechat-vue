@@ -34,11 +34,11 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" style="font-size: 10px;left: 50px;right: 0px">
-          <li><a href="#">买一送一</a></li>
+          <li v-for="coupon in couponList" ><a href="#">{{coupon.description}}</a><li class="divider"></li></li>
+          
+          <!--<li><a href="#">送饮料</a></li>
           <li class="divider"></li>
-          <li><a href="#">送饮料</a></li>
-          <li class="divider"></li>
-          <li><a href="#">另一个分离的链接</a></li>
+          <li><a href="#">另一个分离的链接</a></li>-->
         </ul>
       </div>
 
@@ -58,13 +58,25 @@
   import { mapGetters } from 'vuex'
   var pingpp = require('pingpp-js');
   export default {
-    computed: mapGetters({
-      isCartShow: 'isCartShow',
-      orderInfo: 'orderInfo',
-      totalMoney: 'totalMoney',
-      personalInfo: 'personalInfo',
-      activityInfo:'activityInfo'
-    }),
+    computed: {
+      ...mapGetters({
+        isCartShow: 'isCartShow',
+        orderInfo: 'orderInfo',
+        totalMoney: 'totalMoney',
+        personalInfo: 'personalInfo',
+        activityInfo:'activityInfo',
+        couponInfo:'couponInfo',
+      }),
+      couponList: function(){
+        var list = [];
+        if(this.couponInfo.isGet)
+          list = this.couponInfo.couponList;
+        else
+          list[0].description = '没有可使用的优惠券';
+        return list;
+      },
+
+    },
     data()
     {
       return {
@@ -76,7 +88,8 @@
     ,
     methods: {
       closeCart: function () {
-        this.$store.dispatch("showCart", false)
+       // this.$store.dispatch("showCart", false)
+       console.log('cccc' + JSON.stringify(this.couponList));
       }
       ,
       showCart: function () {
