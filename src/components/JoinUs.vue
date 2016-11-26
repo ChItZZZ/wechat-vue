@@ -1,9 +1,10 @@
 <template>
-  <div class="join-container" v-if='true'>
-    <div class="join-title">等开心的你 加入开心的店</div>
+  <div class="join-container" v-if='isCurFuncTab'>
+    <div class="join-title">{{shopInfo.title}}</div>
     <div class="join-content">
-      <p>当然我们希望有更多努力的人们加入我们,就等你来,我们向全国出发</p>
-      <h4 style="margin-top: 14px">魔都的面薪酬福利</h4>
+      <p>{{shopInfo.content}}</p>
+      <!--<h4 style="margin-top: 14px">魔都的面薪酬福利</h4>-->
+      <p>{{shopInfo.releae_date}}</p>
       <p>
         工作时间自由,24小时随时出勤,免费品尝美食,一日三餐不要钱;全职员工包住,温馨小窝,工作努力嘉奖
       </p>
@@ -17,6 +18,35 @@
     </div>
   </div>
 </template>
+<script>
+  import { mapGetters } from 'vuex'
+  
+  export default {
+     computed: {
+      ...mapGetters({
+        curNavBar:'navBarCount',
+        curFuncTab:'curFuncTab',
+        shopInfo:'shopInfo',
+      }),
+      isCurFuncTab:function(){
+        if(this.curFuncTab == '伯乐寻马' && this.curNavBar == 3)
+          return true;
+        return false;
+      },
+    },
+    data(){
+      return{
+        url : 'http://api.qiancs.cn/'
+      }
+    },
+    methods:{
+
+    },
+
+  }
+
+</script>
+
 <style scoped>
   .join-container {
     text-align: center;
