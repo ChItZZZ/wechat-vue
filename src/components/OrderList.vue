@@ -96,7 +96,7 @@
     flex-direction: column;
     align-self: stretch;
     align-self: -webkit-stretch;
-    background-image: url();
+    /*background-image: url();*/
   }  
   .order-paid{
     flex: 1;
