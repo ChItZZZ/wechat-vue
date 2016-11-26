@@ -18,6 +18,7 @@
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
     <fixed-cart></fixed-cart>
+    <join-us></join-us>
     <Container></Container>
     <Message class="cont" ></Message>
   </div>
@@ -41,13 +42,12 @@
   import Message from './components/Message.vue'
   import FixedCart from './components/FixedCart.vue'
   import VipCard from './components/VipCard.vue'
-
+  import JoinUs from './components/JoinUs.vue'
   export default {
     name: 'app',
     components: {
 
-      // Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard
-      Ad, NavBar, NavBar2, NavBar3, BtmBar,OrderContainer
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs
     },
     data(){
       return {
@@ -56,11 +56,7 @@
     },
     computed: {
       ...mapGetters({
-        item_data:'item_data',
-        itemAddedCount:'itemAddedCount',
-        configItemAdded:'configItemAdded',
-        personalInfo:'personalInfo',
-        couponInfo:'couponInfo'
+
       }),
     },
     created:function(){
@@ -103,23 +99,7 @@
           console.log('get Activity info error');
         });
       },
-      getCouponList: function(){
-        if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
-          return;
 
-        var api = this.url + 'coupon';
-        var param = {};
-        param.card_id = this.personalInfo.cardNumber;
-        this.$http.post(api,param).then((response) => {
-          console.log('post coupon info' + JSON.stringify(response.data));
-          var data = {};
-          data.isGet = true;
-          data.couponList = response.data.couponList;
-          this.$store.dispatch('setCouponInfo',data)
-        }, (response) => {
-          console.log('post coupon info error');
-        });
-      },
     }
 
 }

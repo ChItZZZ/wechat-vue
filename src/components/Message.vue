@@ -1,5 +1,5 @@
 <template>
-  <div class="msg" v-if='isCurFuncTab '>
+  <div class="msg" v-if='isCurFuncTab'>
     <div class="tag" style="margin: 18px auto;">请留言</div>
     <textarea class="text" id="content"></textarea>
     <div class="btn-msg">

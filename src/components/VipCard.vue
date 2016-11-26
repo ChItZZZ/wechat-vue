@@ -1,12 +1,12 @@
 <template>
-  <div class="vip-container">
+  <div class="vip-container" v-if='isCurFuncTab'>
     <div class="vip-main vip-one" style="border-top: 1px solid black">
-      <div class="vip-title">目前你是白金会员</div>
+      <div class="vip-title">目前你是{{myInfo.type}}会员</div>
       <table>
         <tr>
           <td>你最爱</td>
           <td>红烧牛肉面</td>
-          <td>余额:88元</td>
+          <td>余额:{{myInfo.balance}}</td>
         </tr>
         <tr>
           <td>本月来店</td>
@@ -42,9 +42,58 @@
     </div>
     <div class="vip-main vip-three">
       <div class="vip-title">魔都的面 充值(优惠)</div>
+      <div class="vip-payment">
+        <div class="vip-pay1 vip-pay active">10元</div>
+        <div class="vip-pay2 vip-pay">20元</div>
+        <div class="vip-pay3 vip-pay">50元</div>
+        <div class="vip-pay4 vip-pay">100元</div>
+      </div>
+    </div>
+    <div class="vip-way">
+      <input type="radio" value="" name="一">微信支付
+      <input type="radio" value="" name="一">支付宝支付
     </div>
   </div>
 </template>
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+     computed: {
+      ...mapGetters({
+        curNavBar:'navBarCount',
+        curFuncTab:'curFuncTab',
+        personalInfo:'personalInfo',
+      }),
+      myInfo: function(){
+        var info = {};
+        if(this.personalInfo.hasCard == 0){
+          info.balance = 0;
+          info.type = '普通用户';
+        }
+        else
+          info = this.personalInfo;
+        return info;
+      },
+      isCurFuncTab:function(){
+        if(this.curFuncTab == '我是会员' && this.curNavBar == 2)
+          return true;
+        return false;
+      },
+    },
+    data(){
+      return{
+        url : 'http://api.qiancs.cn/'
+      }
+    },
+    methods:{
+
+    },
+
+  }
+
+</script>
+
 <style scoped>
   .vip-container {
     text-align: center;
@@ -55,7 +104,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
-    background-color: rgba(255,255,255,.6);
+    background-color: rgba(255, 255, 255, .6);
     min-height: 100vh;
   }
 
@@ -67,10 +116,16 @@
     height: 33px;
     line-height: 33px;
   }
-  .vip-main{
-    min-height: 130px;
+
+  .vip-main {
+    min-height: 110px;
   }
-  .vip-level{
+
+  .vip-main:nth-last-child(2) {
+    min-height: 0;
+  }
+
+  .vip-level {
     flex: 1;
     background-color: darkred;
     color: white;
@@ -83,25 +138,32 @@
     align-self: stretch;
     padding: 3px;
   }
-  .vip-level:last-child{
+  .vip-way{
+    margin-top: 10px;
+  }
+
+  .vip-level:last-child {
     border: 0;
     display: flex;
 
   }
-  .vip-two{
+
+  .vip-two {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
-  .vip-all{
+
+  .vip-all {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     align-content: stretch;
     align-self: stretch;
   }
-  .vip-cont{
+
+  .vip-cont {
     flex: 1;
     color: black;
     font-size: 10px;
@@ -111,21 +173,49 @@
     flex-direction: column;
     align-self: stretch;
   }
-  .vip-content{
+
+  .vip-content {
     display: flex;
     display: -webkit-flex;
   }
-  .vip-cont{
+
+  .vip-cont {
     align-self: stretch;
     align-self: -webkit-stretch;
     border-right: 1px solid black;
   }
-  .vip-cont:last-child{
+
+  .vip-cont:last-child {
     border: 0;
   }
-  table{
+
+  table {
     width: 100%;
     font-size: 11px;
     margin-top: 10px;
   }
+
+  .vip-pay {
+    font-size: 11px;
+    flex: 1;
+    height: 30px;
+    background-color: darkred;
+    color: white;
+    padding: 10px;
+  }
+
+  .vip-pay.active {
+    background-color: rgba(100, 5, 0, 1);
+  }
+
+  .vip-payment {
+    display: flex;
+  }
+
+  /*.vip-three{*/
+  /*position: absolute;*/
+  /*bottom: 100px;*/
+  /*right: 0;*/
+  /*left: 70px;;*/
+  /*}*/
 </style>

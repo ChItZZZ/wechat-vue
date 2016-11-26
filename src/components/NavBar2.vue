@@ -23,6 +23,8 @@ export default {
   methods:{
     clickTab:function(item){
       this.curFuncTab = item;
+      this.$store.dispatch('setFuncTab',this.curFuncTab);
+
       switch(this.curFuncTab){
         case "我的订单":
           this.getHistoryOrder();
