@@ -13,7 +13,8 @@
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
       <!--<Container class="cont"></Container>-->
-      <OrderContainer></Ordercontainer>
+      <Orders></Orders>
+      <!--<Coupon><>-->
     </div>
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
@@ -36,7 +37,7 @@
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
 
-  import OrderContainer from './components/OrderContainer.vue'
+  import Orders from './components/Orders.vue'
 
   import Cart from './components/Cart.vue'
   import Message from './components/Message.vue'
