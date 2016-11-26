@@ -1,62 +1,62 @@
 <template>
 <div class="item-info">
-
   <div class="order-container">
     <div class="order-main order-one" style="border-top: 1px solid black">
-      <table>
-        <tr>
-          <td>日期</td>
-          <td>订单码</td>
-          <td>名称</td>
-          <td>数量</td>
-          <td>优惠</td>
-          <td>金额</td>
-          <td>状态</td>
-        </tr>
-        <hr style="width:100%"/>
+        <div class="" style="display: flex;font-size: 12px">
+          <div class="item-title">日期</div>
+          <!--<div class="item-title item-id">订单码</div>-->
+          <div class="item-title item-name">商品名称</div>
+          <div class="item-title">数量</div>
+          <div class="item-title">优惠</div>
+          <div class="item-title">金额</div>
+          <div class="item-title">状态</div>
+        </div>
+        <div class="item-cont" style="display: flex">
+          <div class="item-content">8/30</div>
+          <!--<div class="item-content item-id">0001</div>-->
+          <div class="item-content item-name">招牌三鲜牛肉面</div>
+          <div class="item-content">2</div>
+          <div class="item-content">5元</div>
+          <div class="item-content">89</div>
+          <div class="item-content">已出</div>
+        </div>
+        <div class="item-cont" style="display: flex">
+          <div class="item-content">8/30</div>
+          <!--<div class="item-content item-id">0001</div>-->
+          <div class="item-content item-name">招牌三鲜牛肉面</div>
+          <div class="item-content">2</div>
+          <div class="item-content">5元</div>
+          <div class="item-content">89</div>
+          <div class="item-content">已出</div>
+        </div>
+        <div class="item-cont" style="display: flex">
+          <div class="item-content">8/30</div>
+          <!--<div class="item-content item-id">0001</div>-->
+          <div class="item-content item-name">招牌三鲜牛肉面</div>
+          <div class="item-content">2</div>
+          <div class="item-content">5元</div>
+          <div class="item-content">89</div>
+          <div class="item-content">已出</div>
+        </div>
+        </tbody>
       </table>
     </div>
 
-    <div class="order-main order-two">
-      <div class="order-content " style="height: 100px">
-        <div class="order-cont">8/30</div>
-        <div class="order-cont">0001</div>
-        <div class="order-cont">红烧牛肉面</div>
-        <div class="order-cont">2</div>
-        <div class="order-cont">5</div>
-        <div class="order-cont">78</div>
-        <div class="order-unpaid">未付</div>
-      </div>
-      <div class="order-content " style="height: 100px">
-        <div class="order-cont">8/30</div>
-        <div class="order-cont">0001</div>
-        <div class="order-cont">红烧牛肉面</div>
-        <div class="order-cont">2</div>
-        <div class="order-cont">5</div>
-        <div class="order-cont">78</div>
-        <div class="order-paid">已付</div>
-      </div>
-    </div>
-    <div class="order-main order-two">
-      <div class="order-content " style="height: 100px">
-        <div class="order-cont">阿森纳地哦啊是你的</div>
-        <div class="order-cont">IQ网合肥南送</div>
-        <div class="order-cont">懊恼放弃我让你我</div>
-      </div>
-    </div>
- 
+
   </div>
 </div>
 </template>
 <style scoped>
   .item-info {
+    text-align: center;
     margin-left: 70px;
-    color: black;
-    background-color: rgba(255, 255, 255, .6);
+    padding: 150px 5px 40px 5px;
+    flex-grow: 5;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: 100%;
-    display: flex;
-    flex:5;
-    padding: 0;
+    background-color: rgba(255, 255, 255, .6);
+    min-height: 100vh;
   }
 
   .item-img {
@@ -81,7 +81,7 @@
     line-height: 33px;
   }
   .order-main{
-    min-height: 130px;
+    /*min-height: 130px;*/
   }
 
   .order-one{
@@ -113,8 +113,8 @@
     flex-direction: column;
     align-self: stretch;
     align-self: -webkit-stretch;
-    background-image: url('../public/img/unpaid.png');
-  }  
+    /*background-image: url('../public/img/unpaid.png');*/
+  }
   .order-paid{
     flex: 1;
     color: black;
@@ -135,5 +135,27 @@
     width: 100%;
     font-size: 10px;
     margin-top: 10px;
+  }
+  .item-cont{
+    /*padding: 15px;*/
+
+    border-bottom: 1px solid rgba(0,0,0,.4);
+    padding: 12px 0px;
+  }
+  .item-title{
+    flex:1;
+
+  }
+  .item-content{
+    flex: 1;
+    padding: 2px;
+    font-size: 11px;
+
+  }
+  .item-name{
+    flex:3;
+  }
+  .item-id{
+    flex: 2;
   }
 </style>
