@@ -41,7 +41,23 @@
 </style>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
+    computed: {
+      ...mapGetters({
+        item_data:'item_data',
+        itemAddedCount:'itemAddedCount',
+        configItemAdded:'configItemAdded',
+        personalInfo:'personalInfo',
+        couponInfo:'couponInfo'
+      }),
+    },
+    data(){
+      return {
+        url : 'http://api.qiancs.cn/'
+      }
+    },
     methods:{
       showCart: function () {
         var obj = this.itemAddedCount;
@@ -92,7 +108,26 @@
         this.$store.dispatch('showCart',true);
 
         this.getCouponList();
-      }
-    }
+      },
+      getCouponList: function(){
+        if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
+          return;
+
+        var api = this.url + 'coupon';
+        var param = {};
+        param.card_id = this.personalInfo.cardNumber;
+        this.$http.post(api,param).then((response) => {
+          console.log('post coupon info' + JSON.stringify(response.data));
+          var data = {};
+          data.isGet = true;
+          data.couponList = response.data.couponList;
+          this.$store.dispatch('setCouponInfo',data)
+        }, (response) => {
+          console.log('post coupon info error');
+        });
+      },
+
+    },
+
   }
 </script>
