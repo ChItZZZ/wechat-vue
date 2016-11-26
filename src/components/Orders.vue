@@ -18,7 +18,7 @@
           <div class="item-content">2</div>
           <div class="item-content">5元</div>
           <div class="item-content">89</div>
-          <div class="item-content">已出</div>
+          <div class="item-content item-used">已出</div>
         </div>
         <div class="item-cont" style="display: flex">
           <div class="item-content">8/30</div>
@@ -27,7 +27,7 @@
           <div class="item-content">2</div>
           <div class="item-content">5元</div>
           <div class="item-content">89</div>
-          <div class="item-content">已出</div>
+          <div class="item-content item-unused">未出</div>
         </div>
         <div class="item-cont" style="display: flex">
           <div class="item-content">8/30</div>
@@ -36,7 +36,7 @@
           <div class="item-content">2</div>
           <div class="item-content">5元</div>
           <div class="item-content">89</div>
-          <div class="item-content">已出</div>
+          <div class="item-content item-used">已出</div>
         </div>
         </tbody>
       </table>
@@ -137,10 +137,8 @@
     margin-top: 10px;
   }
   .item-cont{
-    /*padding: 15px;*/
-
     border-bottom: 1px solid rgba(0,0,0,.4);
-    padding: 12px 0px;
+    padding: 16px 0px;
   }
   .item-title{
     flex:1;
@@ -155,7 +153,15 @@
   .item-name{
     flex:3;
   }
-  .item-id{
-    flex: 2;
+  .item-used{
+    padding: 2px;
+    background-color: lightgray;
+    border-radius: 8px;
+  }
+  .item-unused{
+    padding: 2px;
+    background-color: darkred;
+    color: white;
+    border-radius: 8px;
   }
 </style>
