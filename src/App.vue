@@ -12,6 +12,8 @@
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
+      <!--<Container class="cont"></Container>-->
+      <OrderContainer></Ordercontainer>
     </div>
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
@@ -33,6 +35,9 @@
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
+
+  import OrderContainer from './components/OrderContainer.vue'
+
   import Cart from './components/Cart.vue'
   import Message from './components/Message.vue'
   import FixedCart from './components/FixedCart.vue'
@@ -41,6 +46,7 @@
   export default {
     name: 'app',
     components: {
+
       Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs
     },
     data(){
