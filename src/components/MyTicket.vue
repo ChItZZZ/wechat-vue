@@ -11,19 +11,19 @@
         <div class="item-cont" style="display: flex">
           <div class="item-content ticket-content">8/30</div>
           <div class="item-content ">8/30</div>
-          <div class="item-content">已使用</div>
+          <div class="item-content ticket-unused">已使用</div>
           <div class="item-content">6/30</div>
         </div>
         <div class="item-cont" style="display: flex">
           <div class="item-content ticket-content">8/30</div>
           <div class="item-content ">8/30</div>
-          <div class="item-content">已使用</div>
+          <div class="item-content ticket-used">未使用</div>
           <div class="item-content">6/30</div>
         </div>
         <div class="item-cont" style="display: flex">
           <div class="item-content ticket-content">8/30</div>
           <div class="item-content ">8/30</div>
-          <div class="item-content">已使用</div>
+          <div class="item-content ticket-unused">已使用</div>
           <div class="item-content">6/30</div>
         </div>
       </div>
@@ -73,5 +73,16 @@
   }
   .ticket-content{
     flex: 2;
+  }
+  .ticket-unused{
+    padding: 3px;
+    border-radius: 10px;
+    background-color: lightgray;
+  }
+  .ticket-used{
+    padding: 3px;
+    border-radius: 10px;
+    background-color: darkred;
+    color: white;
   }
 </style>

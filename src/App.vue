@@ -18,9 +18,9 @@
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
     <fixed-cart></fixed-cart>
-    <!--<Orders></Orders>-->
+    <Orders></Orders>
     <join-us></join-us>
-    <my-ticket></my-ticket>
+    <!--<my-ticket></my-ticket>-->
     <Container></Container>
     <Coupons></Coupons>
     <Orders></Orders>
