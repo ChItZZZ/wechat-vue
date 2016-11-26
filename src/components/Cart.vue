@@ -34,8 +34,8 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" style="font-size: 10px;left: 50px;right: 0px">
-          <li v-for="coupon in couponList" ><a href="#">{{coupon.description}}</a><li class="divider"></li></li>
-          
+          <li v-for="coupon in couponList" > <a href="#">{{coupon.description}}</a> </li>
+          <li class="divider"></li>
           <!--<li><a href="#">送饮料</a></li>
           <li class="divider"></li>
           <li><a href="#">另一个分离的链接</a></li>-->
@@ -88,15 +88,12 @@
     ,
     methods: {
       closeCart: function () {
-       // this.$store.dispatch("showCart", false)
-       console.log('cccc' + JSON.stringify(this.couponList));
-      }
-      ,
+        this.$store.dispatch("showCart", false)
+      },
       showCart: function () {
         this.$store.dispatch("showModal", false);
         this.$store.dispatch('showCart', true);
-      }
-      ,
+      },
       pay: function (payWay) {
         if (this.orderInfo.length == 0){
           alert('购物车为空,请选购');
