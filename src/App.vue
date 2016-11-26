@@ -19,8 +19,9 @@
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
     <fixed-cart></fixed-cart>
-    <Orders></Orders>
+    <!--<Orders></Orders>-->
     <join-us></join-us>
+    <my-ticket></my-ticket>
     <Container></Container>
     <Message class="cont" ></Message>
 
@@ -47,11 +48,12 @@
   import FixedCart from './components/FixedCart.vue'
   import VipCard from './components/VipCard.vue'
   import JoinUs from './components/JoinUs.vue'
+  import MyTicket from './components/MyTicket.vue'
   export default {
     name: 'app',
     components: {
 
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs, Orders
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs, Orders, MyTicket
     },
     data(){
       return {
