@@ -7,21 +7,24 @@
     <Ad class="ad"></Ad>
     <Modal ></Modal>
     <Cart></Cart>
-    <div class="main" >
+    <div class="main" v-show="true">
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
       <!--<Container class="cont"></Container>-->
-      <Orders></Orders>
+
       <!--<Coupon><>-->
     </div>
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
     <fixed-cart></fixed-cart>
+    <Orders></Orders>
     <join-us></join-us>
     <Container></Container>
     <Message class="cont" ></Message>
+
+
   </div>
 
 </template>
@@ -48,7 +51,7 @@
     name: 'app',
     components: {
 
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs, Orders
     },
     data(){
       return {
