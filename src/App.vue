@@ -16,6 +16,7 @@
     <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
     <fixed-cart></fixed-cart>
+    <join-us></join-us>
     <Container></Container>
     <Message class="cont" ></Message>
   </div>
@@ -36,11 +37,11 @@
   import Message from './components/Message.vue'
   import FixedCart from './components/FixedCart.vue'
   import VipCard from './components/VipCard.vue'
-
+  import JoinUs from './components/JoinUs.vue'
   export default {
     name: 'app',
     components: {
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs
     },
     data(){
       return {
@@ -49,7 +50,7 @@
     },
     computed: {
       ...mapGetters({
-      
+
       }),
     },
     created:function(){
@@ -92,7 +93,7 @@
           console.log('get Activity info error');
         });
       },
-      
+
     }
 
 }
