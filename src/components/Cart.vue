@@ -7,7 +7,7 @@
         <p class="cart-title" style="">取餐方式</p>
         <div class="cart-cont" style="display: flex">
           <div class="cart-self" style="">收银台自取</div>
-          <input type="text" style="width: 15%;color: black"><span style="margin-top: 4px">&nbsp;号座位</span>
+          <input type="text" id="deskId" style="width: 15%;color: black"><span style="margin-top: 4px">&nbsp;号座位</span>
           <div class="cart-send" style="flex: 2;">送餐</div>
         </div>
       </div>
@@ -15,12 +15,12 @@
       <div class="part">
         <p class="cart-title">购物清单</p>
         <ul class="cart-cont" style="clear: both;">
-          <li class="" style="display: flex;flex-wrap: nowrap;font-size: 11px">
-            <div class="cart-item" style="flex: 2;">一二三四五六</div>
-            <div style="flex: 1;">18元</div>
+          <li v-for="good in orderInfo" class="" style="display: flex;flex-wrap: nowrap;font-size: 11px">
+            <div class="cart-item" style="flex: 2;">{{good.name}}</div>
+            <div style="flex: 1;">{{good.price}}元</div>
             <div class="cart-act" style="flex: 1">
               <span class="item-act item-minus" id="test" >-</span>
-              <span class="item-num">11</span>
+              <span class="item-num">{{good.count}}</span>
               <span class="item-act item-plus" >+</span>
             </div>
           </li>
@@ -82,8 +82,16 @@
       }
       ,
       pay: function (payWay) {
-        if (this.orderInfo.length == 0)
+        if (this.orderInfo.length == 0){
+          alert('购物车为空,请选购');
           return;
+        }
+        var deskId = document.getElementById("deskId").value;
+        if(deskId == ''  || isNaN(deskId)){
+          alert('请输入正确的桌号');
+          return;
+        }
+
         if (!window.confirm('确定支付?'))
           return;
 
@@ -99,7 +107,7 @@
             channel: payWay,
             amount: this.totalMoney * 100,
             orderInfo: this.orderInfo,
-            desk_id: 1,
+            desk_id: deskId,
             store_id: 1,
             price: this.totalMoney
           }));
