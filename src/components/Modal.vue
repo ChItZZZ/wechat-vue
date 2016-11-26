@@ -274,8 +274,9 @@
             json.name = data[i].name;
             json.price = data[i].price;
             json.id = data[i].id;
-            var des = data[i].size;
-            json.des = des;
+            var detail = data[i].size;
+            //var detail = data[i].flavor;
+            json.detail = detail;
             order.push(json);
           }
         }
@@ -315,6 +316,7 @@
           obj.name = item.name;
           obj.price = item.price;
           obj.size = this.curItemConfig.size[this.curSizeIndex];
+        //  obj.flavor = 
           obj.count = 1;
           this.$store.dispatch("addConfigItemAdded",obj);
         }

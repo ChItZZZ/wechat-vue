@@ -62,12 +62,15 @@
       isCartShow: 'isCartShow',
       orderInfo: 'orderInfo',
       totalMoney: 'totalMoney',
-      personalInfo: 'personalInfo'
+      personalInfo: 'personalInfo',
+      activityInfo:'activityInfo'
     }),
     data()
     {
       return {
-        url: 'http://api.qiancs.cn/'
+        url: 'http://api.qiancs.cn/',
+        couponDes: '',
+        realPrice: 0,
       }
     }
     ,
@@ -95,6 +98,8 @@
         if (!window.confirm('确定支付?'))
           return;
 
+        this.calculatePrice();
+
         if (payWay == 'balance') {
           this.payBalance();
         }
@@ -109,7 +114,9 @@
             orderInfo: this.orderInfo,
             desk_id: deskId,
             store_id: 1,
-            price: this.totalMoney
+            price: this.totalMoney,
+            realPrice: this.realPrice,
+            couponDes: this.couponDes,
           }));
           xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
@@ -125,32 +132,54 @@
             }
           }
         }
-      }
-      ,
+      },
       payBalance: function () {
         if (this.personalInfo.hasCard == 1 && this.personalInfo.balance >= this.totalMoney) {
           var api = this.url + 'deduct';
           var param = {};
           param.amount = this.totalMoney;
+          param.orderInfo = this.orderInfo;
+          param.desk_id = document.getElementById("deskId").value;
+          param.store_id = 1;
+          param.price = this.totalMoney;
+          param.realPrice = this.realPrice;
+          // if(useCoupon){
+          //   param.coupon_id = id;
+          // }
+          param.couponDes = this.couponDes;
+
           this.$http.post(api, param).then((response) => {
             console.log('post balance deduct ' + JSON.stringify(response.data));
-          if (response.data.successful == 1) {
-            this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
-            alert('支付成功!');
-          }
-          else
-            alert('支付失败');
-        },(response) =>
-          {
-            console.log('post balance deduct error');
+            if (response.data.successful == 1) {
+              this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
+              alert('支付成功!');
+            }
+            else
+              alert('支付失败');
+            },(response) =>{
+              console.log('post balance deduct error');
           });
         }
         else {
           alert('余额不足请充值');
         }
-      }
-      ,
-
+      },
+      calculatePrice:function(){
+        this.realPrice = this.totalMoney;
+        if(this.activityInfo.hasActivity == 1){
+          switch(this.activityInfo.activities[0].type){
+            case '折扣':
+              var amount1 = this.activityInfo.activities[0].amount1;
+              this.realPrice *= ( amount1/10 );
+              this.couponDes = amount1 + '折';
+              break;
+            default:
+              console.log('no this activity type');
+              break;
+          }
+        }
+      },
+      
     }
   }
 </script>
