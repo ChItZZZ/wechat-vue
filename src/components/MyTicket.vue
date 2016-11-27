@@ -4,28 +4,17 @@
       <div class="order-main order-one" style="border-top: 1px solid black">
         <div class="" style="display: flex;font-size: 12px">
           <div class="item-title  ticket-content">优惠券</div>
-          <div class="item-title ">有效期</div>
+          <div class="item-title ">数量</div>
           <div class="item-title">状态</div>
           <div class="item-title">使用日期</div>
         </div>
-        <div class="item-cont" style="display: flex">
-          <div class="item-content ticket-content">8/30</div>
-          <div class="item-content ">8/30</div>
-          <div class="item-content ticket-unused">已使用</div>
+        <div class="item-cont" style="display: flex"  v-for="coupon in list" v-show="hasCoupon">
+          <div class="item-content ticket-content">{{coupon.description}}</div>
+          <div class="item-content ">{{coupon.number}}</div>
+          <div class="item-content ticket-unused">未使用</div>
           <div class="item-content">6/30</div>
         </div>
-        <div class="item-cont" style="display: flex">
-          <div class="item-content ticket-content">8/30</div>
-          <div class="item-content ">8/30</div>
-          <div class="item-content ticket-used">未使用</div>
-          <div class="item-content">6/30</div>
-        </div>
-        <div class="item-cont" style="display: flex">
-          <div class="item-content ticket-content">8/30</div>
-          <div class="item-content ">8/30</div>
-          <div class="item-content ticket-unused">已使用</div>
-          <div class="item-content">6/30</div>
-        </div>
+       
       </div>
     </div>
   </div>
@@ -38,17 +27,28 @@
      computed: {
       ...mapGetters({
         curNavBar:'navBarCount',
-        curFuncTab:'curFuncTab'
+        curFuncTab:'curFuncTab',
+        couponInfo:'couponInfo',
       }),
       isCurFuncTab:function(){
         if(this.curFuncTab == '我的优惠' && this.curNavBar == 2)
           return true;
         return false;
       },
+      list: function(){
+        var list = [];
+        if(this.couponInfo.isGet && this.couponInfo.couponList.length != 0){
+          list = this.couponInfo.couponList;
+          this.hasCoupon = true;
+        }
+        return list;  
+      },
+
     },
     data(){
       return{
-        url : 'http://api.qiancs.cn/'
+        url : 'http://api.qiancs.cn/',
+        hasCoupon : false
       }
     },
     methods:{

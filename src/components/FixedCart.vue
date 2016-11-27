@@ -1,7 +1,7 @@
 <template>
-  <div class="fixed-cart">
+  <div class="fixed-cart" @click="showCart" style="position: fixed;z-index: 10003;">
     <!--<div class="pay">直接付款</div>-->
-    <div class="cart" @click="showCart"><span>11</span><i class="glyphicon glyphicon-shopping-cart"></i></div>
+    <div class="cart" ><span>{{goodsCount}}</span><i class="glyphicon glyphicon-shopping-cart"></i></div>
   </div>
 </template>
 <style scoped>
@@ -31,6 +31,7 @@
     color: white;
     border-radius: 8px;
     height: 24px;
+    z-index: 1200;
     line-height: 24px;
   }
   .fixed-cart{
@@ -50,7 +51,8 @@
         itemAddedCount:'itemAddedCount',
         configItemAdded:'configItemAdded',
         personalInfo:'personalInfo',
-        couponInfo:'couponInfo'
+        couponInfo:'couponInfo',
+        goodsCount: 'goodsCount',
       }),
     },
     data(){
@@ -61,7 +63,6 @@
     methods:{
       showCart: function () {
         this.getCouponList();
-
         var obj = this.itemAddedCount;
         var items = this.item_data;
         var order = [];

@@ -11,7 +11,8 @@
     computed: {
       ...mapGetters({
         isMinusShow:'isMinusShow',
-        itemAddedCount:'itemAddedCount'
+        itemAddedCount:'itemAddedCount',
+        goodsCount:'goodsCount',
       }),
       _num:function(){
         var change = this.num;
@@ -31,18 +32,22 @@
     },
     methods:{
       ...mapActions([
-        'setItemAddedCount'
+        'setItemAddedCount',
+        'setGoodsCount'
       ]),
-      incItem:function(){ 
+      incItem:function(){
         var obj = this.itemAddedCount;
         var id = this.itemId;
         if(id in obj)
           ++obj[id];
         else
           obj[id] = 1;
-          
+
         this.changeNum();
         this.setItemAddedCount(obj);
+        var count = this.goodsCount + 1;
+        this.setGoodsCount(count);
+        console.log('cccc ' + this.goodsCount);
       },
       minusItem: function () {
         var obj = this.itemAddedCount;
@@ -52,6 +57,8 @@
           --obj[id];
           this.changeNum();
           this.setItemAddedCount(obj);
+          var count = this.goodsCount - 1;
+          this.$store.dispatch('setGoodsCount',count);
         }
         else {
           //this.hideMinusAndNum();
@@ -62,6 +69,7 @@
           this.num = 1;
         else
           this.num = 0;
+          
       },
       hideMinusAndNum: function () {
         this.$store.dispatch("showMinus",false)
@@ -74,7 +82,7 @@
 <style scoped>
   .item-action {
     flex: 2;
-    position: relative;
+    /*position: relative;*/
   }
 
   .item-plus {
@@ -87,7 +95,7 @@
     font-weight: 900;
     color: #FF5F33;
     display: inline-block;
-    position: absolute;
+    /*position: absolute;*/
     right: 15%;
   }
 
@@ -99,7 +107,8 @@
   }
 
   .item-minus {
-    position: absolute;
+    /*position: absolute;*/
+    z-index: 0;
     line-height: 19px;
     height: 19px;
     width: 19px;

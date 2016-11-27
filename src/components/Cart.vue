@@ -35,14 +35,14 @@
         </a>
         <ul class="dropdown-menu" style="font-size: 10px;left: 50px;right: 0px">
           <li v-for="coupon in couponList" > <a href="#">{{coupon.description}}</a> </li>
-          <li class="divider"></li>
+          <!--<li class="divider"></li>-->
           <!--<li><a href="#">送饮料</a></li>
           <li class="divider"></li>
           <li><a href="#">另一个分离的链接</a></li>-->
         </ul>
       </div>
 
-      <div class="cart-sum"style="position: absolute;bottom: 60px;font-size: 20px">总计:{{totalMoney}}</div>
+      <div class="cart-sum"style="position: absolute;bottom: 60px;font-size: 20px">总计:{{totalMoney}} 优惠价:{{price}}</div>
 
       <div class="pay-sub">
         <button @click="pay('alipay_wap')">支付宝</button>
@@ -77,6 +77,9 @@
         }
         return list;
       },
+      price : function(){
+        return this.calculatePrice();
+      }
 
     },
     data()
@@ -135,6 +138,7 @@
               pingpp.createPayment(xhr.responseText, function (result, err) {
                 if (result == "success") {
                   alert('successed');
+              //    this.$store.dispatch('setOrderInfo',[]);
                 } else if (result == "fail") {
                   alert('failed');
                 } else if (result == "cancel") {
@@ -162,9 +166,11 @@
 
           this.$http.post(api, param).then((response) => {
             console.log('post balance deduct ' + JSON.stringify(response.data));
-            if (response.data.successful == 1) {
+            if (response.data.code == 'success') {
               this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
               alert('支付成功!');
+              this.$store.closeCart();
+             // this.$store.dispatch('setOrderInfo',[]);
             }
             else
               alert('支付失败');
@@ -180,7 +186,7 @@
         this.realPrice = this.totalMoney;
         if(this.activityInfo.hasActivity == 1){
           switch(this.activityInfo.activities[0].type){
-            case '折扣':
+            case 1:
               var amount1 = this.activityInfo.activities[0].amount1;
               this.realPrice *= ( amount1/10 );
               this.couponDes = amount1 + '折';
@@ -190,8 +196,9 @@
               break;
           }
         }
+        return this.realPrice;
       },
-      
+
     }
   }
 </script>

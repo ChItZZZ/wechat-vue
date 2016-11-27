@@ -26,6 +26,7 @@ const state = {
   shopInfo:{},
   couponInfo:{isGet: false},
   historyOrder:[],
+  goodsCount:0,
   
 }
 

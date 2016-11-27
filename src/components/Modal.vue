@@ -6,28 +6,28 @@
       <div id="detail-food">
         <div class="part-one">
           <ul class="food-size">
-            <!--<li v-for="(size,index) in curItemConfig.size" class="select-food" :class=" {active:curSizeIndex==index}"-->
-                <!--@click="curSizeIndex=index">{{size}}-->
-            <!--</li>-->
-            <li class="select-food active">1123123123</li>
-            <li class="select-food">1123123123</li>
+            <li v-for="(size,index) in curItemConfig.size" class="select-food" :class="{active:curSizeIndex==index}"
+                @click="curSizeIndex=index">{{size}}</li>
+            </li>
+            <!--<li class="select-food active">1123123123</li>
+            <li class="select-food">1123123123</li>-->
           </ul>
         </div>
         <div class="part-two">
           <div class="recommend-food">
             <i class="glyphicon glyphicon-chevron-left"></i>
-            <!--<img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">-->
+            <img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">
+            <!--<img src="../public/img/egg.jpeg" class="recommend-img">
             <img src="../public/img/egg.jpeg" class="recommend-img">
             <img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
+            <img src="../public/img/egg.jpeg" class="recommend-img">-->
             <i class="glyphicon glyphicon-chevron-right"></i>
           </div>
         </div>
         <div class="part-three">
           <div class="food-act">
             <button class="cart" @click="addToCart">加入购物车</button>
-            <button class="pay" @click="showCart">直接结算</button>
+            <button class="pay" @click="showCart">直接结算{{goodsCount}}</button>
           </div>
         </div>
       </div>
@@ -179,7 +179,8 @@
         itemConfig:'itemConfig',
         configItemAdded:'configItemAdded',
         personalInfo:'personalInfo',
-        couponInfo:'couponInfo'
+        couponInfo:'couponInfo',
+        goodsCount:'goodsCount'
       }),
       curItem: function () {
         var item = {};
@@ -319,6 +320,8 @@
         //  obj.flavor = 
           obj.count = 1;
           this.$store.dispatch("addConfigItemAdded",obj);
+          var count = this.goodsCount + 1;
+          this.$store.dispatch('setGoodsCount',count);
         }
       },
 

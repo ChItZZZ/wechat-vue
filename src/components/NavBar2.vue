@@ -12,14 +12,19 @@ export default {
  computed: {
     ...mapGetters({
       curBarCount: 'navBarCount',
+      personalInfo: 'personalInfo',
+      couponInfo: 'couponInfo',
     })
   },
   data(){
     return {
-      curFuncTab: "购物车",
-      funcTabIndex:["购物车","我的订单","我的优惠","我是会员"],
+      curFuncTab: "我是会员",
+      funcTabIndex:["我是会员","我的优惠","我的订单"],
       url : 'http://api.qiancs.cn/'
     }
+  },
+  created: function(){
+    this.clickTab("我是会员");
   },
   methods:{
     clickTab:function(item){
@@ -30,18 +35,36 @@ export default {
         case "我的订单":
           this.getHistoryOrder();
           break;
-
+        case "我的优惠":
+          this.getCouponList();
+          break;
       }
     },
     getHistoryOrder:function(){
       var api = this.url + 'order';
       this.$http.get(api).then((response) => {
-          console.log('get history order from server');
-          console.log('history order '+ JSON.stringify(response.data));
+          console.log('get history order from server' + JSON.stringify(response.data));
+          this.$store.dispatch('setHistoryOrder',response.data.historyOrder);
         }, (response) => {
           console.log('get history order error');
         });
-    }
+    },
+    getCouponList: function(){
+      if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
+        return;
+      var api = this.url + 'coupon';
+      var param = {};
+      param.card_id = this.personalInfo.cardNumber;
+      this.$http.post(api,param).then((response) => {
+        console.log('post coupon info');
+        var data = {};
+        data.isGet = true;
+        data.couponList = response.data.couponList;
+        this.$store.dispatch('setCouponInfo',data)
+      }, (response) => {
+        console.log('post coupon info error');
+      });
+    },
   }
 
   

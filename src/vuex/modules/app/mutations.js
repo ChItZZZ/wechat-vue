@@ -20,7 +20,9 @@ import {
   SET_ACTIVITY_INFO,
   SET_SHOP_INFO,
   MODIFY_BALANCE,
-  SET_COUPON_INFO
+  SET_COUPON_INFO,
+  SET_HISTORY_ORDER,
+  SET_GOODS_COUNT,
 } from './mutation-type'
 
 const mutations = {
@@ -93,7 +95,15 @@ const mutations = {
   },
   [SHOW_CART] (state, isShow){
     state.isCartShow = isShow
-  }
+  },
+  // 设置历史订单信息
+  [SET_HISTORY_ORDER] (state,order){
+    state.historyOrder = order
+  },
+  // 设置购物车商品数量
+  [SET_GOODS_COUNT] (state,count){
+    state.goodsCount = count
+  },
 }
 
 
