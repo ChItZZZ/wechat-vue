@@ -35,7 +35,7 @@
         </a>
         <ul class="dropdown-menu" style="font-size: 10px;left: 50px;right: 0px">
           <li v-for="coupon in couponList" > <a href="#">{{coupon.description}}</a> </li>
-          <li class="divider"></li>
+          <!--<li class="divider"></li>-->
           <!--<li><a href="#">送饮料</a></li>
           <li class="divider"></li>
           <li><a href="#">另一个分离的链接</a></li>-->
@@ -195,7 +195,7 @@
         }
         return this.realPrice;
       },
-      
+
     }
   }
 </script>

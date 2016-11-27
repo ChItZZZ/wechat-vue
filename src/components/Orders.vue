@@ -14,7 +14,7 @@
           <div class="item-content item-name">{{orderDescription[index]}}</div>
           <div class="item-content">{{order.items[0].counter}}</div>
           <div class="item-content">{{order.price}}</div>
-          <div class="item-content item-used">{{order.state}}</div>
+          <div class="item-content" :class="{itemUsed:order.state == 1,itemUnused:order.state == 0}">{{order.state}}</div>
         </div>
         <!--<div class="item-cont" style="display: flex">
           <div class="item-content">8/30</div>
@@ -78,7 +78,7 @@
       }
     },
     methods:{
-    
+
     },
   }
 
@@ -191,15 +191,17 @@
   .item-name{
     flex:3;
   }
-  .item-used{
+  .itemUsed{
     padding: 2px;
     background-color: lightgray;
     border-radius: 8px;
+    height: 1.8em;
   }
-  .item-unused{
+  .itemUnused{
     padding: 2px;
     background-color: darkred;
     color: white;
     border-radius: 8px;
+    height: 1.8em;
   }
 </style>
