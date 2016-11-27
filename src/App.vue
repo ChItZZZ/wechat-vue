@@ -12,20 +12,14 @@
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
       <BtmBar></BtmBar>
-      <!--<Container class="cont"></Container>-->
-
     </div>
-    <!--<div class="fixed-cart" @click="showCart">购物车</div>-->
     <vip-card></vip-card>
     <fixed-cart></fixed-cart>
     <Orders></Orders>
     <join-us></join-us>
-    <!--<my-ticket></my-ticket>-->
+    <my-ticket></my-ticket>
     <Container></Container>
-    <Coupons></Coupons>
-    <Orders></Orders>
     <Message class="cont" ></Message>
-
 
   </div>
 
@@ -41,20 +35,20 @@
   import BtmBar from './components/BtmBar.vue'
   import Container from './components/Container.vue'
   import Modal from './components/Modal.vue'
-
   import Orders from './components/Orders.vue'
-  import Coupons from './components/Coupons.vue'
   import Cart from './components/Cart.vue'
   import Message from './components/Message.vue'
   import FixedCart from './components/FixedCart.vue'
   import VipCard from './components/VipCard.vue'
   import JoinUs from './components/JoinUs.vue'
   import MyTicket from './components/MyTicket.vue'
+
   export default {
     name: 'app',
     components: {
 
-      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message, FixedCart, VipCard, JoinUs, Orders, MyTicket
+      Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message,
+      FixedCart, VipCard, JoinUs, Orders, MyTicket
     },
     data(){
       return {

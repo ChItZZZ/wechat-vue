@@ -60,6 +60,8 @@
     },
     methods:{
       showCart: function () {
+        this.getCouponList();
+
         var obj = this.itemAddedCount;
         var items = this.item_data;
         var order = [];
@@ -107,7 +109,6 @@
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
 
-        this.getCouponList();
       },
       getCouponList: function(){
         if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)

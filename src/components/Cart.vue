@@ -30,7 +30,7 @@
       <div class="dropdown" style="position: absolute;bottom: 100px;right: 15px;left: 15px">
         <span class="cart-title">我的优惠券</span>
         <a href="#"class="dropdown-toggle" data-toggle="dropdown" style="">
-          满30减5
+          点击选择
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" style="font-size: 10px;left: 50px;right: 0px">
@@ -71,8 +71,10 @@
         var list = [];
         if(this.couponInfo.isGet)
           list = this.couponInfo.couponList;
-        else
-          list[0].description = '没有可使用的优惠券';
+        else{
+          list[0] = {};
+          list[0].description = '没有可以使用的优惠券';
+        }
         return list;
       },
 

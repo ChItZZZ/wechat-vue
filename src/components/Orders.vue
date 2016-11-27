@@ -1,5 +1,5 @@
 <template>
-<div class="item-info">
+<div class="item-info" v-if='isCurFuncTab'>
   <div class="order-container">
     <div class="order-main order-one" style="border-top: 1px solid black">
         <div class="" style="display: flex;font-size: 12px">
@@ -46,6 +46,34 @@
   </div>
 </div>
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+     computed: {
+      ...mapGetters({
+        curNavBar:'navBarCount',
+        curFuncTab:'curFuncTab'
+      }),
+      isCurFuncTab:function(){
+        if(this.curFuncTab == '我的订单' && this.curNavBar == 2)
+          return true;
+        return false;
+      },
+    },
+    data(){
+      return{
+        url : 'http://api.qiancs.cn/'
+      }
+    },
+    methods:{
+    
+    },
+  }
+
+</script>
+
 <style scoped>
   .item-info {
     text-align: center;
