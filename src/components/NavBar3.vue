@@ -21,6 +21,9 @@ export default {
       funcTabIndex:["活动福利","倾听留言","伯乐寻马","品牌故事"]
     }
   },
+  created: function(){
+    this.clickTab("活动福利");
+  },
   methods:{
     clickTab:function(item){
       this.curFuncTab = item;
