@@ -18,11 +18,11 @@
      computed: {
       ...mapGetters({
         curNavBar:'navBarCount',
-        curFuncTab:'curFuncTab',
+        curFuncTab2:'curFuncTab2',
         info:'activityInfo',
       }),
       isCurFuncTab:function(){
-        if(this.curFuncTab == '活动福利' && this.curNavBar == 3)
+        if(this.curFuncTab2 == '活动福利' && this.curNavBar == 3)
           return true;
         return false;
       },

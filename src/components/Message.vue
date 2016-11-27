@@ -15,10 +15,10 @@
      computed: {
       ...mapGetters({
         curNavBar:'navBarCount',
-        curFuncTab:'curFuncTab'
+        curFuncTab2:'curFuncTab2'
       }),
       isCurFuncTab:function(){
-        if(this.curFuncTab == '倾听留言' && this.curNavBar == 3)
+        if(this.curFuncTab2 == '倾听留言' && this.curNavBar == 3)
           return true;
         return false;
       },

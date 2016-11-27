@@ -26,6 +26,8 @@ export const SET_ITEM_CONFIG = "SET_ITEM_CONFIG"
 
 export const SET_FUNC_TAB = "SET_FUNC_TAB"
 
+export const SET_FUNC_TAB2 = "SET_FUNC_TAB2"
+
 export const ADD_CONFIG_ITEM_ADDED = "ADD_CONFIG_ITEM_ADDED"
 
 export const SET_PERSONAL_INFO = "SET_PERSONAL_INFO"

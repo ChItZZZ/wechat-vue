@@ -30,6 +30,8 @@ export const setItemConfig = ({ commit }, itemConfig) => commit('SET_ITEM_CONFIG
 
 export const setFuncTab = ({ commit }, funcTab) => commit('SET_FUNC_TAB',funcTab)
 
+export const setFuncTab2 = ({ commit }, funcTab) => commit('SET_FUNC_TAB2',funcTab)
+
 export const addConfigItemAdded = ({ commit }, configItemAdded) => commit('ADD_CONFIG_ITEM_ADDED',configItemAdded)
 
 export const setPersonalInfo = ({ commit }, personalInfo) => commit('SET_PERSONAL_INFO',personalInfo)

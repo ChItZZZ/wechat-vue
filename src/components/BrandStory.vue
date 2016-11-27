@@ -23,10 +23,10 @@
      computed: {
       ...mapGetters({
         curNavBar:'navBarCount',
-        curFuncTab:'curFuncTab',
+        curFuncTab2:'curFuncTab2',
       }),
       isCurFuncTab:function(){
-        if(this.curFuncTab == '品牌故事' && this.curNavBar == 3)
+        if(this.curFuncTab2 == '品牌故事' && this.curNavBar == 3)
           return true;
         return false;
       },

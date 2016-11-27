@@ -27,7 +27,7 @@ export default {
   methods:{
     clickTab:function(item){
       this.curFuncTab = item;
-      this.$store.dispatch('setFuncTab',this.curFuncTab);
+      this.$store.dispatch('setFuncTab2',this.curFuncTab);
 
       if(item == '伯乐寻马'){
         if( !('title' in this.shopInfo) ){

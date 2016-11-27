@@ -21,6 +21,7 @@ const state = {
   totalMoney:0,
   itemConfig:{},
   curFuncTab:"",
+  curFuncTab2:"",
   personalInfo:{},
   activityInfo:{},
   shopInfo:{},

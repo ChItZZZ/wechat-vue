@@ -25,11 +25,11 @@
      computed: {
       ...mapGetters({
         curNavBar:'navBarCount',
-        curFuncTab:'curFuncTab',
+        curFuncTab2:'curFuncTab2',
         shopInfo:'shopInfo',
       }),
       isCurFuncTab:function(){
-        if(this.curFuncTab == '伯乐寻马' && this.curNavBar == 3)
+        if(this.curFuncTab2 == '伯乐寻马' && this.curNavBar == 3)
           return true;
         return false;
       },
