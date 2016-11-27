@@ -12,6 +12,8 @@ export default {
  computed: {
     ...mapGetters({
       curBarCount: 'navBarCount',
+      personalInfo: 'personalInfo',
+      couponInfo: 'couponInfo',
     })
   },
   data(){
@@ -20,6 +22,9 @@ export default {
       funcTabIndex:["我是会员","我的优惠","我的订单"],
       url : 'http://api.qiancs.cn/'
     }
+  },
+  created: function(){
+    this.clickTab("我是会员");
   },
   methods:{
     clickTab:function(item){
@@ -30,7 +35,9 @@ export default {
         case "我的订单":
           this.getHistoryOrder();
           break;
-
+        case "我的优惠":
+          this.getCouponList();
+          break;
       }
     },
     getHistoryOrder:function(){
@@ -41,7 +48,23 @@ export default {
         }, (response) => {
           console.log('get history order error');
         });
-    }
+    },
+    getCouponList: function(){
+      if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
+        return;
+      var api = this.url + 'coupon';
+      var param = {};
+      param.card_id = this.personalInfo.cardNumber;
+      this.$http.post(api,param).then((response) => {
+        console.log('post coupon info');
+        var data = {};
+        data.isGet = true;
+        data.couponList = response.data.couponList;
+        this.$store.dispatch('setCouponInfo',data)
+      }, (response) => {
+        console.log('post coupon info error');
+      });
+    },
   }
 
   
