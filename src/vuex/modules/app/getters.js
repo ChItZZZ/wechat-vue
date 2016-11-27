@@ -15,3 +15,4 @@ export const personalInfo = state => state.personalInfo
 export const activityInfo = state => state.activityInfo
 export const shopInfo = state => state.shopInfo
 export const couponInfo = state => state.couponInfo
+export const historyOrder = state => state.historyOrder

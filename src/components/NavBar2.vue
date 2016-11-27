@@ -16,8 +16,8 @@ export default {
   },
   data(){
     return {
-      curFuncTab: "购物车",
-      funcTabIndex:["购物车","我的订单","我的优惠","我是会员"],
+      curFuncTab: "我是会员",
+      funcTabIndex:["我是会员","我的优惠","我的订单"],
       url : 'http://api.qiancs.cn/'
     }
   },
@@ -36,8 +36,8 @@ export default {
     getHistoryOrder:function(){
       var api = this.url + 'order';
       this.$http.get(api).then((response) => {
-          console.log('get history order from server');
-          console.log('history order '+ JSON.stringify(response.data));
+          console.log('get history order from server' + JSON.stringify(response.data));
+          this.$store.dispatch('setHistoryOrder',response.data.historyOrder);
         }, (response) => {
           console.log('get history order error');
         });

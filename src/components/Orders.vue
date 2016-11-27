@@ -3,26 +3,22 @@
   <div class="order-container">
     <div class="order-main order-one" style="border-top: 1px solid black">
         <div class="" style="display: flex;font-size: 12px">
-          <div class="item-title">日期</div>
-          <!--<div class="item-title item-id">订单码</div>-->
+          <div class="item-title item-id">编号</div>
           <div class="item-title item-name">商品名称</div>
           <div class="item-title">数量</div>
-          <div class="item-title">优惠</div>
           <div class="item-title">金额</div>
           <div class="item-title">状态</div>
         </div>
-        <div class="item-cont" style="display: flex">
-          <div class="item-content">8/30</div>
-          <!--<div class="item-content item-id">0001</div>-->
-          <div class="item-content item-name">招牌三鲜牛肉面</div>
-          <div class="item-content">2</div>
-          <div class="item-content">5元</div>
-          <div class="item-content">89</div>
-          <div class="item-content item-used">已出</div>
+        <div class="item-cont" style="display: flex" v-for="(order,index) in historyOrder">
+          <div class="item-content item-id">{{order.id}}</div>
+          <div class="item-content item-name">{{orderDescription[index]}}</div>
+          <div class="item-content">{{order.items[0].counter}}</div>
+          <div class="item-content">{{order.price}}</div>
+          <div class="item-content item-used">{{order.state}}</div>
         </div>
-        <div class="item-cont" style="display: flex">
+        <!--<div class="item-cont" style="display: flex">
           <div class="item-content">8/30</div>
-          <!--<div class="item-content item-id">0001</div>-->
+          <div class="item-content item-id">0001</div>
           <div class="item-content item-name">招牌三鲜牛肉面</div>
           <div class="item-content">2</div>
           <div class="item-content">5元</div>
@@ -31,13 +27,13 @@
         </div>
         <div class="item-cont" style="display: flex">
           <div class="item-content">8/30</div>
-          <!--<div class="item-content item-id">0001</div>-->
+          <div class="item-content item-id">0001</div>
           <div class="item-content item-name">招牌三鲜牛肉面</div>
           <div class="item-content">2</div>
           <div class="item-content">5元</div>
           <div class="item-content">89</div>
           <div class="item-content item-used">已出</div>
-        </div>
+        </div>-->
         </tbody>
       </table>
     </div>
@@ -54,13 +50,27 @@
      computed: {
       ...mapGetters({
         curNavBar:'navBarCount',
-        curFuncTab:'curFuncTab'
+        curFuncTab:'curFuncTab',
+        historyOrder:'historyOrder',
       }),
       isCurFuncTab:function(){
         if(this.curFuncTab == '我的订单' && this.curNavBar == 2)
           return true;
         return false;
       },
+      orderDescription:function(){
+        var des = [];
+        var order = this.historyOrder
+        for(var i in order){
+          var str = '';
+          for(var j in order[i].items){
+            str += order[i].items[j].name + '*' + order[i].items[j].counter;
+          }
+          des.push(str);
+        }
+        return des;
+      },
+
     },
     data(){
       return{
