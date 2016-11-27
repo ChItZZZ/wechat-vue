@@ -50,8 +50,8 @@
       </div>
     </div>
     <div class="vip-way">
-      <input type="radio" value="" name="一">微信支付
-      <input type="radio" value="" name="一">支付宝支付
+      <input type="radio" value="" name="一" @click='recharge('wx_pub')'>微信支付
+      <input type="radio" value="" name="一" @click='recharge('alipay_wap')'>支付宝支付
     </div>
   </div>
 </template>
@@ -87,6 +87,36 @@
       }
     },
     methods:{
+      recharge:function(payWay){
+        // var xhr = new XMLHttpRequest();
+        // var api = this.url + 'getChargeNew'
+        // xhr.open("POST", api, true);
+        // xhr.setRequestHeader("Content-type", "application/json");
+        // xhr.send(JSON.stringify({
+        //   channel: payWay,
+        //   amount: this.totalMoney * 100,
+        //   orderInfo: this.orderInfo,
+        //   desk_id: deskId,
+        //   store_id: 1,
+        //   price: this.totalMoney,
+        //   realPrice: this.realPrice,
+        //   couponDes: this.couponDes,
+        // }));
+        // xhr.onreadystatechange = function () {
+        //   if (xhr.readyState == 4 && xhr.status == 200) {
+        //     pingpp.createPayment(xhr.responseText, function (result, err) {
+        //       if (result == "success") {
+        //         alert('successed');
+        //     //    this.$store.dispatch('setOrderInfo',[]);
+        //       } else if (result == "fail") {
+        //         alert('failed');
+        //       } else if (result == "cancel") {
+        //         alert('canceled');
+        //       }
+        //     });
+        //   }
+        // }
+      },
 
     },
 
