@@ -27,13 +27,13 @@
       {
         this.curCount = count;
         this.setNavBarCount(count);
-        switch(count){
-          case 2:
-            this.setFuncTab('我是会员');
-            break;
-          default:
-            break;
-        }
+        // switch(count){
+        //   case 2:
+        //     this.setFuncTab('我是会员');
+        //     break;
+        //   default:
+        //     break;
+        // }
       }
     }
 
