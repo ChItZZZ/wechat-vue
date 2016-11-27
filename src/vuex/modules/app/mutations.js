@@ -22,6 +22,7 @@ import {
   MODIFY_BALANCE,
   SET_COUPON_INFO,
   SET_HISTORY_ORDER,
+  SET_GOODS_COUNT,
 } from './mutation-type'
 
 const mutations = {
@@ -98,6 +99,10 @@ const mutations = {
   // 设置历史订单信息
   [SET_HISTORY_ORDER] (state,order){
     state.historyOrder = order
+  },
+  // 设置购物车商品数量
+  [SET_GOODS_COUNT] (state,count){
+    state.goodsCount = count
   },
 }
 

@@ -44,4 +44,6 @@ export const setCouponInfo = ({ commit },coupon) => commit('SET_COUPON_INFO',cou
 
 export const setHistoryOrder = ({ commit },order) => commit('SET_HISTORY_ORDER',order)
 
+export const setGoodsCount = ({ commit },count) => commit('SET_GOODS_COUNT',count)
+
 

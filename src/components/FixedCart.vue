@@ -1,7 +1,7 @@
 <template>
   <div class="fixed-cart" @click="showCart" style="position: fixed;z-index: 10003;">
     <!--<div class="pay">直接付款</div>-->
-    <div class="cart" ><span>11</span><i class="glyphicon glyphicon-shopping-cart"></i></div>
+    <div class="cart" ><span>{{goodsCount}}</span><i class="glyphicon glyphicon-shopping-cart"></i></div>
   </div>
 </template>
 <style scoped>
@@ -51,7 +51,8 @@
         itemAddedCount:'itemAddedCount',
         configItemAdded:'configItemAdded',
         personalInfo:'personalInfo',
-        couponInfo:'couponInfo'
+        couponInfo:'couponInfo',
+        goodsCount: 'goodsCount',
       }),
     },
     data(){

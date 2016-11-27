@@ -138,6 +138,7 @@
               pingpp.createPayment(xhr.responseText, function (result, err) {
                 if (result == "success") {
                   alert('successed');
+              //    this.$store.dispatch('setOrderInfo',[]);
                 } else if (result == "fail") {
                   alert('failed');
                 } else if (result == "cancel") {
@@ -165,9 +166,11 @@
 
           this.$http.post(api, param).then((response) => {
             console.log('post balance deduct ' + JSON.stringify(response.data));
-            if (response.data.successful == 1) {
+            if (response.data.code == 'success') {
               this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
               alert('支付成功!');
+              this.$store.closeCart();
+             // this.$store.dispatch('setOrderInfo',[]);
             }
             else
               alert('支付失败');

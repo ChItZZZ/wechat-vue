@@ -11,7 +11,8 @@
     computed: {
       ...mapGetters({
         isMinusShow:'isMinusShow',
-        itemAddedCount:'itemAddedCount'
+        itemAddedCount:'itemAddedCount',
+        goodsCount:'goodsCount',
       }),
       _num:function(){
         var change = this.num;
@@ -31,7 +32,8 @@
     },
     methods:{
       ...mapActions([
-        'setItemAddedCount'
+        'setItemAddedCount',
+        'setGoodsCount'
       ]),
       incItem:function(){
         var obj = this.itemAddedCount;
@@ -43,6 +45,9 @@
 
         this.changeNum();
         this.setItemAddedCount(obj);
+        var count = this.goodsCount + 1;
+        this.setGoodsCount(count);
+        console.log('cccc ' + this.goodsCount);
       },
       minusItem: function () {
         var obj = this.itemAddedCount;
@@ -52,6 +57,8 @@
           --obj[id];
           this.changeNum();
           this.setItemAddedCount(obj);
+          var count = this.goodsCount - 1;
+          this.$store.dispatch('setGoodsCount',count);
         }
         else {
           //this.hideMinusAndNum();
@@ -62,6 +69,7 @@
           this.num = 1;
         else
           this.num = 0;
+          
       },
       hideMinusAndNum: function () {
         this.$store.dispatch("showMinus",false)
