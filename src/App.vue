@@ -18,6 +18,7 @@
     <Orders></Orders>
     <join-us></join-us>
     <BrandStory></brandstory>
+    <ActivityInfo></ActivityInfo>
     <my-ticket></my-ticket>
     <Container></Container>
     <Message class="cont" ></Message>
@@ -44,13 +45,14 @@
   import JoinUs from './components/JoinUs.vue'
   import MyTicket from './components/MyTicket.vue'
   import BrandStory from './components/BrandStory.vue'
+  import ActivityInfo from './components/ActivityInfo.vue'
 
   export default {
     name: 'app',
     components: {
 
       Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message,
-      FixedCart, VipCard, JoinUs, Orders, MyTicket,BrandStory
+      FixedCart, VipCard, JoinUs, Orders, MyTicket,BrandStory,ActivityInfo
     },
     data(){
       return {
@@ -63,9 +65,9 @@
       }),
     },
     created:function(){
-       this.getItemsFromServer();
-       this.getPersonalInfo();
-       this.getActivityInfo();
+      this.getItemsFromServer();
+      this.getPersonalInfo();
+      this.getActivityInfo();
     },
     methods:{
       ...mapActions([
@@ -76,7 +78,7 @@
       getItemsFromServer: function () {
         var api = this.url + 'items';
         this.$http.get(api).then((response) => {
-          // success callback
+          // success callback    
           this.setItemData(response.data);
           console.log('get items from server');
         }, (response) => {
@@ -101,6 +103,13 @@
         }, (response) => {
           console.log('get Activity info error');
         });
+      },
+      getQueryString:function(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+          return  unescape(r[2]);
+        return null;
       },
 
     }
