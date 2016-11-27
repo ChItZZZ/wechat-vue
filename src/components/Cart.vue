@@ -42,7 +42,7 @@
         </ul>
       </div>
 
-      <div class="cart-sum"style="position: absolute;bottom: 60px;font-size: 20px">总计:{{totalMoney}}</div>
+      <div class="cart-sum"style="position: absolute;bottom: 60px;font-size: 20px">总计:{{totalMoney}} 优惠价:{{price}}</div>
 
       <div class="pay-sub">
         <button @click="pay('alipay_wap')">支付宝</button>
@@ -77,6 +77,9 @@
         }
         return list;
       },
+      price : function(){
+        return this.calculatePrice();
+      }
 
     },
     data()
@@ -180,7 +183,7 @@
         this.realPrice = this.totalMoney;
         if(this.activityInfo.hasActivity == 1){
           switch(this.activityInfo.activities[0].type){
-            case '折扣':
+            case 1:
               var amount1 = this.activityInfo.activities[0].amount1;
               this.realPrice *= ( amount1/10 );
               this.couponDes = amount1 + '折';
@@ -190,6 +193,7 @@
               break;
           }
         }
+        return this.realPrice;
       },
       
     }

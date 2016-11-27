@@ -5,6 +5,13 @@ export const showModal = ({commit}, isShow) => {
   commit('SHOW_MODAL', isShow)
 }
 
+export const showMinus = ({ commit }, isShow) => {
+  commit('SHOW_MINUS', isShow)
+}
+export const showCart = ({ commit }, isShow) => {
+  commit('SHOW_CART', isShow)
+}
+
 export const setNavBarCount = ({ commit }, count) => commit('SET_NAVBAR_COUNT',count)
 
 export const setItemData = ({commit}, item_data) => commit('SET_ITEM_DATA',item_data)
@@ -35,10 +42,6 @@ export const modifyBalance = ({ commit },amount) => commit('MODIFY_BALANCE',amou
 
 export const setCouponInfo = ({ commit },coupon) => commit('SET_COUPON_INFO',coupon)
 
-export const showMinus = ({ commit }, isShow) => {
-  commit('SHOW_MINUS', isShow)
-}
-export const showCart = ({ commit }, isShow) => {
-  commit('SHOW_CART', isShow)
-}
+export const setHistoryOrder = ({ commit },order) => commit('SET_HISTORY_ORDER',order)
+
 
