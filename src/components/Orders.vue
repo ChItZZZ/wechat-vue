@@ -14,7 +14,8 @@
           <div class="item-content item-name">{{orderDescription[index]}}</div>
           <div class="item-content">{{order.items[0].counter}}</div>
           <div class="item-content">{{order.price}}</div>
-          <div class="item-content" :class="{itemUsed:order.state == 1,itemUnused:order.state == 0}">{{order.state}}</div>
+          <div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{order.state == 1? '已出':'未出'}}</div>
+          <!--<div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{order.state}}</div>-->
         </div>
         <!--<div class="item-cont" style="display: flex">
           <div class="item-content">8/30</div>
@@ -191,13 +192,14 @@
   .item-name{
     flex:3;
   }
-  .itemUsed{
+  .item-used{
     padding: 2px;
     background-color: lightgray;
+    color: black;
     border-radius: 8px;
     height: 1.8em;
   }
-  .itemUnused{
+  .item-unused{
     padding: 2px;
     background-color: darkred;
     color: white;
