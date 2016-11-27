@@ -33,14 +33,14 @@
       ...mapActions([
         'setItemAddedCount'
       ]),
-      incItem:function(){ 
+      incItem:function(){
         var obj = this.itemAddedCount;
         var id = this.itemId;
         if(id in obj)
           ++obj[id];
         else
           obj[id] = 1;
-          
+
         this.changeNum();
         this.setItemAddedCount(obj);
       },
@@ -74,7 +74,7 @@
 <style scoped>
   .item-action {
     flex: 2;
-    position: relative;
+    /*position: relative;*/
   }
 
   .item-plus {
@@ -87,7 +87,7 @@
     font-weight: 900;
     color: #FF5F33;
     display: inline-block;
-    position: absolute;
+    /*position: absolute;*/
     right: 15%;
   }
 
@@ -99,7 +99,8 @@
   }
 
   .item-minus {
-    position: absolute;
+    /*position: absolute;*/
+    z-index: 0;
     line-height: 19px;
     height: 19px;
     width: 19px;
