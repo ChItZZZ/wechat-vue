@@ -17,6 +17,7 @@
     <fixed-cart></fixed-cart>
     <Orders></Orders>
     <join-us></join-us>
+    <BrandStory></brandstory>
     <my-ticket></my-ticket>
     <Container></Container>
     <Message class="cont" ></Message>
@@ -42,13 +43,14 @@
   import VipCard from './components/VipCard.vue'
   import JoinUs from './components/JoinUs.vue'
   import MyTicket from './components/MyTicket.vue'
+  import BrandStory from './components/BrandStory.vue'
 
   export default {
     name: 'app',
     components: {
 
       Ad, NavBar, NavBar2, NavBar3, BtmBar, Container, Modal, Cart, Message,
-      FixedCart, VipCard, JoinUs, Orders, MyTicket
+      FixedCart, VipCard, JoinUs, Orders, MyTicket,BrandStory
     },
     data(){
       return {
