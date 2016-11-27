@@ -47,16 +47,17 @@
     margin: 0;
     padding: 0;
     position: fixed;
+    z-index: 10023;
     align-self: stretch;
     align-items: stretch;
     /*flex: 1;*/
-    background-color: rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 0, .6);
     /*position: absolute;*/
     overflow-y: auto;
     /*  width: 70px; */
     overflow-x: hidden;
     bottom: 0;
-    z-index: 1000;
+    /*z-index: 1000;*/
   }
 
   .bar th {
