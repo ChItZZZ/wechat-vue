@@ -199,7 +199,7 @@
         }
         return this.realPrice;
       },
-      cataloguePrice:function(){
+      cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
         var catPrice = {};
         var order = this.orderInfo;
         for(var i in order){
@@ -218,8 +218,8 @@
         var catPrice = this.cataloguePrice();   //每种类型的计价
         var price = 0;
         var temp = {};
-        temp.original = 0;
-        temp.modify = 0;
+        temp.original = 0;      //订单中不算在活动分类里的总价，无优惠按原价
+        temp.modify = 0;        //订单中在活动分类里的总价，按优惠价
         for(var catalogue in catPrice){
           var isModify = false;
           for(var i in catalogues){
@@ -236,14 +236,14 @@
         switch(type){
           case 1:
             if(temp.modify >= amount1){
-              price = temp.modify - amount2;
+              price = temp.modify - amount2;    //满amount1减amount2
               isDeduct = true;
             }
             else
               price = temp.modify;
             break;
           case 2:
-            price = temp.modify * (amount1 / 10);
+            price = temp.modify * (amount1 / 10);   //打amount1折
             break;
         }
         price += temp.original;
@@ -254,10 +254,7 @@
         }
         else
           this.couponDes = '';
-        console.log('ccc ' + this.realPrice + " " + this.couponDes )
-
       },
-
 
     }
   }
