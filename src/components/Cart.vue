@@ -186,10 +186,18 @@
         this.realPrice = this.totalMoney;
         if(this.activityInfo.hasActivity == 1){
           switch(this.activityInfo.activities[0].type){
-            case 1:
+            case 2:    //打折
               var amount1 = this.activityInfo.activities[0].amount1;
-              this.realPrice *= ( amount1/10 );
-              this.couponDes = amount1 + '折';
+              this.realPrice *= ( amount1 / 10 );
+              this.couponDes = this.activityInfo.activities[0].description;
+              break;
+            case 1:     //满减
+              var amount1 = this.activityInfo.activities[0].amount1;
+              var amount2 = this.activityInfo.activities[0].amount2;
+              if(this.realPrice >= amount1){
+                this.realPrice -= amount2;
+                this.couponDes = this.activityInfo.activities[0].description;
+              }
               break;
             default:
               console.log('no this activity type');
