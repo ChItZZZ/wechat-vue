@@ -47,7 +47,6 @@
         this.setItemAddedCount(obj);
         var count = this.goodsCount + 1;
         this.setGoodsCount(count);
-        console.log('cccc ' + this.goodsCount);
       },
       minusItem: function () {
         var obj = this.itemAddedCount;

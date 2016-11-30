@@ -61,8 +61,7 @@
       }
     },
     methods:{
-      showCart: function () {
-        this.getCouponList();
+       showCart: function () {
         var obj = this.itemAddedCount;
         var items = this.item_data;
         var order = [];
@@ -77,6 +76,7 @@
                 if(items[key][index].id == id){
                   json.name = items[key][index].name;
                   json.price = items[key][index].price;
+                  json.catalogue = items[key][index].cls;
                   isBreak = true;
                   break;
                 }
@@ -89,15 +89,17 @@
         }
 
         var data = this.configItemAdded;
-        for(var i in data){
-          if(data[i].count != 0){
+        for (var i in data) {
+          if (data[i].count != 0) {
             var json = {};
             json.count = data[i].count;
             json.name = data[i].name;
             json.price = data[i].price;
+            json.catalogue = data[i].catalogue;
             json.id = data[i].id;
-            var des = data[i].size;
-            json.des = des;
+            var detail = data[i].size;
+            //var detail = data[i].flavor;
+            json.detail = detail;
             order.push(json);
           }
         }
@@ -110,6 +112,7 @@
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
 
+        this.getCouponList();
       },
       getCouponList: function(){
         if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)

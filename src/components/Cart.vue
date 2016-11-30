@@ -185,19 +185,12 @@
       calculatePrice:function(){
         this.realPrice = this.totalMoney;
         if(this.activityInfo.hasActivity == 1){
-          switch(this.activityInfo.activities[0].type){
-            case 2:    //打折
-              var amount1 = this.activityInfo.activities[0].amount1;
-              this.realPrice *= ( amount1 / 10 );
-              this.couponDes = this.activityInfo.activities[0].description;
-              break;
+          switch(this.activityInfo.activities[0].type){       
             case 1:     //满减
-              var amount1 = this.activityInfo.activities[0].amount1;
-              var amount2 = this.activityInfo.activities[0].amount2;
-              if(this.realPrice >= amount1){
-                this.realPrice -= amount2;
-                this.couponDes = this.activityInfo.activities[0].description;
-              }
+              this.calculateActivity(1);
+              break;
+            case 2:    //打折
+              this.calculateActivity(2);
               break;
             default:
               console.log('no this activity type');
@@ -206,6 +199,65 @@
         }
         return this.realPrice;
       },
+      cataloguePrice:function(){
+        var catPrice = {};
+        var order = this.orderInfo;
+        for(var i in order){
+          var catalogue = order[i].catalogue;
+          if(catalogue in catPrice)
+            catPrice[catalogue] += order[i].price * order[i].count;
+          else
+            catPrice[catalogue] = order[i].price * order[i].count;
+        }
+        return catPrice;
+      },
+      calculateActivity:function(type){
+        var amount1 = this.activityInfo.activities[0].amount1;
+        var amount2 = this.activityInfo.activities[0].amount2;
+        var catalogues = this.activityInfo.activities[0].catalogue.split(';');  //可以优惠的类型
+        var catPrice = this.cataloguePrice();   //每种类型的计价
+        var price = 0;
+        var temp = {};
+        temp.original = 0;
+        temp.modify = 0;
+        for(var catalogue in catPrice){
+          var isModify = false;
+          for(var i in catalogues){
+            if(catalogue == catalogues[i]){
+              temp.modify += catPrice[catalogue];
+              isModify = true;
+              break;
+            }
+          }
+          if(!isModify)
+            temp.original += catPrice[catalogue];
+        }
+        var isDeduct = false;
+        switch(type){
+          case 1:
+            if(temp.modify >= amount1){
+              price = temp.modify - amount2;
+              isDeduct = true;
+            }
+            else
+              price = temp.modify;
+            break;
+          case 2:
+            price = temp.modify * (amount1 / 10);
+            break;
+        }
+        price += temp.original;
+        this.realPrice = price;
+        if(isDeduct){
+          this.couponDes = this.activityInfo.activities[0].catalogue + ' ' 
+                           + this.activityInfo.activities[0].description;
+        }
+        else
+          this.couponDes = '';
+        console.log('ccc ' + this.realPrice + " " + this.couponDes )
+
+      },
+
 
     }
   }

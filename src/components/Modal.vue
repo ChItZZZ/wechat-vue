@@ -244,7 +244,7 @@
       showCart: function () {
         var obj = this.itemAddedCount;
         var items = this.item_data;
-        var order = [];
+        var order = [];  //  组装 order = [{"count":1,"id":"57","name":"香槟","price":20,"catalogue":"酒水"}] 并可能有detail:大份加辣
         for(var id in obj){
           if(obj[id] != 0){
             var json = {};
@@ -256,6 +256,7 @@
                 if(items[key][index].id == id){
                   json.name = items[key][index].name;
                   json.price = items[key][index].price;
+                  json.catalogue = items[key][index].cls;
                   isBreak = true;
                   break;
                 }
@@ -274,6 +275,7 @@
             json.count = data[i].count;
             json.name = data[i].name;
             json.price = data[i].price;
+            json.catalogue = data[i].catalogue;
             json.id = data[i].id;
             var detail = data[i].size;
             //var detail = data[i].flavor;
@@ -316,6 +318,7 @@
           obj.id = item.id;
           obj.name = item.name;
           obj.price = item.price;
+          obj.catalogue = item.cls;
           obj.size = this.curItemConfig.size[this.curSizeIndex];
         //  obj.flavor = 
           obj.count = 1;
