@@ -88,9 +88,11 @@
         url: 'http://api.qiancs.cn/',
         couponDes: '',
         realPrice: 0,
+        couponIndex: 0,
+        useCoupon : false,
+        couponId : -1,
       }
-    }
-    ,
+    },
     methods: {
       closeCart: function () {
         this.$store.dispatch("showCart", false)
@@ -119,11 +121,12 @@
           this.payBalance();
         }
         else {
+          var isUse = false;
           var xhr = new XMLHttpRequest();
           var api = this.url + 'getChargeNew'
           xhr.open("POST", api, true);
           xhr.setRequestHeader("Content-type", "application/json");
-          xhr.send(JSON.stringify({
+          var data = {
             channel: payWay,
             amount: this.totalMoney * 100,
             orderInfo: this.orderInfo,
@@ -132,11 +135,20 @@
             price: this.totalMoney,
             realPrice: this.realPrice,
             couponDes: this.couponDes,
-          }));
+          }
+          if(this.couponId != -1){
+            data.coupon_id = this.couponId;
+            this.couponId = -1;
+            isUse = true;
+          }
+          xhr.send(JSON.stringify(data));
           xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
               pingpp.createPayment(xhr.responseText, function (result, err) {
                 if (result == "success") {
+                  if(isUse){
+                    this.getCouponInfoAfterUse(); //使用优惠券后更新本地优惠券数据
+                  }
                   alert('successed');
               //    this.$store.dispatch('setOrderInfo',[]);
                 } else if (result == "fail") {
@@ -153,21 +165,27 @@
         if (this.personalInfo.hasCard == 1 && this.personalInfo.balance >= this.totalMoney) {
           var api = this.url + 'deduct';
           var param = {};
+          var isUse = false;
           param.amount = this.totalMoney;
           param.orderInfo = this.orderInfo;
           param.desk_id = document.getElementById("deskId").value;
           param.store_id = 1;
           param.price = this.totalMoney;
           param.realPrice = this.realPrice;
-          // if(useCoupon){
-          //   param.coupon_id = id;
-          // }
+          if(this.couponId != -1){
+            param.coupon_id = this.couponId;
+            this.couponId = -1;
+            isUse = true;
+          }
           param.couponDes = this.couponDes;
 
           this.$http.post(api, param).then((response) => {
             console.log('post balance deduct ' + JSON.stringify(response.data));
             if (response.data.code == 'success') {
               this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
+              if(isUse){
+                this.getCouponInfoAfterUse();   //使用优惠券后更新本地优惠券数据
+              }
               alert('支付成功!');
               this.$store.closeCart();
              // this.$store.dispatch('setOrderInfo',[]);
@@ -184,7 +202,7 @@
       },
       calculatePrice:function(){
         this.realPrice = this.totalMoney;
-        if(this.activityInfo.hasActivity == 1){
+        if(this.activityInfo.hasActivity == 0){
           switch(this.activityInfo.activities[0].type){       
             case 1:     //满减
               this.calculateActivity(1);
@@ -196,12 +214,12 @@
               console.log('no this activity type');
               break;
           }
-          // if(useCoupon)
-          //   this.calculateCoupon(index,true);
+          if(this.useCoupon)
+            this.calculateCoupon(true);
         }
-        // if(useCoupon)
-        //   this.calculateCoupon(index,true);
-
+        else if(this.useCoupon)
+          this.calculateCoupon(false);
+        console.log('des ' + this.couponDes);
         return this.realPrice;
       },
       cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
@@ -249,12 +267,13 @@
             break;
           case 2:
             price = temp.modify * (amount1 / 10);   //打amount1折
+            isDeduct = true;
             break;
         }
         price += temp.original;
         this.realPrice = price;
         if(isDeduct){
-          this.couponDes = this.activityInfo.activities[0].catalogue + ' ' 
+          this.couponDes = ' 全店活动 ' + this.activityInfo.activities[0].catalogue + ' ' 
                            + this.activityInfo.activities[0].description;
         }
         else
@@ -262,14 +281,17 @@
       },
       selectCoupon:function(index){
         if(this.couponInfo.isGet && this.couponInfo.couponList.length != 0){
-          console.log('ccc ' + index);
+          this.couponIndex = index;
+          this.useCoupon = true;
+          this.couponId = this.couponInfo.couponList[index].id;
         }
       },
-      calculateCoupon:function(index,hasActivity){
-        var coupon = this.couponInfo.couponList[index];
+      calculateCoupon:function(hasActivity){
+        this.useCoupon = false;
+        var coupon = this.couponInfo.couponList[this.couponIndex];
         var type = coupon.type;
         if(type == 3){
-          this.couponDes += coupon.description;
+          this.couponDes += (' 优惠券 ' + coupon.description);
           // to do   本地扣除index优惠券 or 设置重新查询
           return;
         }
@@ -307,17 +329,29 @@
             break;
           case 2:
             price = temp.modify * (amount1 / 10);   //打amount1折
+            isDeduct = true;
             break;
         }
         price += temp.original;
         this.realPrice = price;
         if(isDeduct)
-          this.couponDes = coupon.catalogue + ' ' + coupon.description;
+          this.couponDes = '优惠券 ' + coupon.catalogue + ' ' + coupon.description;
         else
           this.couponDes = '';
       },
-      deleteCoupon:function(index){
-
+      getCouponInfoAfterUse:function(){
+        var api = this.url + 'coupon';
+        var param = {};
+        param.card_id = this.personalInfo.cardNumber;
+        this.$http.post(api,param).then((response) => {
+          console.log('post coupon info' + JSON.stringify(response.data));
+          var data = {};
+          data.isGet = true;
+          data.couponList = response.data.couponList;
+          this.$store.dispatch('setCouponInfo',data)
+        }, (response) => {
+          console.log('post coupon info error');
+        });
       },
 
     }

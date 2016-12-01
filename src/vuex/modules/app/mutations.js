@@ -24,6 +24,7 @@ import {
   SET_COUPON_INFO,
   SET_HISTORY_ORDER,
   SET_GOODS_COUNT,
+  SET_COUPON_GET,
 } from './mutation-type'
 
 const mutations = {
@@ -109,6 +110,10 @@ const mutations = {
   [SET_GOODS_COUNT] (state,count){
     state.goodsCount = count
   },
+  // 设置是否获取过优惠券
+  [SET_COUPON_GET] (state,isGet){
+    state.couponInfo.isGet = isGet;
+  }
 }
 
 

@@ -48,4 +48,8 @@ export const setHistoryOrder = ({ commit },order) => commit('SET_HISTORY_ORDER',
 
 export const setGoodsCount = ({ commit },count) => commit('SET_GOODS_COUNT',count)
 
+export const setCouponGet = ({ commit },isGet) => commit('SET_COUPON_GET',isGet)
+
+
+
 
