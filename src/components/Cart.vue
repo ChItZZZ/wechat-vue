@@ -34,7 +34,7 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" style="font-size: 10px;left: 50px;right: 0px">
-          <li v-for="coupon in couponList" > <a href="#">{{coupon.description}}</a> </li>
+          <li v-for="(coupon,index) in couponList" @click="selectCoupon(index)" > <a href="#">{{coupon.description}}</a> </li>
           <!--<li class="divider"></li>-->
           <!--<li><a href="#">送饮料</a></li>
           <li class="divider"></li>
@@ -196,7 +196,12 @@
               console.log('no this activity type');
               break;
           }
+          // if(useCoupon)
+          //   this.calculateCoupon(index,true);
         }
+        // if(useCoupon)
+        //   this.calculateCoupon(index,true);
+
         return this.realPrice;
       },
       cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
@@ -254,6 +259,65 @@
         }
         else
           this.couponDes = '';
+      },
+      selectCoupon:function(index){
+        if(this.couponInfo.isGet && this.couponInfo.couponList.length != 0){
+          console.log('ccc ' + index);
+        }
+      },
+      calculateCoupon:function(index,hasActivity){
+        var coupon = this.couponInfo.couponList[index];
+        var type = coupon.type;
+        if(type == 3){
+          this.couponDes += coupon.description;
+          // to do   本地扣除index优惠券 or 设置重新查询
+          return;
+        }
+        if(hasActivity)
+          return;
+        var amount1 = coupon.amount1;
+        var amount2 = coupon.amount2;
+        var catalogues = coupon.catalogue.split(';');  //可以优惠的类型
+        var catPrice = this.cataloguePrice();   //每种类型的计价
+        var price = 0;
+        var temp = {};
+        temp.original = 0;      //订单中不算在优惠券分类里的总价，无优惠按原价
+        temp.modify = 0;        //订单中在优惠券分类里的总价，按优惠价
+        for(var catalogue in catPrice){
+          var isModify = false;
+          for(var i in catalogues){
+            if(catalogue == catalogues[i]){
+              temp.modify += catPrice[catalogue];
+              isModify = true;
+              break;
+            }
+          }
+          if(!isModify)
+            temp.original += catPrice[catalogue];
+        }
+        var isDeduct = false;
+        switch(type){
+          case 1:
+            if(temp.modify >= amount1){
+              price = temp.modify - amount2;    //满amount1减amount2
+              isDeduct = true;
+            }
+            else
+              price = temp.modify;
+            break;
+          case 2:
+            price = temp.modify * (amount1 / 10);   //打amount1折
+            break;
+        }
+        price += temp.original;
+        this.realPrice = price;
+        if(isDeduct)
+          this.couponDes = coupon.catalogue + ' ' + coupon.description;
+        else
+          this.couponDes = '';
+      },
+      deleteCoupon:function(index){
+
       },
 
     }
