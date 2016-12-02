@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div id="cart-mask" v-if="isCartShow">
     <div id="cart-modal">
       <a href="javascript:;" class="glyphicon glyphicon-remove modal-close" @click="closeCart"></a>
@@ -28,7 +28,7 @@
       </div>
 
       <div class="dropdown" style="position: absolute;bottom: 100px;right: 15px;left: 15px">
-        <span class="cart-title">我的优惠券</span>
+        <span class="cart-title" style="font-size: 11px">我的优惠券</span>
         <a id="select" href="#"class="dropdown-toggle" data-toggle="dropdown" style="">
           点击选择
           <b class="caret"></b>
@@ -42,12 +42,13 @@
         </ul>
       </div>
 
-      <div class="cart-sum"style="position: absolute;bottom: 60px;font-size: 20px">总计:{{totalMoney}} 优惠价:{{price}}</div>
+      <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 18px">总计:{{totalMoney}} <span style="font-size: 12px">优惠价:{{price}}</span></div>
 
       <div class="pay-sub">
-        <button @click="pay('alipay_wap')">支付宝</button>
-        <button @click="pay('wx_pub')">微信</button>
-        <button @click="pay('balance')">余额支付</button>
+        <span style="margin-right: 15px">支付方式</span>
+        <div href="#" @click="pay('alipay_wap')" style="margin-right: 8px"><img src="../public/img/alipay.png"></div>
+        <div href="#" @click="pay('wx_pub')"><img src="../public/img/wechatpay.png"></div>
+        <!--<button @click="pay('balance')">余额支付</button>-->
       </div>
 
     </div>
@@ -204,7 +205,7 @@
       calculatePrice:function(){
         this.realPrice = this.totalMoney;
         if(this.activityInfo.hasActivity == 1){
-          switch(this.activityInfo.activities[0].type){       
+          switch(this.activityInfo.activities[0].type){
             case 1:     //满减
               this.calculateActivity(1);
               break;
@@ -274,7 +275,7 @@
         price += temp.original;
         this.realPrice = price;
         if(isDeduct){
-          this.activityDes = ' 全店活动: ' + this.activityInfo.activities[0].catalogue + ' ' 
+          this.activityDes = ' 全店活动: ' + this.activityInfo.activities[0].catalogue + ' '
                            + this.activityInfo.activities[0].description;
         }
         else
@@ -406,7 +407,7 @@
     height: 60%;
     width: 70%;
     top: 20%;
-    background-color: darkred;
+    background-color: rgba(155,0,0,1);
     border: 2px solid darkred;
   }
 
@@ -427,7 +428,7 @@
     background-color: rgba(255, 233, 249, .9);
     border-radius: 6px;
     width: 80px;
-    font-size: 13px;
+    font-size: 11px;
     border: 0;
   }
 
@@ -456,20 +457,20 @@
   }
 
   .pay-sub {
-    left: 20px;
-    right: 20px;
+    margin-top: 10px;
+    text-align: left;
+    left: 0px;
+    right: 0px;
     display: block;
     margin: auto;
     background-color: darkred;
-    border-radius: 5px;
     position: absolute;
-    bottom: 20px;
-    border: 2px solid darkgray;
+    font-size: 20px;
+    bottom: 6px;
+    padding: 5px;
+    line-height: 20px;
   }
 
-  .pay-sub:hover {
-    background-color: rgba(177, 0, 0, .2);
-  }
 
   .pay-sub button {
     background-color: darkred;
@@ -478,7 +479,7 @@
   }
 
   .pay-sub button {
-    font-size: 13px;
+    font-size: 11px;
     color: white;
 
   }
@@ -489,7 +490,7 @@
   }
   .cart-title{
     float: left;
-    font-size: 13px;
+    font-size: 11px;
   }
   .cart-cont{
     clear: both;
@@ -528,6 +529,17 @@
   .dropdown .cart-title{
     font-size: 13px;
     margin-top: 3px;
+  }
+  .pay-sub div{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .pay-sub img{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
   }
 </style>
 
