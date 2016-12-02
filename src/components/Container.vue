@@ -135,7 +135,6 @@
     color: red;
   }
   .container{
-    /*position: relative;*/
     padding-left: 0;
     padding-right: 0;
   }

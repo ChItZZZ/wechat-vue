@@ -15,13 +15,10 @@
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <i class="glyphicon glyphicon-chevron-left"></i>
-            <img v-for="item in configItemInfo" :src="item.imageUrl" class="recommend-img">
-            <!--<img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">
-            <img src="../public/img/egg.jpeg" class="recommend-img">-->
-            <i class="glyphicon glyphicon-chevron-right"></i>
+            <i class="glyphicon glyphicon-chevron-left" v-show="configItemInfo.length != 0" @click="minusShowIndex"></i>
+            <img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)">
+              <!--<img src="../public/img/egg.jpeg" class="recommend-img" >-->
+            <i class="glyphicon glyphicon-chevron-right" v-show="configItemInfo.length != 0" @click="addShowIndex"></i>
           </div>
         </div>
         <div class="part-three">
@@ -74,17 +71,6 @@
     list-style: none;
   }
 
-  .left-part {
-    position: absolute;
-    left: 5px;
-    height: 100%
-  }
-
-  .right-part {
-    position: absolute;
-    right: 5px;
-    height: 100%;
-  }
   .modal-close {
     position: absolute !important;
     right: 2px;
@@ -97,12 +83,6 @@
     line-height: 29px !important;
   }
 
-  .img {
-    left: 40px;
-    height: 100%;
-    position: absolute;
-    right: 40px;
-  }
 
   .recommend-food {
     position: absolute;
@@ -229,13 +209,19 @@
           }
         }
         return info;
+      },
+      maxShowIndex: function(){
+        this.maxShowIndex = Math.floor(this.configItemInfo.length/4);
+        return Math.floor(this.configItemInfo.length/4);
       }
     },
     data(){
       return {
         curSizeIndex:0,
-        url:'http://api.qiancs.cn/'
-      };
+        url:'http://api.qiancs.cn/',
+        showIndex:0,
+        maxShowIndex:3
+      }
     },
     methods: {
       closeModal: function () {
@@ -320,13 +306,23 @@
           obj.price = item.price;
           obj.catalogue = item.cls;
           obj.size = this.curItemConfig.size[this.curSizeIndex];
-        //  obj.flavor = 
           obj.count = 1;
           this.$store.dispatch("addConfigItemAdded",obj);
           var count = this.goodsCount + 1;
           this.$store.dispatch('setGoodsCount',count);
         }
       },
+      addShowIndex:function(){
+        if( this.showIndex <= this.maxShowIndex){
+          return;
+        }
+        this.showIndex++;
+      },
+      minusShowIndex:function(){
+        if(this.showIndex>0){
+          this.showIndex--;
+        }
+      }
 
     },
   }

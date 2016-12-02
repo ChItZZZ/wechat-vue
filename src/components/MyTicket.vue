@@ -14,7 +14,7 @@
           <div class="item-content ticket-unused">未使用</div>
           <div class="item-content">6/30</div>
         </div>
-       
+
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
           list = this.couponInfo.couponList;
           this.hasCoupon = true;
         }
-        return list;  
+        return list;
       },
 
     },
@@ -52,7 +52,7 @@
       }
     },
     methods:{
-    
+
     },
   }
 
@@ -97,6 +97,7 @@
     flex: 1;
     padding: 2px;
     font-size: 11px;
+    max-height: 2em;
   }
   .ticket-content{
     flex: 2;

@@ -78,7 +78,7 @@
       getItemsFromServer: function () {
         var api = this.url + 'items';
         this.$http.get(api).then((response) => {
-          // success callback    
+          // success callback
           this.setItemData(response.data);
           console.log('get items from server');
         }, (response) => {
@@ -154,7 +154,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    /*color: #2c3e50;*/
     background: #000 url(public/img/bg3.png) 0 / cover fixed;
     min-height: 100vh;
   }
