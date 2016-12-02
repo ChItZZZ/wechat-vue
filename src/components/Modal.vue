@@ -15,10 +15,10 @@
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <i class="glyphicon glyphicon-chevron-left" v-show="configItemInfo.length != 0" @click="minusShowIndex"></i>
+            <i class="glyphicon glyphicon-chevron-left" v-show="configItemInfo.length != 0" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
             <img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)">
               <!--<img src="../public/img/egg.jpeg" class="recommend-img" >-->
-            <i class="glyphicon glyphicon-chevron-right" v-show="configItemInfo.length != 0" @click="addShowIndex"></i>
+            <i class="glyphicon glyphicon-chevron-right" v-show="configItemInfo.length != 0" @click="addShowIndex" style="position: relative;z-index: 100"></i>
           </div>
           <div class="recommend-check">
             <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)"><i class="glyphicon glyphicon-ok" style="" ></i></span>
@@ -53,9 +53,6 @@
     left: 8%;
     right: 8%;
     border: 2px solid darkred;
-  }
-  .recommend-food{
-    position: absolute;
   }
   .recommend-food i{
     color: white;
@@ -93,6 +90,8 @@
   .recommend-food {
     position: absolute;
     top: 5px;;
+    right: 0;
+    left: 0;
   }
 
   .recommend-img {
@@ -253,6 +252,7 @@
     },
     methods: {
       closeModal: function () {
+        var test = this.$refs.test;
         this.$store.dispatch("showModal", false);
       },
       showCart: function () {
