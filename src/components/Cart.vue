@@ -75,6 +75,7 @@
           list[0] = {};
           list[0].description = '没有可以使用的优惠券';
         }
+        console.log('hahaha');
         return list;
       },
       price : function(){
@@ -87,6 +88,7 @@
       return {
         url: 'http://api.qiancs.cn/',
         couponDes: '',
+        activityDes: '',
         realPrice: 0,
         couponIndex: 0,
         useCoupon : false,
@@ -128,13 +130,13 @@
           xhr.setRequestHeader("Content-type", "application/json");
           var data = {
             channel: payWay,
-            amount: this.totalMoney * 100,
+            amount: this.realPrice * 100,
             orderInfo: this.orderInfo,
             desk_id: deskId,
             store_id: 1,
             price: this.totalMoney,
             realPrice: this.realPrice,
-            couponDes: this.couponDes,
+            couponDes: this.activityDes + ' ' + this.couponDes,
           }
           if(this.couponId != -1){
             data.coupon_id = this.couponId;
@@ -147,7 +149,8 @@
               pingpp.createPayment(xhr.responseText, function (result, err) {
                 if (result == "success") {
                   if(isUse){
-                    this.getCouponInfoAfterUse(); //使用优惠券后更新本地优惠券数据
+                    //this.getCouponInfoAfterUse(); //使用优惠券后更新本地优惠券数据
+                    //this.$store.dispatch("showCart", false)
                   }
                   alert('successed');
               //    this.$store.dispatch('setOrderInfo',[]);
@@ -177,7 +180,7 @@
             this.couponId = -1;
             isUse = true;
           }
-          param.couponDes = this.couponDes;
+          param.couponDes = this.activityDes + ' ' + this.couponDes;
 
           this.$http.post(api, param).then((response) => {
             console.log('post balance deduct ' + JSON.stringify(response.data));
@@ -187,7 +190,7 @@
                 this.getCouponInfoAfterUse();   //使用优惠券后更新本地优惠券数据
               }
               alert('支付成功!');
-              this.$store.closeCart();
+              this.closeCart();
              // this.$store.dispatch('setOrderInfo',[]);
             }
             else
@@ -202,7 +205,7 @@
       },
       calculatePrice:function(){
         this.realPrice = this.totalMoney;
-        if(this.activityInfo.hasActivity == 0){
+        if(this.activityInfo.hasActivity == 1){
           switch(this.activityInfo.activities[0].type){       
             case 1:     //满减
               this.calculateActivity(1);
@@ -219,7 +222,7 @@
         }
         else if(this.useCoupon)
           this.calculateCoupon(false);
-        console.log('des ' + this.couponDes);
+        console.log('des ' + this.activityDes + this.couponDes);
         return this.realPrice;
       },
       cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
@@ -273,11 +276,11 @@
         price += temp.original;
         this.realPrice = price;
         if(isDeduct){
-          this.couponDes = ' 全店活动 ' + this.activityInfo.activities[0].catalogue + ' ' 
+          this.activityDes = ' 全店活动 ' + this.activityInfo.activities[0].catalogue + ' ' 
                            + this.activityInfo.activities[0].description;
         }
         else
-          this.couponDes = '';
+          this.activityDes = '';
       },
       selectCoupon:function(index){
         if(this.couponInfo.isGet && this.couponInfo.couponList.length != 0){
@@ -291,7 +294,7 @@
         var coupon = this.couponInfo.couponList[this.couponIndex];
         var type = coupon.type;
         if(type == 3){
-          this.couponDes += (' 优惠券 ' + coupon.description);
+          this.couponDes = (' 优惠券 ' + coupon.description);
           // to do   本地扣除index优惠券 or 设置重新查询
           return;
         }
