@@ -20,6 +20,9 @@
               <!--<img src="../public/img/egg.jpeg" class="recommend-img" >-->
             <i class="glyphicon glyphicon-chevron-right" v-show="configItemInfo.length != 0" @click="addShowIndex"></i>
           </div>
+          <div class="recommend-check">
+            <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)"><i class="glyphicon glyphicon-ok" style="" ></i></span>
+          </div>
         </div>
         <div class="part-three">
           <div class="food-act">
@@ -50,6 +53,9 @@
     left: 8%;
     right: 8%;
     border: 2px solid darkred;
+  }
+  .recommend-food{
+    position: absolute;
   }
   .recommend-food i{
     color: white;
@@ -86,7 +92,7 @@
 
   .recommend-food {
     position: absolute;
-    bottom: 10px;
+    top: 5px;;
   }
 
   .recommend-img {
@@ -106,7 +112,7 @@
     background-color: rgba(89, 8, 9, 1);
     margin-top: 5px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 13px;
     color: white;
   }
 
@@ -128,7 +134,7 @@
     background-color: rgba(255, 233, 249, .9);
     border-radius: 15px;
     width: 80px;
-    font-size: 13px;
+    font-size: 11px;
     border: 0;
   }
 
@@ -144,7 +150,29 @@
   .part-three {
     height: 20%;
   }
+  .recommend-check{
+    position: relative;
+    top: 16px;
+  }
+  .recommend-check span{
+    width: 18%;
+    height: 100%;
 
+    display: inline-block;
+  }
+  .glyphicon-ok{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    color: white;
+    background-color: green;
+    width: 25px;
+    height: 25px;
+    bottom: 40%;
+  }
+  .glyphicon-ok:before{
+    line-height: 25px;
+  }
 </style>
 <script>
   import { mapGetters } from 'vuex'
