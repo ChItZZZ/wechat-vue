@@ -25,6 +25,9 @@ import {
   SET_HISTORY_ORDER,
   SET_GOODS_COUNT,
   SET_COUPON_GET,
+  INC_ORDER_INFO,
+  MINUS_ORDER_INFO,
+  INC_CONFIG_ITEM_COUNT,
 } from './mutation-type'
 
 const mutations = {
@@ -113,7 +116,26 @@ const mutations = {
   // 设置是否获取过优惠券
   [SET_COUPON_GET] (state,isGet){
     state.couponInfo.isGet = isGet;
-  }
+  },
+  // 修改购物车订单信息
+  [INC_ORDER_INFO] (state,index){
+    state.orderInfo[index].count++;
+  },
+  [MINUS_ORDER_INFO] (state,index){
+    if(state.orderInfo[index].count == 1)
+      state.orderInfo.splice(index,1)
+    else
+      state.orderInfo[index].count--;
+  },
+  [INC_CONFIG_ITEM_COUNT] (state,id){
+    for(var i in state.configItemAdded){
+      if(state.configItemAdded[i].id == id){
+        state.configItemAdded[i].count++;
+        break;
+      }
+    }
+  },
+
 }
 
 

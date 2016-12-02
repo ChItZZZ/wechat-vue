@@ -15,13 +15,13 @@
       <div class="part">
         <p class="cart-title">购物清单</p>
         <ul class="cart-cont" style="clear: both;">
-          <li v-for="good in orderInfo" class="" style="display: flex;flex-wrap: nowrap;font-size: 11px">
+          <li v-for="(good,index) in orderInfo" class="" style="display: flex;flex-wrap: nowrap;font-size: 11px">
             <div class="cart-item" style="flex: 2;">{{good.name}}</div>
             <div style="flex: 1;">{{good.price}}元</div>
             <div class="cart-act" style="flex: 1">
-              <span class="item-act item-minus" id="test" >-</span>
+              <span class="item-act item-minus" id="test" @click='minusCount(index)'>-</span>
               <span class="item-num">{{good.count}}</span>
-              <span class="item-act item-plus" >+</span>
+              <span class="item-act item-plus" @click='incCount(index)'>+</span>
             </div>
           </li>
         </ul>
@@ -29,7 +29,7 @@
 
       <div class="dropdown" style="position: absolute;bottom: 100px;right: 15px;left: 15px">
         <span class="cart-title">我的优惠券</span>
-        <a href="#"class="dropdown-toggle" data-toggle="dropdown" style="">
+        <a id="select" href="#"class="dropdown-toggle" data-toggle="dropdown" style="">
           点击选择
           <b class="caret"></b>
         </a>
@@ -66,6 +66,9 @@
         personalInfo: 'personalInfo',
         activityInfo:'activityInfo',
         couponInfo:'couponInfo',
+        goodsCount:'goodsCount',
+        itemAddedCount:'itemAddedCount',
+        configItemAdded:'configItemAdded',
       }),
       couponList: function(){
         var list = [];
@@ -96,7 +99,8 @@
     },
     methods: {
       closeCart: function () {
-        this.$store.dispatch("showCart", false)
+        this.couponDes = '';
+        this.$store.dispatch("showCart", false);
       },
       showCart: function () {
         this.$store.dispatch("showModal", false);
@@ -270,7 +274,7 @@
         price += temp.original;
         this.realPrice = price;
         if(isDeduct){
-          this.activityDes = ' 全店活动 ' + this.activityInfo.activities[0].catalogue + ' ' 
+          this.activityDes = ' 全店活动: ' + this.activityInfo.activities[0].catalogue + ' ' 
                            + this.activityInfo.activities[0].description;
         }
         else
@@ -281,6 +285,7 @@
           this.couponIndex = index;
           this.useCoupon = true;
           this.couponId = this.couponInfo.couponList[index].id;
+          document.getElementById('select').innerText = this.couponInfo.couponList[index].description;
         }
       },
       calculateCoupon:function(hasActivity){
@@ -288,8 +293,7 @@
         var coupon = this.couponInfo.couponList[this.couponIndex];
         var type = coupon.type;
         if(type == 3){
-          this.couponDes = (' 优惠券 ' + coupon.description);
-          // to do   本地扣除index优惠券 or 设置重新查询
+          this.couponDes = (' 优惠券: ' + coupon.description);
           return;
         }
         if(hasActivity)
@@ -332,12 +336,52 @@
         price += temp.original;
         this.realPrice = price;
         if(isDeduct)
-          this.couponDes = '优惠券 ' + coupon.catalogue + ' ' + coupon.description;
+          this.couponDes = ' 优惠券:' + coupon.catalogue + ' ' + coupon.description;
         else
           this.couponDes = '';
       },
       resetCouponGetAfterUse:function(){
         this.$store.dispatch('setCouponGet',false);
+      },
+      incCount:function(index){
+        var id = this.orderInfo[index].id;
+        this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+        this.$store.dispatch('setTotalMoney',this.totalMoney + this.orderInfo[index].price);
+        this.$store.dispatch('incOrderInfo',index);
+        var length = 0;
+        for(var key in this.itemAddedCount)
+          ++length;
+        if(index + 1 <= length){
+          var obj = this.itemAddedCount;
+          if(id in obj)
+            ++obj[id];
+          this.$store.dispatch('setItemAddedCount',obj);
+        }
+        else{
+          this.$store.dispatch('incConfigItemCount',id);
+        }
+      },
+      minusCount:function(index){
+        var id = this.orderInfo[index].id;
+        this.$store.dispatch('setGoodsCount',this.goodsCount - 1);
+        this.$store.dispatch('setTotalMoney',this.totalMoney - this.orderInfo[index].price);
+        this.$store.dispatch('minusOrderInfo',index);
+        var length = 0;
+        for(var key in this.itemAddedCount){
+          if(this.itemAddedCount[key] != 0){
+            ++length;
+          }
+        }
+        if(index + 1 <= length){
+          var obj = this.itemAddedCount;
+          if(id in obj)
+            --obj[id];
+          this.$store.dispatch('setItemAddedCount',obj);
+          console.log('set item',JSON.stringify(this.itemAddedCount));
+        }
+        else{
+          this.$store.dispatch('minusConfigItemCount',id);
+        }
       },
 
     }

@@ -50,6 +50,12 @@ export const setGoodsCount = ({ commit },count) => commit('SET_GOODS_COUNT',coun
 
 export const setCouponGet = ({ commit },isGet) => commit('SET_COUPON_GET',isGet)
 
+export const incOrderInfo = ({ commit },index) => commit('INC_ORDER_INFO',index)
+
+export const minusOrderInfo = ({ commit },index) => commit('MINUS_ORDER_INFO',index)
+
+export const incConfigItemCount = ({ commit },id) => commit("INC_CONFIG_ITEM_COUNT",id)
+
 
 
 
