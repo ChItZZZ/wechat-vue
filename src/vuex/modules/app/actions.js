@@ -56,6 +56,9 @@ export const minusOrderInfo = ({ commit },index) => commit('MINUS_ORDER_INFO',in
 
 export const incConfigItemCount = ({ commit },id) => commit("INC_CONFIG_ITEM_COUNT",id)
 
+export const minusConfigItemCount = ({ commit },id) => commit("MINUS_CONFIG_ITEM_COUNT",id)
+
+
 
 
 

@@ -377,7 +377,6 @@
           if(id in obj)
             --obj[id];
           this.$store.dispatch('setItemAddedCount',obj);
-          console.log('set item',JSON.stringify(this.itemAddedCount));
         }
         else{
           this.$store.dispatch('minusConfigItemCount',id);

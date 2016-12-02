@@ -28,6 +28,7 @@ import {
   INC_ORDER_INFO,
   MINUS_ORDER_INFO,
   INC_CONFIG_ITEM_COUNT,
+  MINUS_CONFIG_ITEM_COUNT,
 } from './mutation-type'
 
 const mutations = {
@@ -131,6 +132,18 @@ const mutations = {
     for(var i in state.configItemAdded){
       if(state.configItemAdded[i].id == id){
         state.configItemAdded[i].count++;
+        break;
+      }
+    }
+  },
+  [MINUS_CONFIG_ITEM_COUNT] (state,id){
+    for(var i in state.configItemAdded){
+      if(state.configItemAdded[i].id == id){
+        var count = state.configItemAdded[i].count;
+        if(state.configItemAdded[i].count > 1)
+          state.configItemAdded[i].count--;
+        else
+          state.configItemAdded.splice(i,1);
         break;
       }
     }
