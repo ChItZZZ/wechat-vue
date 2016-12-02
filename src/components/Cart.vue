@@ -75,7 +75,6 @@
           list[0] = {};
           list[0].description = '没有可以使用的优惠券';
         }
-        console.log('hahaha');
         return list;
       },
       price : function(){
@@ -124,11 +123,8 @@
         }
         else {
           var isUse = false;
-          var xhr = new XMLHttpRequest();
           var api = this.url + 'getChargeNew'
-          xhr.open("POST", api, true);
-          xhr.setRequestHeader("Content-type", "application/json");
-          var data = {
+          var param = {
             channel: payWay,
             amount: this.realPrice * 100,
             orderInfo: this.orderInfo,
@@ -139,29 +135,28 @@
             couponDes: this.activityDes + ' ' + this.couponDes,
           }
           if(this.couponId != -1){
-            data.coupon_id = this.couponId;
+            param.coupon_id = this.couponId;
             this.couponId = -1;
             isUse = true;
           }
-          xhr.send(JSON.stringify(data));
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-              pingpp.createPayment(xhr.responseText, function (result, err) {
-                if (result == "success") {
-                  if(isUse){
-                    //this.getCouponInfoAfterUse(); //使用优惠券后更新本地优惠券数据
-                    //this.$store.dispatch("showCart", false)
-                  }
-                  alert('successed');
-              //    this.$store.dispatch('setOrderInfo',[]);
-                } else if (result == "fail") {
-                  alert('failed');
-                } else if (result == "cancel") {
-                  alert('canceled');
-                }
-              });
+          this.$http.post(api,param).then((response) => {
+            console.log('get pay charge ');
+            if(isUse){
+              this.resetCouponGetAfterUse(); //使用优惠券后更新本地优惠券数据
             }
-          }
+            this.closeCart();
+            pingpp.createPayment(response.data, function (result, err) {
+              if (result == "success") {
+                alert('支付成功');
+              } else if (result == "支付失败") {
+                alert('failed');
+              } else if (result == "支付取消") {
+                alert('canceled');
+              }
+            });
+          }, (response) => {
+            console.log('get charge error');
+          });
         }
       },
       payBalance: function () {
@@ -187,11 +182,10 @@
             if (response.data.code == 'success') {
               this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
               if(isUse){
-                this.getCouponInfoAfterUse();   //使用优惠券后更新本地优惠券数据
+                this.resetCouponGetAfterUse();   //使用优惠券后更新本地优惠券数据
               }
               alert('支付成功!');
               this.closeCart();
-             // this.$store.dispatch('setOrderInfo',[]);
             }
             else
               alert('支付失败');
@@ -342,19 +336,8 @@
         else
           this.couponDes = '';
       },
-      getCouponInfoAfterUse:function(){
-        var api = this.url + 'coupon';
-        var param = {};
-        param.card_id = this.personalInfo.cardNumber;
-        this.$http.post(api,param).then((response) => {
-          console.log('post coupon info' + JSON.stringify(response.data));
-          var data = {};
-          data.isGet = true;
-          data.couponList = response.data.couponList;
-          this.$store.dispatch('setCouponInfo',data)
-        }, (response) => {
-          console.log('post coupon info error');
-        });
+      resetCouponGetAfterUse:function(){
+        this.$store.dispatch('setCouponGet',false);
       },
 
     }
