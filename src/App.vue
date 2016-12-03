@@ -69,12 +69,8 @@
       this.$store.dispatch('setOpenId',this.getQueryString('openId'));
       console.log(this.openId);
       this.getItemsFromServer();
-<<<<<<< HEAD
       this.getPersonalInfo();
       this.getActivityInfo();
-=======
-
->>>>>>> 2163acc32b9b85dd4b5e037434cbeebf560a124d
     },
     methods:{
       ...mapActions([
