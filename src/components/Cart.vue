@@ -15,10 +15,11 @@
       <div class="part">
         <p class="cart-title">购物清单</p>
         <ul class="cart-cont" style="clear: both;">
-          <li v-for="(good,index) in orderInfo" class="" style="display: flex;flex-wrap: nowrap;font-size: 11px">
-            <div class="cart-item" style="flex: 2;">{{good.name}}</div>
-            <div style="flex: 1;">{{good.price}}元</div>
-            <div class="cart-act" style="flex: 1">
+          <li v-for="(good,index) in orderInfo" class="cart-item" style="display: flex;flex-wrap: nowrap;">
+            <div class="cart-item-name" style="flex: 3;">{{good.name}}</div>
+            <div class="cart-size" style="flex: 2">炒鸡辣</div>
+            <div style="flex: 2;">{{good.price}}元</div>
+            <div class="cart-act" style="flex: 2;display: flex;flex-wrap: nowrap" >
               <span class="item-act item-minus" id="test" @click='minusCount(index)'>-</span>
               <span class="item-num">{{good.count}}</span>
               <span class="item-act item-plus" @click='incCount(index)'>+</span>
@@ -28,7 +29,7 @@
       </div>
 
       <div class="dropdown" style="position: absolute;bottom: 100px;right: 15px;left: 15px">
-        <span class="cart-title" style="font-size: 11px">我的优惠券</span>
+        <span class="cart-title" style="font-size: 10px">我的优惠券</span>
         <a id="select" href="#"class="dropdown-toggle" data-toggle="dropdown" style="">
           点击选择
           <b class="caret"></b>
@@ -42,12 +43,13 @@
         </ul>
       </div>
 
-      <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 18px">总计:{{totalMoney}} <span style="font-size: 12px">优惠价:{{price}}</span></div>
+      <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 14px">总计:{{totalMoney}} <span style="font-size: 10px">优惠价:{{price}}</span></div>
 
       <div class="pay-sub">
         <span style="margin-right: 15px">支付方式</span>
-        <div href="#" @click="pay('alipay_wap')" style="margin-right: 8px"><img src="../public/img/alipay.png"></div>
+        <div href="#" @click="pay('alipay_wap')" style=""><img src="../public/img/alipay.png"></div>
         <div href="#" @click="pay('wx_pub')"><img src="../public/img/wechatpay.png"></div>
+        <div href="#" @click="pay('wx_pub')"><img src="../public/img/modu.png"></div>
         <!--<button @click="pay('balance')">余额支付</button>-->
       </div>
 
@@ -438,6 +440,9 @@
     display: inline-block;
   }
 
+  .cart-item {
+    font-size: 10px;
+  }
   .cart-name {
     width: 35%;
   }
@@ -459,21 +464,29 @@
   }
 
   .pay-sub {
-    margin-top: 10px;
     text-align: left;
     left: 0px;
     right: 0px;
-    display: block;
-    margin: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 10px auto;
     background-color: darkred;
     position: absolute;
-    font-size: 20px;
-    bottom: 6px;
+    font-size: 16px;
+    bottom: 0px;
     padding: 5px;
-    line-height: 20px;
+    line-height: 24px;
+    height: 55px;
   }
 
-
+  .pay-sub span{
+    align-self: center;
+    flex: 2;
+  }
+  .pay-sub div{
+    margin-right: 5px;
+    flex: 1;
+  }
   .pay-sub button {
     background-color: darkred;
     color: black;
@@ -497,6 +510,9 @@
   .cart-cont{
     clear: both;
     font-size: 11px;
+  }
+  .cart-cont ul li div{
+    font-size: 10px;
   }
   .part{
     margin-top: 20px;
@@ -541,7 +557,7 @@
   .pay-sub img{
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 6px;
   }
 </style>
 
