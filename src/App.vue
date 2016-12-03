@@ -56,7 +56,8 @@
     },
     data(){
       return {
-        url : 'http://api.qiancs.cn/'
+        url : 'http://api.qiancs.cn/',
+        openId:'123';
       }
     },
     computed: {
@@ -66,8 +67,7 @@
     },
     created:function(){
       this.getItemsFromServer();
-      this.getPersonalInfo();
-      this.getActivityInfo();
+      
     },
     methods:{
       ...mapActions([
@@ -76,10 +76,14 @@
         'setActivityInfo'
       ]),
       getItemsFromServer: function () {
-        var api = this.url + 'items';
+        this.openId = this.getQueryString(openId);
+        var api = this.url + 'items?id=' + this.openId;
+
         this.$http.get(api).then((response) => {
           // success callback
           this.setItemData(response.data);
+          this.getPersonalInfo();
+          this.getActivityInfo();
           console.log('get items from server');
         }, (response) => {
           // error callback
@@ -155,6 +159,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     background: #000 url(public/img/bg3.png) 0 / cover fixed;
+    background-attachment: fixed;
     min-height: 100vh;
   }
   .ad{
