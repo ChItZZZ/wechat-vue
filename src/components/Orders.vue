@@ -35,6 +35,9 @@
           <div class="item-content">89</div>
           <div class="item-content item-used">已出</div>
         </div>-->
+        <div class="order-refresh" @click="ordersRefresh">
+            刷新页面
+        </div>
         </tbody>
       </table>
     </div>
@@ -90,7 +93,8 @@
           strs.push(str);
         }
         return strs;
-      }
+      },
+
 
     },
     data(){
@@ -99,7 +103,9 @@
       }
     },
     methods:{
-
+      ordersRefresh:function(){
+        console.log('refresh Orders');
+      }
     },
   }
 
@@ -225,5 +231,17 @@
     color: white;
     border-radius: 8px;
     height: 1.8em;
+  }
+  .order-refresh{
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    z-index: 10003;
+    background-color: rgba(165,0,0,1);
+    padding: 3px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
   }
 </style>
