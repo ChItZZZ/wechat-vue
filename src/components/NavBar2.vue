@@ -14,6 +14,7 @@ export default {
       curBarCount: 'navBarCount',
       personalInfo: 'personalInfo',
       couponInfo: 'couponInfo',
+      openId:'openId',
     })
   },
   data(){
@@ -42,7 +43,9 @@ export default {
     },
     getHistoryOrder:function(){
       var api = this.url + 'order';
-      this.$http.get(api).then((response) => {
+      var param = {};
+      param.openId = this.openId;
+      this.$http.post(api,param).then((response) => {
           console.log('get history order from server' + JSON.stringify(response.data));
           this.$store.dispatch('setHistoryOrder',response.data.historyOrder);
         }, (response) => {
@@ -55,6 +58,7 @@ export default {
       var api = this.url + 'coupon';
       var param = {};
       param.card_id = this.personalInfo.cardNumber;
+      param.openId = this.openId;
       this.$http.post(api,param).then((response) => {
         console.log('post coupon info');
         var data = {};
