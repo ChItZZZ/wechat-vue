@@ -57,7 +57,7 @@
     data(){
       return {
         url : 'http://api.qiancs.cn/',
-        openId:'123';
+        openId:'123',
       }
     },
     computed: {
