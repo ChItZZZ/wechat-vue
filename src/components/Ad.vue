@@ -1,7 +1,7 @@
 <template>
   <!--<img src="../public/img/bg2.png">-->
   <!--<div id="ad"><img src="../public/img/bg2.png"></div>-->
-<div style="height: 130px;z-index: 1000">
+<div style="height: 130px;z-index: 1000;right: 0;left: 0">
     <!--<img src="../public/img/bg2.png">-->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -47,7 +47,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  
+
   export default {
      computed: {
       ...mapGetters({
