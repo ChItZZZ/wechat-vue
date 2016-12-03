@@ -43,15 +43,16 @@
     <div class="vip-main vip-three">
       <div class="vip-title">魔都的面 充值(优惠)</div>
       <div class="vip-payment">
-        <div class="vip-pay1 vip-pay active">10元</div>
-        <div class="vip-pay2 vip-pay">20元</div>
-        <div class="vip-pay3 vip-pay">50元</div>
-        <div class="vip-pay4 vip-pay">100元</div>
+        <div class="vip-pay1 vip-pay" :class="{active:moneyIndex==0}" @click="selectMoney(0)">10元</div>
+        <div class="vip-pay2 vip-pay" :class="{active:moneyIndex==1}" @click="selectMoney(1)">20元</div>
+        <div class="vip-pay3 vip-pay" :class="{active:moneyIndex==2}" @click="selectMoney(2)">50元</div>
+        <div class="vip-pay4 vip-pay" :class="{active:moneyIndex==3}" @click="selectMoney(3)">100元</div>
       </div>
     </div>
     <div class="vip-way">
-      <input type="radio" value="" name="一" @click='recharge('wx_pub')'>微信支付
-      <input type="radio" value="" name="一" @click='recharge('alipay_wap')'>支付宝支付
+      <input type="radio" value="" name="一" @click="recharge('wx_pub')">微信支付</input>
+      <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>-->
+
     </div>
   </div>
 </template>
@@ -83,11 +84,31 @@
     },
     data(){
       return{
-        url : 'http://api.qiancs.cn/'
+        url : 'http://api.qiancs.cn/',
+        moneyIndex:0,
+        money:10,
       }
     },
     methods:{
+      selectMoney:function(index){
+        this.moneyIndex = index;
+        switch(index){
+          case 0:
+            this.money = 10;
+            break;
+          case 1:
+            this.money = 20;
+            break;
+          case 2:
+            this.money = 50;
+            break;
+          case 3:
+            this.money = 100;
+            break;
+        }
+      },
       recharge:function(payWay){
+        console.log('money' + this.money);
         // var xhr = new XMLHttpRequest();
         // var api = this.url + 'getChargeNew'
         // xhr.open("POST", api, true);
