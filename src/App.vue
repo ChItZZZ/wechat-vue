@@ -159,9 +159,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    background: #000 url(public/img/bg3.png) 0 / cover fixed;
-    background-attachment: fixed;
+
     min-height: 100vh;
+  }
+  body{
+    background: #000 url(public/img/bg3.png) 0 / cover fixed;
   }
   .ad{
     position: fixed;
