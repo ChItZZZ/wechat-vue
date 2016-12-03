@@ -5,7 +5,7 @@
       <div class="item-text">
         <p class="line-one">{{item.name}}<i class="fa fa-user"></i></p>
         <p class="line-two">月销量 {{item.sels}} 份 <i class="glyphicon glyphicon-thumbs-up"></i></p>
-        <p class="line-three">{{item.price}} 元/份<span style="text-decoration: line-through;margin-left: 10px">65</span></p>
+        <p class="line-three">{{item.price}} 元/份</p>
       </div>
       <ItemAct :itemId="item.id"></ItemAct>
     </li>
@@ -114,6 +114,7 @@
   .item-text {
     flex: 3;
     text-align: left;
+    margin-left: 10px;
   }
 
   .item-text p {

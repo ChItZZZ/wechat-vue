@@ -11,8 +11,9 @@
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
-      <BtmBar></BtmBar>
+
     </div>
+    <BtmBar></BtmBar>
     <vip-card></vip-card>
     <fixed-cart></fixed-cart>
     <Orders></Orders>
@@ -68,8 +69,12 @@
       this.$store.dispatch('setOpenId',this.getQueryString('openId'));
       console.log(this.openId);
       this.getItemsFromServer();
+<<<<<<< HEAD
       this.getPersonalInfo();
       this.getActivityInfo();
+=======
+
+>>>>>>> 2163acc32b9b85dd4b5e037434cbeebf560a124d
     },
     methods:{
       ...mapActions([
@@ -158,9 +163,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    background: #000 url(public/img/bg3.png) 0 / cover fixed;
-    background-attachment: fixed;
+
     min-height: 100vh;
+  }
+  body{
+    background: #000 url(public/img/bg3.png) 0 / cover fixed;
   }
   .ad{
     position: fixed;

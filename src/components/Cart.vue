@@ -483,9 +483,9 @@
 
   }
   .cart-self,.cart-send{
-    flex: 3;background-color: rgba(237,190,190,.8);margin: 0 10px;border-radius: 10px;line-height: 26px;height: 26px;
+    flex: 3;background-color: rgba(237,190,190,.8);margin: 0 10px;
+    border-radius: 4px;line-height: 26px;height: 26px;
     color: darkred;
-
   }
   .cart-title{
     float: left;

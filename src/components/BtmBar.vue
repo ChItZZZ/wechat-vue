@@ -50,22 +50,18 @@
     z-index: 10023;
     align-self: stretch;
     align-items: stretch;
-    /*flex: 1;*/
-    background-color: rgba(0, 0, 0, .6);
-    /*position: absolute;*/
+    background-color: rgba(0,0,0,.7);
     overflow-y: auto;
-    /*  width: 70px; */
     overflow-x: hidden;
     bottom: 0;
-    /*z-index: 1000;*/
   }
 
   .bar th {
     height: 40px;
     font-size: 14px;
     /*background-color: rgba(0,0,0,.4);*/
-    min-width: 55px;
     color: white;
+    min-width: 55px;
     border-right: 1px solid black;
     text-align: center;
 
@@ -73,5 +69,6 @@
 
   .bar .active {
     background-color: rgba(0, 0, 0, .8);
+    color: white;
   }
 </style>

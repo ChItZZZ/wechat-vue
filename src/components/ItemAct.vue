@@ -1,7 +1,7 @@
 <template>
   <div class="item-action">
-    <div class="item-minus" id="test" @click="minusItem" v-show="isMinusShow">-</div>
-    <div class="item-num" v-show="isMinusShow">{{ _num }}</div>
+    <div class="item-minus" id="test" @click="minusItem" :class="{isHidden:_num == 0}">-</div>
+    <div class="item-num" :class="{isHidden:_num == 0}">{{ _num }}</div>
     <div class="item-plus" @click="incItem">+</div>
   </div>
 </template>
@@ -68,7 +68,7 @@
           this.num = 1;
         else
           this.num = 0;
-          
+
       },
       hideMinusAndNum: function () {
         this.$store.dispatch("showMinus",false)
@@ -88,13 +88,10 @@
     margin-top: 40px;
     height: 19px;
     width: 19px;
-    line-height: 19px;
-    border: 1px solid grey;
     border-radius: 50%;
     font-weight: 900;
     color: #FF5F33;
     display: inline-block;
-    /*position: absolute;*/
     right: 15%;
   }
 
@@ -104,17 +101,17 @@
     vertical-align: center;
     line-height: 100px;
   }
-
+  .item-minus,.item-plus{
+    line-height: 17px;
+    border: 1px solid grey;
+  }
   .item-minus {
-    /*position: absolute;*/
     z-index: 0;
-    line-height: 19px;
     height: 19px;
     width: 19px;
     margin-top: 40px;
     color: #FF5F33;
     font-weight: 900;
-    border: 1px solid grey;
     border-radius: 50%;
     left: 15%;
     display: inline-block;
