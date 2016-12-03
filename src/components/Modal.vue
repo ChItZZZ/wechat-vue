@@ -16,13 +16,19 @@
         <div class="part-two">
           <div class="recommend-food">
             <i class="glyphicon glyphicon-chevron-left" v-show="configItemInfo.length != 0" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
-            <img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)">
+            <img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)" :class="{active:i==1}">
               <!--<img src="../public/img/egg.jpeg" class="recommend-img" >-->
             <i class="glyphicon glyphicon-chevron-right" v-show="configItemInfo.length != 0" @click="addShowIndex" style="position: relative;z-index: 100"></i>
           </div>
           <div class="recommend-check">
             <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)"><i class="glyphicon glyphicon-ok" style="" ></i></span>
           </div>
+        </div>
+        <div class="part-case">
+          <div class="part-case-name">+小菜</div>
+          <div class="part-case-name">+小菜</div>
+          <div class="part-case-name">+小菜</div>
+          <div class="part-case-name">+小菜</div>
         </div>
         <div class="part-three">
           <div class="food-act">
@@ -94,6 +100,9 @@
     left: 0;
   }
 
+  .recommend-food img.active{
+    border: 1px solid black;
+  }
   .recommend-img {
     width: 18%;
     height: 100%;
@@ -102,9 +111,8 @@
   .food-size {
     position: absolute;
     left: 35px;
-    top: 12%;
+    top: 5%;
     right: 35px;
-
   }
 
   .select-food {
@@ -131,23 +139,29 @@
   .food-act button {
     color: darkred;
     background-color: rgba(255, 233, 249, .9);
-    border-radius: 15px;
+    border-radius: 3px;
     width: 80px;
     font-size: 11px;
     border: 0;
   }
 
   .part-one {
-    height: 40%;
+    height: 30%;
   }
 
   .part-two {
-    height: 40%;
+    height: 30%;
+    margin-top: 5px;
     position: relative;
   }
 
+  .part-case{
+    height: 15%;
+    margin-top: 10px;
+  }
   .part-three {
-    height: 20%;
+    height: 15%;
+    margin-top: 3px;
   }
   .recommend-check{
     position: relative;
@@ -171,6 +185,17 @@
   }
   .glyphicon-ok:before{
     line-height: 25px;
+  }
+
+  .part-case-name{
+    display: inline-block;
+    width: 15%;
+    padding: 2px;
+    background-color: white;
+    color: black;
+    font-size: 9px;
+    border-radius: 10px;
+    margin-right: 10px;
   }
 </style>
 <script>
