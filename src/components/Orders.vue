@@ -14,7 +14,7 @@
           <div class="item-content item-name">{{orderDescription[index]}}</div>
           <div class="item-content">{{order.items[0].counter}}</div>
           <div class="item-content">{{order.price}}</div>
-          <div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{order.state == 1? '已出':'未出'}}</div>
+          <div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{orderStateStr[index]}}</div>
           <!--<div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{order.state}}</div>-->
         </div>
         <!--<div class="item-cont" style="display: flex">
@@ -71,6 +71,26 @@
         }
         return des;
       },
+      orderStateStr:function(){
+        var strs = [];
+        var order = this.historyOrder;
+        for(var i in order){
+          var str = '';
+          switch(order[i].state){
+            case 0:
+              str = '未支付';
+              break;
+            case 1:
+              str = '未出';
+              break;
+            case 2:
+              str = '已出';
+              break;
+          }
+          strs.push(str);
+        }
+        return strs;
+      }
 
     },
     data(){
