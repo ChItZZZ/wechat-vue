@@ -46,7 +46,6 @@
     margin-left: 70px;
     padding: 150px 20px 40px 20px;
     flex-grow: 5;
-    position: relative;
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
@@ -63,6 +62,7 @@
   }
 
   .story-content2 {
+    margin-left:70px;
     text-align: left;
     color: black;
     position: absolute;

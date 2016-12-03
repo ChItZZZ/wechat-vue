@@ -53,7 +53,7 @@
     margin-left: 70px;
     padding: 150px 20px 40px 20px;
     flex-grow: 5;
-    position: relative;
+    /*position: relative;*/
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
@@ -70,11 +70,12 @@
   }
 
   .join-content {
+    margin-left:70px;
     text-align: left;
     background-color: rgba(165, 0, 0, 1);
     color: white;
     position: absolute;
-    bottom: 40px;
+    bottom: 50px;
     top: 200px;
     left: 20px;
     right: 20px;
