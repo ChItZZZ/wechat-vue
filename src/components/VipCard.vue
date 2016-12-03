@@ -52,13 +52,14 @@
     <div class="vip-way">
       <input type="radio" value="" name="一" @click="recharge('wx_pub')">微信支付</input>
       <img src="../public/img/wechatpay.png">
-      <input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
-      <img src="../public/img/alipay.png">
+      <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
+      <img src="../public/img/alipay.png">-->
     </div>
   </div>
 </template>
 <script>
   import { mapGetters } from 'vuex'
+  var pingpp = require('pingpp-js');
 
   export default {
      computed: {
@@ -109,39 +110,27 @@
         }
       },
       recharge:function(payWay){
-        console.log('money' + this.money);
-        // var xhr = new XMLHttpRequest();
-        // var api = this.url + 'getChargeNew'
-        // xhr.open("POST", api, true);
-        // xhr.setRequestHeader("Content-type", "application/json");
-        // xhr.send(JSON.stringify({
-        //   channel: payWay,
-        //   amount: this.totalMoney * 100,
-        //   orderInfo: this.orderInfo,
-        //   desk_id: deskId,
-        //   store_id: 1,
-        //   price: this.totalMoney,
-        //   realPrice: this.realPrice,
-        //   couponDes: this.couponDes,
-        // }));
-        // xhr.onreadystatechange = function () {
-        //   if (xhr.readyState == 4 && xhr.status == 200) {
-        //     pingpp.createPayment(xhr.responseText, function (result, err) {
-        //       if (result == "success") {
-        //         alert('successed');
-        //     //    this.$store.dispatch('setOrderInfo',[]);
-        //       } else if (result == "fail") {
-        //         alert('failed');
-        //       } else if (result == "cancel") {
-        //         alert('canceled');
-        //       }
-        //     });
-        //   }
-        // }
+        var api = this.url + 'recharge';
+        var param = {};
+        param.amount = this.money * 100;
+        param.price = this.money;
+        param.channel = payWay;
+        this.$http.post(api,param).then((response) => {
+           console.log('post recharge' + JSON.stringify(response.data));
+           pingpp.createPayment(response.data, function (result, err) {
+            if (result == "success") {
+              alert('充值成功');
+            } else if (result == "充值失败") {
+              alert('failed');
+            } else if (result == "充值取消") {
+              alert('canceled');
+            }
+          });
+        }, (response) => {
+          console.log('post recharge error');
+        });
       },
-
     },
-
   }
 
 </script>
