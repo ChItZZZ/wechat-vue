@@ -49,9 +49,9 @@
         <div class="vip-pay4 vip-pay" :class="{active:moneyIndex==3}" @click="selectMoney(3)">100元</div>
       </div>
     </div>
-    <div class="vip-way">
-      <input type="radio" value="" name="一" @click="recharge('wx_pub')">微信支付</input>
-      <img src="../public/img/wechatpay.png">
+    <div class="vip-way" @click="recharge('wx_pub')">
+      <button>微信支付</button>
+      <img src="../public/img/wechatpay.png" >
       <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
       <img src="../public/img/alipay.png">-->
     </div>
@@ -110,25 +110,27 @@
         }
       },
       recharge:function(payWay){
-        var api = this.url + 'recharge';
-        var param = {};
-        param.amount = this.money * 100;
-        param.price = this.money;
-        param.channel = payWay;
-        this.$http.post(api,param).then((response) => {
-           console.log('post recharge' + JSON.stringify(response.data));
-           pingpp.createPayment(response.data, function (result, err) {
-            if (result == "success") {
-              alert('充值成功');
-            } else if (result == "充值失败") {
-              alert('failed');
-            } else if (result == "充值取消") {
-              alert('canceled');
-            }
+        if(window.confirm('确定充值'+this.money+'元?')){
+          var api = this.url + 'recharge';
+          var param = {};
+          param.amount = this.money * 100;
+          param.price = this.money;
+          param.channel = payWay;
+          this.$http.post(api,param).then((response) => {
+            console.log('post recharge' + JSON.stringify(response.data));
+            pingpp.createPayment(response.data, function (result, err) {
+              if (result == "success") {
+                alert('充值成功');
+              } else if (result == "充值失败") {
+                alert('failed');
+              } else if (result == "充值取消") {
+                alert('canceled');
+              }
+            });
+          }, (response) => {
+            console.log('post recharge error');
           });
-        }, (response) => {
-          console.log('post recharge error');
-        });
+        }
       },
     },
   }

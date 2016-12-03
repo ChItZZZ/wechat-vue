@@ -25,10 +25,11 @@
           </div>
         </div>
         <div class="part-case">
+          <div class="part-case-name"  v-for="(flavor,index) in curItemConfig.flavor"
+           :class="{active:curFlavorIndex==index}"  @click="curFlavorIndex=index">{{flavor}}</div>
+          <!--<div class="part-case-name">+小菜</div>
           <div class="part-case-name">+小菜</div>
-          <div class="part-case-name">+小菜</div>
-          <div class="part-case-name">+小菜</div>
-          <div class="part-case-name">+小菜</div>
+          <div class="part-case-name">+小菜</div>-->
         </div>
         <div class="part-three">
           <div class="food-act">
@@ -199,6 +200,9 @@
     border-radius: 10px;
     margin-right: 10px;
   }
+  .part-case-name.active{
+    background-color: grey;
+  }
 </style>
 <script>
   import { mapGetters } from 'vuex'
@@ -274,7 +278,8 @@
         curSizeIndex:0,
         url:'http://api.qiancs.cn/',
         showIndex:0,
-        maxShowIndex:3
+        maxShowIndex:3,
+        curFlavorIndex:0
       }
     },
     methods: {
@@ -318,8 +323,7 @@
             json.price = data[i].price;
             json.catalogue = data[i].catalogue;
             json.id = data[i].id;
-            var detail = data[i].size;
-            //var detail = data[i].flavor;
+            var detail = data[i].size + ' ' + data[i].flavor;
             json.detail = detail;
             order.push(json);
           }
@@ -361,6 +365,7 @@
           obj.price = item.price;
           obj.catalogue = item.cls;
           obj.size = this.curItemConfig.size[this.curSizeIndex];
+          obj.flavor = this.curItemConfig.flavor[this.curFlavorIndex];
           obj.count = 1;
           this.$store.dispatch("addConfigItemAdded",obj);
           var count = this.goodsCount + 1;
