@@ -96,13 +96,19 @@
     border-bottom: 0.5px solid black;
     color: black;
     background-color: rgba(255, 255, 255, .6);
-    height: 100px;
+    height: 90px;
     display: flex;
     flex: 5;
   }
 
   .item-img {
     flex: 2;
+    display: flex;
+    align-items: center;
+  }
+
+  .item-img img{
+    align-self: center;
   }
 
   .item-text {
@@ -115,23 +121,23 @@
   }
 
   .line-one {
-    margin-top: 20px;
-    height: 32px;
-    line-height: 46px;
-    font-size: 18px;
+    margin-top: 13px;
+    height: 28px;
+    line-height: 32px;
+    font-size: 16px;
   }
 
   .line-two {
     color: black;
     height: 20px;
     line-height: 20px;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .line-three {
     height: 32px;
     line-height: 18px;
-    font-size: 16px;
+    font-size: 13px;
     color: red;
   }
   .container{
