@@ -46,7 +46,7 @@ export default {
       var param = {};
       param.openId = this.openId;
       this.$http.post(api,param).then((response) => {
-          console.log('get history order from server' + JSON.stringify(response.data));
+          console.log('get history order from server');
           this.$store.dispatch('setHistoryOrder',response.data.historyOrder);
         }, (response) => {
           console.log('get history order error');

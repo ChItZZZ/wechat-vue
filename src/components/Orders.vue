@@ -14,7 +14,8 @@
           <div class="item-content item-name">{{orderDescription[index]}}</div>
           <div class="item-content">{{order.items[0].counter}}</div>
           <div class="item-content">{{order.price}}</div>
-          <div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{orderStateStr[index]}}</div>
+          <div class="item-content" :class="{'item-unused':order.state==1 || order.state==0,'item-used':order.state==2}">
+            {{orderStateStr[index]}}</div>
           <!--<div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{order.state}}</div>-->
         </div>
         <!--<div class="item-cont" style="display: flex">
@@ -25,16 +26,8 @@
           <div class="item-content">5元</div>
           <div class="item-content">89</div>
           <div class="item-content item-unused">未出</div>
-        </div>
-        <div class="item-cont" style="display: flex">
-          <div class="item-content">8/30</div>
-          <div class="item-content item-id">0001</div>
-          <div class="item-content item-name">招牌三鲜牛肉面</div>
-          <div class="item-content">2</div>
-          <div class="item-content">5元</div>
-          <div class="item-content">89</div>
-          <div class="item-content item-used">已出</div>
         </div>-->
+       
         <div class="order-refresh" @click="ordersRefresh">
             刷新页面
         </div>
@@ -56,6 +49,7 @@
         curNavBar:'navBarCount',
         curFuncTab:'curFuncTab',
         historyOrder:'historyOrder',
+        openId:'openId'
       }),
       isCurFuncTab:function(){
         if(this.curFuncTab == '我的订单' && this.curNavBar == 2)
@@ -75,6 +69,7 @@
         return des;
       },
       orderStateStr:function(){
+        console.log('ref');
         var strs = [];
         var order = this.historyOrder;
         for(var i in order){
@@ -95,7 +90,6 @@
         return strs;
       },
 
-
     },
     data(){
       return{
@@ -104,7 +98,15 @@
     },
     methods:{
       ordersRefresh:function(){
-        console.log('refresh Orders');
+        var api = this.url + 'order';
+        var param = {};
+        param.openId = this.openId;
+        this.$http.post(api,param).then((response) => {
+          console.log('get history order from server');
+          this.$store.dispatch('setHistoryOrder',response.data.historyOrder);
+        }, (response) => {
+          console.log('get history order error');
+        });
       }
     },
   }
@@ -233,6 +235,7 @@
     height: 1.8em;
   }
   .order-refresh{
+    border-radius: 8px;
     position: fixed;
     right: 20px;
     bottom: 50px;
@@ -241,6 +244,7 @@
     padding: 3px 5px;
     font-size: 10px;
     font-weight: bold;
+    color: white;
     line-height: 1;
     text-align: center;
   }

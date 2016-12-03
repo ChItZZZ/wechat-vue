@@ -1,7 +1,7 @@
 <template>
   <div class="item-action">
-    <div class="item-minus" id="test" @click="minusItem" :class="{isHidden:_num == 0}">-</div>
-    <div class="item-num" :class="{isHidden:_num == 0}">{{ _num }}</div>
+    <div class="item-minus" id="test" @click="minusItem" :class="{isHidden:num == 0}">-</div>
+    <div class="item-num" :class="{isHidden:num == 0}">{{ num }}</div>
     <div class="item-plus" @click="incItem">+</div>
   </div>
 </template>
@@ -14,8 +14,8 @@
         itemAddedCount:'itemAddedCount',
         goodsCount:'goodsCount',
       }),
-      _num:function(){
-        var change = this.num;
+      num:function(){
+        var change = this.goodsCount;
         var obj = this.itemAddedCount;
         var id = this.itemId;
         if(id in obj)
@@ -43,7 +43,6 @@
         else
           obj[id] = 1;
 
-        this.changeNum();
         this.setItemAddedCount(obj);
         var count = this.goodsCount + 1;
         this.setGoodsCount(count);
@@ -54,7 +53,6 @@
         if(id in obj && obj[id] > 0)
         {
           --obj[id];
-          this.changeNum();
           this.setItemAddedCount(obj);
           var count = this.goodsCount - 1;
           this.$store.dispatch('setGoodsCount',count);
@@ -62,13 +60,6 @@
         else {
           //this.hideMinusAndNum();
         }
-      },
-      changeNum:function(){
-        if(this.num == 0)
-          this.num = 1;
-        else
-          this.num = 0;
-
       },
       hideMinusAndNum: function () {
         this.$store.dispatch("showMinus",false)

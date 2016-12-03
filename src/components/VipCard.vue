@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="vip-way" @click="recharge('wx_pub')">
-      <button>微信支付</button>
+      <p>微信支付</p>
       <img src="../public/img/wechatpay.png" >
       <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
       <img src="../public/img/alipay.png">-->
