@@ -63,6 +63,7 @@
         couponInfo:'couponInfo',
         goodsCount: 'goodsCount',
         curBarCount: 'navBarCount',
+        openId:'openId',
       }),
       showFix:function(){
         if(this.curBarCount == 1)
@@ -136,6 +137,7 @@
         var api = this.url + 'coupon';
         var param = {};
         param.card_id = this.personalInfo.cardNumber;
+        param.openId = this.openId;
         this.$http.post(api,param).then((response) => {
           console.log('post coupon info' + JSON.stringify(response.data));
           var data = {};

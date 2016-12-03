@@ -70,6 +70,7 @@
         goodsCount:'goodsCount',
         itemAddedCount:'itemAddedCount',
         configItemAdded:'configItemAdded',
+        openId:'openId',
       }),
       couponList: function(){
         var list = [];
@@ -138,6 +139,7 @@
             price: this.totalMoney,
             realPrice: this.realPrice,
             couponDes: this.activityDes + ' ' + this.couponDes,
+            openId:this.openId,
           }
           if(this.couponId != -1){
             param.coupon_id = this.couponId;
@@ -175,6 +177,7 @@
           param.store_id = 1;
           param.price = this.totalMoney;
           param.realPrice = this.realPrice;
+          param.openId = this.openId;
           if(this.couponId != -1){
             param.coupon_id = this.couponId;
             this.couponId = -1;

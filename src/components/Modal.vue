@@ -214,7 +214,8 @@
         configItemAdded:'configItemAdded',
         personalInfo:'personalInfo',
         couponInfo:'couponInfo',
-        goodsCount:'goodsCount'
+        goodsCount:'goodsCount',
+        openId:'openId',
       }),
       curItem: function () {
         var item = {};
@@ -342,6 +343,7 @@
         var api = this.url + 'coupon';
         var param = {};
         param.card_id = this.personalInfo.cardNumber;
+        param.openId = this.openId;
         this.$http.post(api,param).then((response) => {
           console.log('post coupon info' + JSON.stringify(response.data));
           var data = {};
