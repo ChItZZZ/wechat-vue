@@ -29,6 +29,7 @@ import {
   MINUS_ORDER_INFO,
   INC_CONFIG_ITEM_COUNT,
   MINUS_CONFIG_ITEM_COUNT,
+  SET_OPEN_ID,
 } from './mutation-type'
 
 const mutations = {
@@ -147,6 +148,9 @@ const mutations = {
         break;
       }
     }
+  },
+  [SET_OPEN_ID] (state,id){
+    state.openId = id;
   },
 
 }

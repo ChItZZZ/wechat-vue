@@ -57,17 +57,19 @@
     data(){
       return {
         url : 'http://api.qiancs.cn/',
-        openId:'123',
       }
     },
     computed: {
       ...mapGetters({
-
+        openId:'openId',
       }),
     },
     created:function(){
+      this.$store.dispatch('setOpenId',this.getQueryString('openId'));
+      console.log(this.openId);
       this.getItemsFromServer();
-      
+      this.getPersonalInfo();
+      this.getActivityInfo();
     },
     methods:{
       ...mapActions([
@@ -76,14 +78,10 @@
         'setActivityInfo'
       ]),
       getItemsFromServer: function () {
-        this.openId = this.getQueryString('openId');
-        var api = this.url + 'items?id=' + this.openId;
-
+        var api = this.url + 'items';
         this.$http.get(api).then((response) => {
           // success callback
           this.setItemData(response.data);
-          this.getPersonalInfo();
-          this.getActivityInfo();
           console.log('get items from server');
         }, (response) => {
           // error callback

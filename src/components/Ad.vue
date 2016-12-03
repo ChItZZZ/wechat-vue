@@ -84,7 +84,6 @@
             var url = response.data.HeaderPicture[i].picture_path
             this.picUrls.push(url);
           }
-          console.log('head ' + this.picUrls)
         }, (response) => {
           // error callback
           console.log('get head pictures error');

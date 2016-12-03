@@ -58,6 +58,8 @@ export const incConfigItemCount = ({ commit },id) => commit("INC_CONFIG_ITEM_COU
 
 export const minusConfigItemCount = ({ commit },id) => commit("MINUS_CONFIG_ITEM_COUNT",id)
 
+export const setOpenId = ({ commit },id) => commit("SET_OPEN_ID",id)
+
 
 
 

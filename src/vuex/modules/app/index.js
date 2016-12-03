@@ -28,6 +28,7 @@ const state = {
   couponInfo:{isGet: false},
   historyOrder:[],
   goodsCount:0,
+  openId:'',
   
 }
 

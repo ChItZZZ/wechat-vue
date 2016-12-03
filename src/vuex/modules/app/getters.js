@@ -18,3 +18,4 @@ export const shopInfo = state => state.shopInfo
 export const couponInfo = state => state.couponInfo
 export const historyOrder = state => state.historyOrder
 export const goodsCount = state => state.goodsCount
+export const openId = state => state.openId
