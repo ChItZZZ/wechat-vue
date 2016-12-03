@@ -1,7 +1,7 @@
 <template>
   <div class="fixed-cart" @click="showCart" style="position: fixed;z-index: 10003;">
     <!--<div class="pay">直接付款</div>-->
-    <div class="cart" ><span>{{goodsCount}}</span><i class="glyphicon glyphicon-shopping-cart"></i></div>
+    <div class="cart" ><i class="glyphicon glyphicon-shopping-cart"></i><span>{{goodsCount}}</span></div>
   </div>
 </template>
 <style scoped>
@@ -9,8 +9,7 @@
     color: red;
     border-radius: 50%;
     display: inline-block;
-    margin-right: 10px;
-    padding: 3px 2px;
+    padding: 3px 5px;
     font-size: 10px;
     font-weight: bold;
     line-height: 1;
@@ -19,6 +18,10 @@
     vertical-align: baseline;
     background-color: white;
   }
+  .cart i {
+    margin-right: 10px;
+    font-size: 20px;
+  }
   .cart, .pay {
     justify-content: center;
     align-items: center;
@@ -26,13 +29,18 @@
     display: flex;
     margin-right: 10px;
     position: relative;
-    background-color: darkred;
-    width: 80px;
+    background-color: rgba(165,0,0,1);
+    width: 90px;
     color: white;
-    border-radius: 8px;
-    height: 24px;
+    padding: 3px;
+    border-radius: 4px;
+    height: 28px;
     z-index: 1200;
     line-height: 24px;
+  }
+  .glyphicon-shopping-cart{
+    margin-top: -3px;
+    font-size: 18px;
   }
   .fixed-cart{
     position: fixed;
