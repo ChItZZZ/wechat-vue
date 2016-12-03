@@ -67,6 +67,7 @@
         curNavBar:'navBarCount',
         curFuncTab:'curFuncTab',
         personalInfo:'personalInfo',
+        openId:'openId',
       }),
       myInfo: function(){
         var info = {};
@@ -115,6 +116,7 @@
         param.amount = this.money * 100;
         param.price = this.money;
         param.channel = payWay;
+        param.openId = this.openId;
         this.$http.post(api,param).then((response) => {
            console.log('post recharge' + JSON.stringify(response.data));
            pingpp.createPayment(response.data, function (result, err) {
