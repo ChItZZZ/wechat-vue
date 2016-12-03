@@ -90,7 +90,9 @@
       },
       getPersonalInfo: function (){
         var api = this.url + 'inquire';
-        this.$http.get(api).then((response) => {
+        var param = {};
+        param.openId = this.openId;
+        this.$http.post(api,param).then((response) => {
           console.log('get personal info from server ');
           this.setPersonalInfo(response.data);
         }, (response) => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed-cart" @click="showCart" style="position: fixed;z-index: 10003;">
+  <div class="fixed-cart" @click="showCart" style="position: fixed;z-index: 10003;" v-show="showFix">
     <!--<div class="pay">直接付款</div>-->
     <div class="cart" ><span>{{goodsCount}}</span><i class="glyphicon glyphicon-shopping-cart"></i></div>
   </div>
@@ -53,7 +53,13 @@
         personalInfo:'personalInfo',
         couponInfo:'couponInfo',
         goodsCount: 'goodsCount',
+        curBarCount: 'navBarCount',
       }),
+      showFix:function(){
+        if(this.curBarCount == 1)
+          return true;
+        return false;
+      },
     },
     data(){
       return {
