@@ -22,7 +22,8 @@
     margin-right: 10px;
     font-size: 20px;
   }
-  .cart, .pay {
+  .cart {
+    border: 1px solid darkgrey;
     justify-content: center;
     align-items: center;
     float: right;
