@@ -76,7 +76,7 @@
         'setActivityInfo'
       ]),
       getItemsFromServer: function () {
-        this.openId = this.getQueryString(openId);
+        this.openId = this.getQueryString('openId');
         var api = this.url + 'items?id=' + this.openId;
 
         this.$http.get(api).then((response) => {
