@@ -15,7 +15,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item" :class="{active:index==0}"  v-for="(pic,index) in picUrls">
-      <img src="../public/img/bg2.png" alt="...">
+      <img :src=pic alt="...">
     </div>
     <!--<div class="item active">
       <img src="../public/img/bg2.png" alt="...">
@@ -69,11 +69,11 @@
       }
     },
     created:function(){
-      this.picUrls.push("../public/img/bg2.png");
-      this.picUrls.push("../public/img/bg2.png");
-      this.picUrls.push("../public/img/bg2.png");
+      // this.picUrls.push("../public/img/bg2.png");
+      // this.picUrls.push("../public/img/bg2.png");
+      // this.picUrls.push("../public/img/bg2.png");
 
-      //this.getHeadPic();
+      this.getHeadPic();
     },
     methods:{
       getHeadPic:function(){
