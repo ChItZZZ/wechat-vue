@@ -51,8 +51,9 @@
     </div>
     <div class="vip-way">
       <input type="radio" value="" name="一" @click="recharge('wx_pub')">微信支付</input>
-      <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>-->
-
+      <img src="../public/img/wechatpay.png">
+      <input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
+      <img src="../public/img/alipay.png">
     </div>
   </div>
 </template>
@@ -190,7 +191,7 @@
     padding: 3px;
   }
   .vip-way{
-    margin-top: 10px;
+    margin-top: 18px;
   }
 
   .vip-level:last-child {
@@ -263,6 +264,15 @@
     display: flex;
   }
 
+  .vip-way input{
+    margin-right: 3px;
+  }
+  .vip-way img{
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    margin-right: 6px;
+  }
   /*.vip-three{*/
   /*position: absolute;*/
   /*bottom: 100px;*/

@@ -63,12 +63,13 @@
   .recommend-food i{
     color: white;
     padding: 12px 6px;
+    background-color: darkred;
     /*background-color: rgba(0,0,0,.6);*/
   }
   #detail-food {
     height: 50%;
     position: relative;
-    background-color: darkred;
+    background-color: rgba(155,0,0,1);
   }
 
   #detail-img {
@@ -97,6 +98,7 @@
     position: absolute;
     top: 5px;;
     right: 0;
+    background-color: darkred;
     left: 0;
   }
 
