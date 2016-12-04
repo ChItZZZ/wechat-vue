@@ -2,7 +2,7 @@
   <ul v-if='curNavBar == 1'  class="container" style="padding-bottom: 40px;;margin-bottom: 0"  :class="{active:isModalShow||isCartShow,inactive:!isModalShow && !isCartShow}">
     <li class="item-info" v-for="item in goods" >
       <div class="item-img"><img :src="item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
-      <div class="item-text">
+      <div class="item-text" @click="showModal(item.id)">
         <p class="line-one">{{item.name}}<i class="fa fa-user"></i></p>
         <p class="line-two">月销量 {{item.sels}} 份 <i class="glyphicon glyphicon-thumbs-up"></i></p>
         <p class="line-three">{{item.price}} 元/份</p>
