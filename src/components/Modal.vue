@@ -23,7 +23,7 @@
           </div>
           <div class="recommend-check">
             <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
-            :showIndex="Math.floor(i/4)" @click="sel(i)">
+            :showIndex="Math.floor(i/4)" >
             <i class="glyphicon glyphicon-ok" style="" v-show="i==recItemIndex"></i></span>
           </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="part-three">
           <div class="food-act">
             <button class="cart" @click="addToCart">加入购物车</button>
-            <button class="pay" @click="showCart">直接结算{{goodsCount}}</button>
+            <button class="pay" @click="showCart">直接结算({{goodsCount}})</button>
           </div>
         </div>
       </div>
