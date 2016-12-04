@@ -64,6 +64,7 @@
         goodsCount: 'goodsCount',
         curBarCount: 'navBarCount',
         openId:'openId',
+        isRecharged:'isRecharged'
       }),
       showFix:function(){
         if(this.curBarCount == 1)
@@ -128,12 +129,28 @@
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
 
-        this.getCouponList();
+        this.getInfo();
+      },
+      getInfo:function(){
+        if(this.isRecharged){
+          var api = this.url + 'inquire';
+          var param = {};
+          param.openId = this.openId;
+          this.$http.post(api,param).then((response) => {
+            console.log('get personal info from server ');
+            this.$store.dispatch('setPersonalInfo',response.data);
+            this.$store.dispatch('setRecharged',false);
+            this.getCouponList();
+          }, (response) => {
+            console.log('get personal info error');
+          });
+        }
+        else
+          this.getCouponList();
       },
       getCouponList: function(){
         if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
           return;
-
         var api = this.url + 'coupon';
         var param = {};
         param.card_id = this.personalInfo.cardNumber;
@@ -158,7 +175,7 @@
         }
         return num;
       },
-
+     
     },
 
   }

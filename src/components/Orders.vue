@@ -29,7 +29,7 @@
         </div>-->
        
         <div class="order-refresh" @click="ordersRefresh">
-            刷新页面
+            刷新信息
         </div>
         </tbody>
       </table>
@@ -69,7 +69,6 @@
         return des;
       },
       orderStateStr:function(){
-        console.log('ref');
         var strs = [];
         var order = this.historyOrder;
         for(var i in order){

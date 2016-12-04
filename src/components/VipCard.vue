@@ -55,6 +55,9 @@
       <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
       <img src="../public/img/alipay.png">-->
     </div>
+     <div class="refresh" @click="getPersonalInfo">
+            刷新信息
+     </div>
   </div>
 </template>
 <script>
@@ -122,19 +125,32 @@
             console.log('post recharge' + JSON.stringify(response.data));
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
-                alert('充值成功');
-
-                //to do reset coupon get 、 get personalInfo again , set isRecharged
-              } else if (result == "充值失败") {
-                alert('failed');
-              } else if (result == "充值取消") {
-                alert('canceled');
+                alert('充值成功');               
+              } else if (result == "fail") {
+                alert('充值失败');
+              } else if (result == "cancel") {
+                alert('充值取消');
               }
             });
+            this.$store.dispatch('setRecharged',true);
+            this.$store.dispatch('setCouponGet',false);
           }, (response) => {
             console.log('post recharge error');
           });
         }
+      },
+      getPersonalInfo: function (){
+        var api = this.url + 'inquire';
+        var param = {};
+        param.openId = this.openId;
+        this.$http.post(api,param).then((response) => {
+          console.log('get personal info from server ');
+          this.$store.dispatch('setPersonalInfo',response.data);
+          this.$store.dispatch('setRecharged',false);
+          this.$store.dispatch('setCouponGet',false);
+        }, (response) => {
+          console.log('get personal info error');
+        });
       },
     },
   }
@@ -267,6 +283,20 @@
     height: 30px;
     border-radius: 6px;
     margin-right: 6px;
+  }
+  .refresh{
+    border-radius: 8px;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    z-index: 10003;
+    background-color: rgba(165,0,0,1);
+    padding: 3px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+    text-align: center;
   }
   /*.vip-three{*/
   /*position: absolute;*/

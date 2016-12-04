@@ -30,6 +30,7 @@ import {
   INC_CONFIG_ITEM_COUNT,
   MINUS_CONFIG_ITEM_COUNT,
   SET_OPEN_ID,
+  SET_RECHARGED
 } from './mutation-type'
 
 const mutations = {
@@ -152,6 +153,9 @@ const mutations = {
   [SET_OPEN_ID] (state,id){
     state.openId = id;
   },
+  [SET_RECHARGED] (state,isRecharged){
+    state.isRecharged = isRecharged;
+  }
 
 }
 

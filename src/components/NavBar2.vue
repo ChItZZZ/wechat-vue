@@ -15,6 +15,7 @@ export default {
       personalInfo: 'personalInfo',
       couponInfo: 'couponInfo',
       openId:'openId',
+      isRecharged:'isRecharged'
     })
   },
   data(){
@@ -39,6 +40,8 @@ export default {
         case "我的优惠":
           this.getCouponList();
           break;
+        case "我是会员":
+          this.getPersonalInfo();
       }
     },
     getHistoryOrder:function(){
@@ -68,6 +71,20 @@ export default {
       }, (response) => {
         console.log('post coupon info error');
       });
+    },
+    getPersonalInfo: function (){
+      if(this.isRecharged){
+        var api = this.url + 'inquire';
+        var param = {};
+        param.openId = this.openId;
+        this.$http.post(api,param).then((response) => {
+          console.log('get personal info from server ');
+          this.setPersonalInfo(response.data);
+          this.$store.dispatch('setRecharged',false);
+        }, (response) => {
+          console.log('get personal info error');
+        });
+      }
     },
   }
 

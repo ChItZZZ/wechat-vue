@@ -60,7 +60,7 @@ export const minusConfigItemCount = ({ commit },id) => commit("MINUS_CONFIG_ITEM
 
 export const setOpenId = ({ commit },id) => commit("SET_OPEN_ID",id)
 
-
+export const setRecharged = ({ commit },isRecharged) => commit('SET_RECHARGED',isRecharged)
 
 
 

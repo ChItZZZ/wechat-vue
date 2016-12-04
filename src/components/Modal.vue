@@ -220,6 +220,7 @@
         couponInfo:'couponInfo',
         goodsCount:'goodsCount',
         openId:'openId',
+        isRecharged:'isRecharged'
       }),
       curItem: function () {
         var item = {};
@@ -337,14 +338,29 @@
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
-        // to do  if recharged , get personalInfo again then get couponlist, reset isRecharged
         
-        this.getCouponList();
+        this.getInfo();
+      },
+      getInfo:function(){
+        if(this.isRecharged){
+          var api = this.url + 'inquire';
+          var param = {};
+          param.openId = this.openId;
+          this.$http.post(api,param).then((response) => {
+            console.log('get personal info from server ');
+            this.$store.dispatch('setPersonalInfo',response.data);
+            this.$store.dispatch('setRecharged',false);
+            this.getCouponList();
+          }, (response) => {
+            console.log('get personal info error');
+          });
+        }
+        else
+          this.getCouponList();
       },
       getCouponList: function(){
         if(this.personalInfo.hasCard == 0 || this.couponInfo.isGet)
           return;
-
         var api = this.url + 'coupon';
         var param = {};
         param.card_id = this.personalInfo.cardNumber;

@@ -159,10 +159,10 @@
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
                 alert('支付成功');
-              } else if (result == "支付失败") {
-                alert('failed');
-              } else if (result == "支付取消") {
-                alert('canceled');
+              } else if (result == "fail") {
+                alert('支付失败');
+              } else if (result == "cancel") {
+                alert('支付取消');
               }
             });
           }, (response) => {

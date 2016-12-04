@@ -29,7 +29,7 @@ const state = {
   historyOrder:[],
   goodsCount:0,
   openId:'',
-  
+  isRecharged:false
 }
 
 export default{
