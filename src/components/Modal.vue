@@ -16,12 +16,15 @@
         <div class="part-two">
           <div class="recommend-food">
             <i class="glyphicon glyphicon-chevron-left" v-show="configItemInfo.length != 0" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
-            <img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)" :class="{active:i==1}">
+            <img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
+            :showIndex="Math.floor(i/4)" @click="selectRecItem(i)">
               <!--<img src="../public/img/egg.jpeg" class="recommend-img" >-->
             <i class="glyphicon glyphicon-chevron-right" v-show="configItemInfo.length != 0" @click="addShowIndex" style="position: relative;z-index: 100"></i>
           </div>
           <div class="recommend-check">
-            <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" :showIndex="Math.floor(i/4)"><i class="glyphicon glyphicon-ok" style="" ></i></span>
+            <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
+            :showIndex="Math.floor(i/4)" @click="sel(i)">
+            <i class="glyphicon glyphicon-ok" style="" v-show="i==recItemIndex"></i></span>
           </div>
         </div>
         <div class="part-case">
@@ -263,6 +266,7 @@
                 obj.price = data[key][index].price;
                 obj.id = data[key][index].id;
                 obj.imageUrl = data[key][index].imageUrl;
+                obj.catalogue = data[key][index].cls;
                 info.push(obj);
               }
             }
@@ -277,16 +281,29 @@
     },
     data(){
       return {
-        curSizeIndex:0,
+        curSizeIndex:-1,
         url:'http://api.qiancs.cn/',
         showIndex:0,
         maxShowIndex:3,
-        curFlavorIndex:0
+        curFlavorIndex:-1,
+        recItemIndex:-1,
       }
     },
     methods: {
+      selectRecItem:function(index){
+        if(index == this.recItemIndex)
+          this.recItemIndex = -1;
+        else
+          this.recItemIndex = index;
+      },
+      resetSelect:function(){
+        this.recItemIndex = -1;
+        this.curSizeIndex = -1;
+        this.curFlavorIndex = -1;
+      },
       closeModal: function () {
         var test = this.$refs.test;
+        this.resetSelect();
         this.$store.dispatch("showModal", false);
       },
       showCart: function () {
@@ -336,9 +353,8 @@
           totalMoney += order[index].count * order[index].price;
         this.$store.dispatch("setTotalMoney",this.handleDecimal(totalMoney));
         this.$store.dispatch("setOrderInfo",order);
-        this.$store.dispatch("showModal",false);
+        this.closeModal();
         this.$store.dispatch('showCart',true);
-        
         this.getInfo();
       },
       getInfo:function(){
@@ -377,18 +393,28 @@
       },
       addToCart: function(){
         if(window.confirm('加入购物车?')){
+          if(this.recItemIndex != -1){
+            var obj = this.itemAddedCount;
+            var id = this.configItemInfo[this.recItemIndex].id;
+            if(id in obj)
+              ++obj[id];
+            else
+              obj[id] = 1;
+            this.$store.dispatch('setItemAddedCount',obj);
+            this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+          }
           var obj = {};
           var item = this.curItem;
           obj.id = item.id;
           obj.name = item.name;
           obj.price = item.price;
           obj.catalogue = item.cls;
-          obj.size = this.curItemConfig.size[this.curSizeIndex];
-          obj.flavor = this.curItemConfig.flavor[this.curFlavorIndex];
+          obj.size = this.curSizeIndex == -1 ? '' : this.curItemConfig.size[this.curSizeIndex];
+          obj.flavor = this.curFlavorIndex == -1 ? '' : this.curItemConfig.flavor[this.curFlavorIndex];
           obj.count = 1;
           this.$store.dispatch("addConfigItemAdded",obj);
-          var count = this.goodsCount + 1;
-          this.$store.dispatch('setGoodsCount',count);
+          this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+          this.resetSelect();
         }
       },
       addShowIndex:function(){

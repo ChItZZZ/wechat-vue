@@ -44,8 +44,7 @@
           obj[id] = 1;
 
         this.setItemAddedCount(obj);
-        var count = this.goodsCount + 1;
-        this.setGoodsCount(count);
+        this.setGoodsCount(this.goodsCount + 1);
       },
       minusItem: function () {
         var obj = this.itemAddedCount;
@@ -54,8 +53,7 @@
         {
           --obj[id];
           this.setItemAddedCount(obj);
-          var count = this.goodsCount - 1;
-          this.$store.dispatch('setGoodsCount',count);
+          this.setGoodsCount(this.goodsCount - 1);
         }
         else {
           //this.hideMinusAndNum();
