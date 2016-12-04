@@ -15,13 +15,13 @@
       <div class="part">
         <p class="cart-title">购物清单</p>
         <ul class="cart-cont" style="clear: both;">
-          <li v-for="(good,index) in orderInfo" class="cart-item" style="display: flex;flex-wrap: nowrap;">
-            <div class="cart-item-name" style="flex: 3;">{{good.name}}</div>
-            <div class="cart-size" style="flex: 2">炒鸡辣</div>
-            <div style="flex: 2;">{{good.price}}元</div>
+          <li v-for="(goods,index) in orderInfo" class="cart-item" style="display: flex;flex-wrap: nowrap;">
+            <div class="cart-item-name" style="flex: 3;">{{goods.name}}</div>
+            <div class="cart-size" style="flex: 2">{{goods.detail}}</div>
+            <div style="flex: 2;">{{goods.price}}元</div>
             <div class="cart-act" style="flex: 2;display: flex;flex-wrap: nowrap" >
               <span class="item-act item-minus" id="test" @click='minusCount(index)'>-</span>
-              <span class="item-num">{{good.count}}</span>
+              <span class="item-num">{{goods.count}}</span>
               <span class="item-act item-plus" @click='incCount(index)'>+</span>
             </div>
           </li>
@@ -43,7 +43,8 @@
         </ul>
       </div>
 
-      <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 14px">总计:{{totalMoney}} <span style="font-size: 10px">优惠价:{{price}}</span></div>
+      <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 14px">总计:{{totalMoney}} <span style="font-size: 10px">
+        优惠价:{{price}} {{activityDes}}{{couponDes}}</span></div>
 
       <div class="pay-sub">
         <span style="margin-right: 15px">支付方式</span>
@@ -125,7 +126,7 @@
         if (!window.confirm('确定支付?'))
           return;
 
-        this.calculatePrice();
+       // this.calculatePrice();
 
         if (payWay == 'balance') {
           this.payBalance();

@@ -123,6 +123,8 @@
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
                 alert('充值成功');
+
+                //to do reset coupon get 、 get personalInfo again , set isRecharged
               } else if (result == "充值失败") {
                 alert('failed');
               } else if (result == "充值取消") {

@@ -337,7 +337,8 @@
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
-
+        // to do  if recharged , get personalInfo again then get couponlist, reset isRecharged
+        
         this.getCouponList();
       },
       getCouponList: function(){
