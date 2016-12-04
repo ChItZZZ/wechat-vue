@@ -123,7 +123,7 @@
         var totalMoney = 0;
         for(var index in order)
           totalMoney += order[index].count * order[index].price;
-        this.$store.dispatch("setTotalMoney",totalMoney);
+        this.$store.dispatch("setTotalMoney",this.handleDecimal(totalMoney));
         this.$store.dispatch("setOrderInfo",order);
         this.$store.dispatch("showModal",false);
         this.$store.dispatch('showCart',true);
@@ -147,6 +147,16 @@
         }, (response) => {
           console.log('post coupon info error');
         });
+      },
+      handleDecimal:function(num){
+        var length = 0;
+        if(num.toString().split('.')[1] != null){
+          length = num.toString().split('.')[1].length;
+        }
+        if(length > 2){
+          return Math.round(num*100)/100;
+        }
+        return num;
       },
 
     },

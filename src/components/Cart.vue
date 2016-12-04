@@ -229,6 +229,7 @@
         else if(this.useCoupon)
           this.calculateCoupon(false);
         console.log('des ' + this.activityDes + this.couponDes);
+        this.realPrice = this.handleDecimal(this.realPrice);
         return this.realPrice;
       },
       cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
@@ -354,7 +355,7 @@
       incCount:function(index){
         var id = this.orderInfo[index].id;
         this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
-        this.$store.dispatch('setTotalMoney',this.totalMoney + this.orderInfo[index].price);
+        this.$store.dispatch('setTotalMoney',this.handleDecimal(this.totalMoney + this.orderInfo[index].price));
         this.$store.dispatch('incOrderInfo',index);
         var length = 0;
         for(var key in this.itemAddedCount)
@@ -372,7 +373,7 @@
       minusCount:function(index){
         var id = this.orderInfo[index].id;
         this.$store.dispatch('setGoodsCount',this.goodsCount - 1);
-        this.$store.dispatch('setTotalMoney',this.totalMoney - this.orderInfo[index].price);
+        this.$store.dispatch('setTotalMoney',this.handleDecimal(this.totalMoney - this.orderInfo[index].price));
         this.$store.dispatch('minusOrderInfo',index);
         var length = 0;
         for(var key in this.itemAddedCount){
@@ -390,6 +391,16 @@
           this.$store.dispatch('minusConfigItemCount',id);
         }
       },
+      handleDecimal:function(num){
+        var length = 0;
+        if(num.toString().split('.')[1] != null){
+          length = num.toString().split('.')[1].length;
+        }
+        if(length > 2){
+          return Math.round(num*100)/100;
+        }
+        return num;
+      }
 
     }
   }
