@@ -37,7 +37,7 @@
         <div class="part-three">
           <div class="food-act">
             <button class="cart" @click="addToCart">加入购物车</button>
-            <button class="pay" @click="showCart">直接结算({{goodsCount}})</button>
+            <button class="pay" @click="showCart">直接结算</button>
           </div>
         </div>
       </div>
@@ -307,6 +307,7 @@
         this.$store.dispatch("showModal", false);
       },
       showCart: function () {
+        this.addToCart();
         var obj = this.itemAddedCount;
         var items = this.item_data;
         var order = [];  //  组装 order = [{"count":1,"id":"57","name":"香槟","price":20,"catalogue":"酒水"}] 并可能有detail:大份加辣
@@ -392,30 +393,29 @@
         });
       },
       addToCart: function(){
-        if(window.confirm('加入购物车?')){
-          if(this.recItemIndex != -1){
-            var obj = this.itemAddedCount;
-            var id = this.configItemInfo[this.recItemIndex].id;
-            if(id in obj)
-              ++obj[id];
-            else
-              obj[id] = 1;
-            this.$store.dispatch('setItemAddedCount',obj);
-            this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
-          }
-          var obj = {};
-          var item = this.curItem;
-          obj.id = item.id;
-          obj.name = item.name;
-          obj.price = item.price;
-          obj.catalogue = item.cls;
-          obj.size = this.curSizeIndex == -1 ? '' : this.curItemConfig.size[this.curSizeIndex];
-          obj.flavor = this.curFlavorIndex == -1 ? '' : this.curItemConfig.flavor[this.curFlavorIndex];
-          obj.count = 1;
-          this.$store.dispatch("addConfigItemAdded",obj);
+        if(this.recItemIndex != -1){
+          var obj = this.itemAddedCount;
+          var id = this.configItemInfo[this.recItemIndex].id;
+          if(id in obj)
+            ++obj[id];
+          else
+            obj[id] = 1;
+          this.$store.dispatch('setItemAddedCount',obj);
           this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
-          this.resetSelect();
         }
+        var obj = {};
+        var item = this.curItem;
+        obj.id = item.id;
+        obj.name = item.name;
+        obj.price = item.price;
+        obj.catalogue = item.cls;
+        obj.size = this.curSizeIndex == -1 ? '' : this.curItemConfig.size[this.curSizeIndex];
+        obj.flavor = this.curFlavorIndex == -1 ? '' : this.curItemConfig.flavor[this.curFlavorIndex];
+        obj.count = 1;
+        this.$store.dispatch("addConfigItemAdded",obj);
+        this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+       // this.resetSelect();
+        this.closeModal();
       },
       addShowIndex:function(){
         if( this.showIndex <= this.maxShowIndex){

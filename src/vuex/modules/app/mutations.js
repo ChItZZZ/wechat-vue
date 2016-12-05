@@ -96,7 +96,7 @@ const mutations = {
   },
   // 余额变更
   [MODIFY_BALANCE] (state,amount){
-    state.personalInfo.balance += amount
+    state.personalInfo.balance = amount
   },
   // 设置优惠券列表信息
   [SET_COUPON_INFO] (state,coupon){

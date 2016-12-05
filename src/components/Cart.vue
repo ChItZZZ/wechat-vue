@@ -5,10 +5,11 @@
 
       <div class="part">
         <p class="cart-title" style="">取餐方式</p>
-        <div class="cart-cont" style="display: flex">
-          <div class="cart-self" style="">收银台自取</div>
-          <input type="text" id="deskId" style="width: 15%;color: black"><span style="margin-top: 4px">&nbsp;号座位</span>
-          <div class="cart-send" style="flex: 2;">送餐</div>
+        <div class="cart-cont" style="display: flex"> 
+          <div class="cart-self" style="" :class="{active:recWayIndex==0}" @click="recWayIndex=0">收银台自取</div>
+          <div class="cart-send" style="flex: 2;" :class="{active:recWayIndex==1}" @click="recWayIndex=1">送餐</div>
+          <input type="text" id="deskId" style="width: 15%;color: black" v-show="recWayIndex==1">
+          <span style="margin-top: 4px"  v-show="recWayIndex==1">&nbsp;号座位</span>
         </div>
       </div>
 
@@ -101,11 +102,16 @@
         couponIndex: 0,
         useCoupon : false,
         couponId : -1,
+        recWayIndex: -1
       }
     },
     methods: {
-      closeCart: function () {
+      resetData:function(){
+        this.recWayIndex = -1;
         this.couponDes = '';
+      },
+      closeCart: function () {
+        this.resetData();
         this.$store.dispatch("showCart", false);
       },
       showCart: function () {
@@ -117,12 +123,19 @@
           alert('购物车为空,请选购');
           return;
         }
-        var deskId = document.getElementById("deskId").value;
-        if(deskId == ''  || isNaN(deskId)){
-          alert('请输入正确的桌号');
+        if(this.recWayIndex == -1){
+          alert('请选择取餐方式');
           return;
         }
-
+        var deskId = -1;
+        if(this.recWayIndex == 1){
+          deskId = document.getElementById("deskId").value;
+          if(deskId == ''  || isNaN(deskId)){
+            alert('请输入正确的桌号');
+            return;
+          }
+        }
+       
         if (!window.confirm('确定支付?'))
           return;
 
@@ -171,11 +184,11 @@
         }
       },
       payBalance: function () {
-        if (this.personalInfo.hasCard == 1 && this.personalInfo.balance >= this.totalMoney) {
+        if (this.personalInfo.hasCard == 1 && this.personalInfo.balance >= this.realPrice) {
           var api = this.url + 'deduct';
           var param = {};
           var isUse = false;
-          param.amount = this.totalMoney;
+          param.amount = this.realPrice;
           param.orderInfo = this.orderInfo;
           param.desk_id = document.getElementById("deskId").value;
           param.store_id = 1;
@@ -188,11 +201,10 @@
             isUse = true;
           }
           param.couponDes = this.activityDes + ' ' + this.couponDes;
-
           this.$http.post(api, param).then((response) => {
-            console.log('post balance deduct ' + JSON.stringify(response.data));
+            console.log('post balance deduct ');
             if (response.data.code == 'success') {
-              this.$store.dispatch('modifyBalance', -1 * this.totalMoney);
+              this.$store.dispatch('modifyBalance', this.handleDecimal(this.personalInfo.balance - this.realPrice));
               if(isUse){
                 this.resetCouponGetAfterUse();   //使用优惠券后更新本地优惠券数据
               }
@@ -571,6 +583,9 @@
     width: 100%;
     height: 100%;
     border-radius: 6px;
+  }
+  .active{
+    background-color: lightcoral;
   }
 </style>
 

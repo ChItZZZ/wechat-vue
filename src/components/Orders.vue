@@ -4,7 +4,7 @@
     <div class="order-main order-one" style="border-top: 1px solid black">
         <div class="" style="display: flex;font-size: 12px">
           <div class="item-title item-id">编号</div>
-          <div class="item-title item-name">商品名称</div>
+          <div class="item-title item-name">订单内容</div>
           <div class="item-title">数量</div>
           <div class="item-title">金额</div>
           <div class="item-title">状态</div>
@@ -12,7 +12,7 @@
         <div class="item-cont" style="display: flex" v-for="(order,index) in historyOrder">
           <div class="item-content item-id">{{order.id}}</div>
           <div class="item-content item-name">{{orderDescription[index]}}</div>
-          <div class="item-content">{{order.items[0].counter}}</div>
+          <div class="item-content">{{orderCount[index]}}</div>
           <div class="item-content">{{order.price}}</div>
           <div class="item-content" :class="{'item-unused':order.state==1 || order.state==0,'item-used':order.state==2}">
             {{orderStateStr[index]}}</div>
@@ -67,6 +67,18 @@
           des.push(str);
         }
         return des;
+      },
+      orderCount:function(){
+        var counts = [];
+        var order = this.historyOrder
+        for(var i in order){
+          var count = 0;
+          for(var j in order[i].items){
+            count += parseInt(order[i].items[j].counter);
+          }
+          counts.push(count);
+        }
+        return counts;
       },
       orderStateStr:function(){
         var strs = [];

@@ -6,8 +6,7 @@
     <div class="story-content2" v-show='this.info.hasActivity == 1'>
 
         <p class="story-title">全场{{info.activities[0].catalogue}} {{info.activities[0].description}}</p>
-        <p>活动时间 {{info.activities[0].startDate}}</p>
-        <p>至 {{info.activities[0].endDate}}</p>
+        <p>活动时间：{{info.activities[0].startDate.substring(0,10)}} 至 {{info.activities[0].endDate.substring(0,10)}}</p>
     </div>
   </div>
 </template>

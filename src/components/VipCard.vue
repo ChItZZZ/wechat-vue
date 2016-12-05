@@ -4,11 +4,11 @@
       <div class="vip-title">目前你是{{myInfo.type}}会员</div>
       <table>
         <tr>
-          <td>你最爱</td>
-          <td>红烧牛肉面</td>
-          <td>余额:{{myInfo.balance}}</td>
+          <!--<td>你最爱</td>
+          <td>红烧牛肉面</td>-->
+          <td>余额:{{myInfo.balance}}元</td>
         </tr>
-        <tr>
+        <!--<tr>
           <td>本月来店</td>
           <td>12次</td>
           <td>累计:38次</td>
@@ -22,7 +22,7 @@
           <td>本月充值</td>
           <td>123元</td>
           <td>累计:1233元</td>
-        </tr>
+        </tr>-->
       </table>
     </div>
     <div class="vip-main vip-two">
@@ -34,10 +34,10 @@
         <div class="vip-level vip-level4">钻石会员</div>
       </div>
       <div class="vip-content " style="height: 100px">
-        <div class="vip-cont1 vip-cont">阿森纳地哦啊是你的</div>
-        <div class="vip-cont2 vip-cont">IQ网合肥南送</div>
-        <div class="vip-cont3 vip-cont">懊恼放弃我让你我</div>
-        <div class="vip-cont4 vip-cont">弄得是非农是哪位偶然呢我</div>
+        <div class="vip-cont1 vip-cont">不用排队，微信快速下单，优先参与优惠活动赢取丰厚礼品</div>
+        <div class="vip-cont2 vip-cont">累计充值500元，每天进店消费免费送一份饮料</div>
+        <div class="vip-cont3 vip-cont">累计充值1000元，每天进店消费免费送一份开胃小菜</div>
+        <div class="vip-cont4 vip-cont">累计充值1500元，可享受纯银及纯金会员待遇</div>
       </div>
     </div>
     <div class="vip-main vip-three">
