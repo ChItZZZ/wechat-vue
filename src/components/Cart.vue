@@ -45,7 +45,7 @@
       </div>
 
       <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 14px">总计:{{totalMoney}} <span style="font-size: 10px">
-        优惠价:{{price}} {{activityDes}}{{couponDes}}</span></div>
+        优惠价:{{price}}元 {{activityDes}}{{couponDes}}</span></div>
 
       <div class="pay-sub">
         <span style="margin-right: 15px">支付方式</span>
@@ -136,7 +136,7 @@
           }
         }
        
-        if (!window.confirm('确定支付?'))
+        if (!window.confirm('确定支付'+this.realPrice+'元?'))
           return;
 
        // this.calculatePrice();
@@ -242,6 +242,7 @@
           this.calculateCoupon(false);
         console.log('des ' + this.activityDes + this.couponDes);
         this.realPrice = this.handleDecimal(this.realPrice);
+        this.realPrice = this.realPrice > 0 ? this.realPrice : 0;
         return this.realPrice;
       },
       cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
@@ -309,12 +310,23 @@
           document.getElementById('select').innerText = this.couponInfo.couponList[index].description;
         }
       },
+      resetCouponDisplay:function(){
+        document.getElementById('select').innerText = "点击选择";
+        this.couponDes = '';
+      },
       calculateCoupon:function(hasActivity){
         this.useCoupon = false;
         var coupon = this.couponInfo.couponList[this.couponIndex];
         var type = coupon.type;
         if(type == 3){
-          this.couponDes = (' 优惠券: ' + coupon.description);
+          var name = coupon.catalogue;
+          for(var i in this.orderInfo){
+            if(this.orderInfo[i].name == name && this.orderInfo[i].count >= 1){
+              this.realPrice = this.handleDecimal(this.realPrice - this.orderInfo[i].price);
+              this.couponDes = (' 优惠券: ' + coupon.description);
+              break;
+            }
+          }
           return;
         }
         if(hasActivity)
@@ -381,6 +393,7 @@
         else{
           this.$store.dispatch('incConfigItemCount',id);
         }
+        this.resetCouponDisplay();
       },
       minusCount:function(index){
         var id = this.orderInfo[index].id;
@@ -402,6 +415,7 @@
         else{
           this.$store.dispatch('minusConfigItemCount',id);
         }
+        this.resetCouponDisplay();
       },
       handleDecimal:function(num){
         var length = 0;
