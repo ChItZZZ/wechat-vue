@@ -102,13 +102,16 @@
         couponIndex: 0,
         useCoupon : false,
         couponId : -1,
-        recWayIndex: -1
+        recWayIndex: -1,
+        isSelectCoupon : false
       }
     },
     methods: {
       resetData:function(){
         this.recWayIndex = -1;
         this.couponDes = '';
+        this.useCoupon = false;
+        this.isSelectCoupon = false;
       },
       closeCart: function () {
         this.resetData();
@@ -158,9 +161,9 @@
             couponDes: this.activityDes + ' ' + this.couponDes,
             openId:this.openId,
           }
-          if(this.couponId != -1){
+          if(this.useCoupon){
             param.coupon_id = this.couponId;
-            this.couponId = -1;
+            this.useCoupon = false;
             isUse = true;
           }
           this.$http.post(api,param).then((response) => {
@@ -195,9 +198,9 @@
           param.price = this.totalMoney;
           param.realPrice = this.realPrice;
           param.openId = this.openId;
-          if(this.couponId != -1){
+          if(this.useCoupon){
             param.coupon_id = this.couponId;
-            this.couponId = -1;
+            this.useCoupon = false;
             isUse = true;
           }
           param.couponDes = this.activityDes + ' ' + this.couponDes;
@@ -235,10 +238,10 @@
               console.log('no this activity type');
               break;
           }
-          if(this.useCoupon)
+          if(this.isSelectCoupon)
             this.calculateCoupon(true);
         }
-        else if(this.useCoupon)
+        else if(this.isSelectCoupon)
           this.calculateCoupon(false);
         console.log('des ' + this.activityDes + this.couponDes);
         this.realPrice = this.handleDecimal(this.realPrice);
@@ -305,7 +308,9 @@
       selectCoupon:function(index){
         if(this.couponInfo.isGet && this.couponInfo.couponList.length != 0){
           this.couponIndex = index;
-          this.useCoupon = true;
+          this.isSelectCoupon = true;
+          this.useCoupon = false;
+          this.couponDes = '';
           this.couponId = this.couponInfo.couponList[index].id;
           document.getElementById('select').innerText = this.couponInfo.couponList[index].description;
         }
@@ -315,7 +320,7 @@
         this.couponDes = '';
       },
       calculateCoupon:function(hasActivity){
-        this.useCoupon = false;
+        this.isSelectCoupon = false;
         var coupon = this.couponInfo.couponList[this.couponIndex];
         var type = coupon.type;
         if(type == 3){
@@ -323,6 +328,7 @@
           for(var i in this.orderInfo){
             if(this.orderInfo[i].name == name && this.orderInfo[i].count >= 1){
               this.realPrice = this.handleDecimal(this.realPrice - this.orderInfo[i].price);
+              this.useCoupon = true;
               this.couponDes = (' 优惠券: ' + coupon.description);
               break;
             }
@@ -333,14 +339,15 @@
           return;
         var amount1 = coupon.amount1;
         var amount2 = coupon.amount2;
+        var discount = coupon.discount;
         var catalogues = coupon.catalogue.split(';');  //可以优惠的类型
         var catPrice = this.cataloguePrice();   //每种类型的计价
         var price = 0;
         var temp = {};
         temp.original = 0;      //订单中不算在优惠券分类里的总价，无优惠按原价
         temp.modify = 0;        //订单中在优惠券分类里的总价，按优惠价
+        var isModify = false;
         for(var catalogue in catPrice){
-          var isModify = false;
           for(var i in catalogues){
             if(catalogue == catalogues[i]){
               temp.modify += catPrice[catalogue];
@@ -362,19 +369,25 @@
               price = temp.modify;
             break;
           case 2:
-            price = temp.modify * (amount1 / 10);   //打amount1折
-            isDeduct = true;
+            price = temp.modify * (discount / 10);   //打amount1折
+            if(isModify)
+              isDeduct = true;
             break;
         }
         price += temp.original;
-        this.realPrice = price;
-        if(isDeduct)
+        this.realPrice = this.handleDecimal(price);
+        if(isDeduct){
+          this.useCoupon = true;
           this.couponDes = ' 优惠券:' + coupon.catalogue + ' ' + coupon.description;
+        }
         else
           this.couponDes = '';
       },
       resetCouponGetAfterUse:function(){
-        this.$store.dispatch('setCouponGet',false);
+        var data = {};
+        data.isGet = false;
+        data.couponList = [];
+        this.$store.dispatch('setCouponInfo',data)
       },
       incCount:function(index){
         var id = this.orderInfo[index].id;
