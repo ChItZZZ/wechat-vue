@@ -247,7 +247,7 @@
           this.calculateCoupon(false);
         console.log('des ' + this.activityDes + this.couponDes);
         this.realPrice = this.handleDecimal(this.realPrice);
-        this.realPrice = this.realPrice > 0 ? this.realPrice : 0;
+        this.realPrice = this.realPrice > 0 ? this.realPrice : 0.01;
         return this.realPrice;
       },
       cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
