@@ -89,7 +89,7 @@
             json.id = id;
             for ( var key in items){
               var isBreak = false;
-              for(var index in items[key]){
+               for(var index in items[key]){
                 if(items[key][index].id == id){
                   json.name = items[key][index].name;
                   json.price = items[key][index].price;
@@ -114,8 +114,7 @@
             json.price = data[i].price;
             json.catalogue = data[i].catalogue;
             json.id = data[i].id;
-            var detail = data[i].size;
-            //var detail = data[i].flavor;
+            var detail = data[i].size + ' ' + data[i].flavor;
             json.detail = detail;
             order.push(json);
           }
