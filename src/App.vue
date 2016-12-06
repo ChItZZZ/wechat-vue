@@ -67,7 +67,6 @@
     },
     created:function(){
       this.$store.dispatch('setOpenId',this.getQueryString('openId'));
-      console.log(this.openId);
       this.getItemsFromServer();
       this.getPersonalInfo();
       this.getActivityInfo();
