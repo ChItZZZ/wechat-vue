@@ -125,7 +125,7 @@
     background-color: rgba(89, 8, 9, 1);
     margin-top: 5px;
     border-radius: 10px;
-    font-size: 13px;
+    font-size: 16px;
     color: white;
   }
 
@@ -199,7 +199,7 @@
     padding: 2px;
     background-color: white;
     color: black;
-    font-size: 9px;
+    font-size: 10px;
     border-radius: 10px;
     margin-right: 10px;
   }
