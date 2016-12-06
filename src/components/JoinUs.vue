@@ -66,7 +66,7 @@
     padding: 10px;
     background-color: rgba(165, 0, 0, 1);
     color: white;
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .join-content {

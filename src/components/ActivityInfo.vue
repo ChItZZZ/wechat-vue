@@ -5,8 +5,8 @@
     </div>
     <div class="story-content2" v-show='this.info.hasActivity == 1'>
 
-        <p class="story-title">全场{{info.activities[0].catalogue}} {{info.activities[0].description}}</p>
-        <p>活动时间：{{info.activities[0].startDate.substring(0,10)}} 至 {{info.activities[0].endDate.substring(0,10)}}</p>
+        <p class="story-title">全场{{info.catalogue}} {{info.description}}</p>
+        <p>活动时间：{{info.startDate}} 至 {{info.endDate}}</p>
     </div>
   </div>
 </template>
@@ -25,6 +25,22 @@
           return true;
         return false;
       },
+      activity:function(){
+        var obj = {};
+        if(this.info.hasActivity == 0){
+          obj.catalogue = '';
+          obj.description = '';
+          obj.startData = '';
+          obj.endData = '';
+        }
+        else{
+          obj.catalogue = this.info.activities[0].catalogue;
+          obj.description = this.info.activities[0].description;
+          obj.startData = this.info.startDate.substring(0,10);
+          obj.endData = this.info.endDate.substring(0,10);
+        }
+        return obj;
+      }
     },
     data(){
       return{
