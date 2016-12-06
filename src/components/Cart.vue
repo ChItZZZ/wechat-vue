@@ -29,8 +29,8 @@
         </ul>
       </div>
 
-      <div class="dropdown" style="position: absolute;bottom: 100px;right: 15px;left: 15px">
-        <span class="cart-title" style="font-size: 10px">我的优惠券</span>
+      <div class="dropdown" style="position: absolute;bottom: 120px;right: 15px;left: 15px">
+        <span class="cart-title" style="font-size: 11px">我的优惠券</span>
         <a id="select" href="#"class="dropdown-toggle" data-toggle="dropdown" style="">
           点击选择
           <b class="caret"></b>
@@ -44,8 +44,8 @@
         </ul>
       </div>
 
-      <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 14px">总计:{{totalMoney}} <span style="font-size: 10px">
-        优惠价:{{price}}元 {{activityDes}}{{couponDes}}</span></div>
+      <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 14px">总计:{{totalMoney}}  优惠价:{{price}}<span style="font-size: 10px">
+        {{activityDes}}{{couponDes}}</span></div>
 
       <div class="pay-sub">
         <span style="margin-right: 15px">支付方式</span>
@@ -460,9 +460,9 @@
     position: relative;
     z-index: 1000;
     margin: auto;
-    height: 60%;
-    width: 70%;
-    top: 20%;
+    height: 80%;
+    width: 80%;
+    top: 5%;
     background-color: rgba(155,0,0,1);
     border: 2px solid darkred;
   }
@@ -484,7 +484,7 @@
     background-color: rgba(255, 233, 249, .9);
     border-radius: 6px;
     width: 80px;
-    font-size: 11px;
+    font-size: 13px;
     border: 0;
   }
 
@@ -493,7 +493,7 @@
   }
 
   .cart-item {
-    font-size: 10px;
+    font-size: 11px;
   }
   .cart-name {
     width: 35%;
@@ -548,7 +548,6 @@
   .pay-sub button {
     font-size: 11px;
     color: white;
-
   }
   .cart-self,.cart-send{
     flex: 3;background-color: rgba(237,190,190,.8);margin: 0 10px;
@@ -561,10 +560,10 @@
   }
   .cart-cont{
     clear: both;
-    font-size: 11px;
+    font-size: 13px;
   }
   .cart-cont ul li div{
-    font-size: 10px;
+    font-size: 13px;
   }
   .part{
     margin-top: 20px;
@@ -588,9 +587,9 @@
   }
   .item-act{
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
     background-color: white;
     border-radius: 50%;
     color: #000;

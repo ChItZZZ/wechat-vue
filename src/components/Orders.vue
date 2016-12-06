@@ -29,7 +29,7 @@
         </div>-->
        
         <div class="order-refresh" @click="ordersRefresh">
-            刷新信息
+            刷新
         </div>
         </tbody>
       </table>
@@ -118,6 +118,7 @@
         }, (response) => {
           console.log('get history order error');
         });
+        alert('已刷新');
       }
     },
   }

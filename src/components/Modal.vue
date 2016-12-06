@@ -58,8 +58,8 @@
     position: absolute;
     z-index: 1000;
     margin: auto;
-    height: 60%;
-    top: 20%;
+    height: 70%;
+    top: 15%;
     left: 8%;
     right: 8%;
     border: 2px solid darkred;

@@ -12,11 +12,14 @@
           <div class="item-content ticket-content">{{coupon.description}}</div>
           <div class="item-content ">{{coupon.number}}</div>
           <div class="item-content ticket-unused">未使用</div>
-          <div class="item-content">6/30</div>
+          <div class="item-content"></div>
         </div>
 
       </div>
     </div>
+    <div class="refresh" @click="getCouponList">
+          刷新
+     </div>
   </div>
 </template>
 
@@ -29,6 +32,8 @@
         curNavBar:'navBarCount',
         curFuncTab:'curFuncTab',
         couponInfo:'couponInfo',
+        personalInfo:'personalInfo',
+        openId:'openId'
       }),
       isCurFuncTab:function(){
         if(this.curFuncTab == '我的优惠' && this.curNavBar == 2)
@@ -52,6 +57,24 @@
       }
     },
     methods:{
+      getCouponList: function(){
+        if(this.personalInfo.hasCard == 0)
+          return;
+        var api = this.url + 'coupon';
+        var param = {};
+        param.card_id = this.personalInfo.cardNumber;
+        param.openId = this.openId;
+        this.$http.post(api,param).then((response) => {
+          console.log('post coupon info' + JSON.stringify(response.data));
+          var data = {};
+          data.isGet = true;
+          data.couponList = response.data.couponList;
+          this.$store.dispatch('setCouponInfo',data)
+        }, (response) => {
+          console.log('post coupon info error');
+        });
+        alert('已刷新');
+      },
 
     },
   }
@@ -112,5 +135,19 @@
     border-radius: 10px;
     background-color: darkred;
     color: white;
+  }
+  .refresh{
+    border-radius: 8px;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    z-index: 10003;
+    background-color: rgba(165,0,0,1);
+    padding: 3px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+    text-align: center;
   }
 </style>

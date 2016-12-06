@@ -56,7 +56,7 @@
       <img src="../public/img/alipay.png">-->
     </div>
      <div class="refresh" @click="getPersonalInfo">
-            刷新信息
+            刷新
      </div>
   </div>
 </template>
@@ -139,6 +139,7 @@
         }, (response) => {
           console.log('get personal info error');
         });
+        alert('已刷新');
       },
     },
   }
