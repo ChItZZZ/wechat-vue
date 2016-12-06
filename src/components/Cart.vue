@@ -147,7 +147,7 @@
        // this.calculatePrice();
 
         if (payWay == 'balance') {
-          this.payBalance();
+          this.payBalance(deskId);
         }
         else {
           var isUse = false;
@@ -188,14 +188,14 @@
           });
         }
       },
-      payBalance: function () {
+      payBalance: function (deskId) {
         if (this.personalInfo.hasCard == 1 && this.personalInfo.balance >= this.realPrice) {
           var api = this.url + 'deduct';
           var param = {};
           var isUse = false;
           param.amount = this.realPrice;
           param.orderInfo = this.orderInfo;
-          param.desk_id = document.getElementById("deskId").value;
+          param.desk_id = deskId;
           param.store_id = 1;
           param.price = this.totalMoney;
           param.realPrice = this.realPrice;
