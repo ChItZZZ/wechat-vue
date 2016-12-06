@@ -495,7 +495,7 @@
   }
 
   .cart-item {
-    font-size: 11px;
+    font-size: 13px;
   }
   .cart-name {
     width: 35%;
