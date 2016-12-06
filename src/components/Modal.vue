@@ -15,24 +15,43 @@
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <i class="glyphicon glyphicon-chevron-left" v-show="configItemInfo.length != 0" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
-            <img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
-            :showIndex="Math.floor(i/4)" @click="selectRecItem(i)">
-              <!--<img src="../public/img/egg.jpeg" class="recommend-img" >-->
-            <i class="glyphicon glyphicon-chevron-right" v-show="configItemInfo.length != 0" @click="addShowIndex" style="position: relative;z-index: 100"></i>
+            <i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length != 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
+
+            <!--<img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" -->
+            <!--:showIndex="Math.floor(i/4)" @click="selectRecItem(i)">-->
+            <div class="recommend-p">
+              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
+              <div><span class="case-price">煎蛋<span>2元</span></span></div>
+            </div>
+            <div class="recommend-p">
+              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
+              <div><span class="case-price">煎蛋<span>2元</span></span></div>
+            </div>
+            <div class="recommend-p">
+              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
+              <div><span class="case-price">煎蛋<span>2元</span></span></div>
+            </div>
+            <div class="recommend-p" :class="{isHidden:true}">
+              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
+              <div><span class="case-price">煎蛋<span>2元</span></span></div>
+            </div>
+
+            <i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length == 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>
           </div>
           <div class="recommend-check">
             <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
             :showIndex="Math.floor(i/4)" >
             <i class="glyphicon glyphicon-ok" style="" v-show="i==recItemIndex"></i></span>
           </div>
+          <!--<div class="recommend-price">-->
+
+            <!--<span class="case-price">煎蛋<span>2元</span></span>-->
+            <!--<span class="case-price">煎蛋<span>2元</span></span>-->
+          <!--</div>-->
         </div>
         <div class="part-case">
           <div class="part-case-name"  v-for="(flavor,index) in curItemConfig.flavor"
            :class="{active:curFlavorIndex==index}"  @click="curFlavorIndex=index">{{flavor}}</div>
-          <!--<div class="part-case-name">+小菜</div>
-          <div class="part-case-name">+小菜</div>
-          <div class="part-case-name">+小菜</div>-->
         </div>
         <div class="part-three">
           <div class="food-act">
@@ -44,7 +63,7 @@
     </div>
   </div>
 </template>
-<style>
+<style scoped>
   #mask {
     background-color: rgba(0, 0, 0, .4);
     position: absolute;
@@ -67,8 +86,22 @@
   .recommend-food i{
     color: white;
     padding: 12px 6px;
-    background-color: darkred;
-    /*background-color: rgba(0,0,0,.6);*/
+    background-color: rgba(60,0,0,1);
+    display: flex;
+    border: 1px solid rgba(80,0,0,1);
+  }
+  .recommend-food i:before{
+    align-self: center;
+  }
+  .recommend-food i.btn-disabled{
+      background-color: darkgrey;
+      color: white;
+  }
+  .glyphicon-chevron-left{
+      margin-left: -2px;
+  }
+  .glyphicon-chevron-right{
+      margin-right: -2px;
   }
   #detail-food {
     height: 50%;
@@ -101,6 +134,7 @@
   .recommend-food {
     position: absolute;
     top: 5px;;
+    display: flex;
     right: 0;
     background-color: darkred;
     left: 0;
@@ -206,6 +240,18 @@
   .part-case-name.active{
     background-color: grey;
   }
+  .recommend-p{
+    display: inline-block;
+    flex: 1;
+    flex-direction: column;
+    font-size: 11px;
+    color: white;
+      margin: 2px;;
+  }
+  .recommend-p img{
+    width: 100%;
+    height: 100%;
+  }
 </style>
 <script>
   import { mapGetters } from 'vuex'
@@ -302,7 +348,6 @@
         this.curFlavorIndex = -1;
       },
       closeModal: function () {
-        var test = this.$refs.test;
         this.resetSelect();
         this.$store.dispatch("showModal", false);
       },

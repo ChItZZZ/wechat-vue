@@ -6,3 +6,7 @@ body{
 .isHidden{
   visibility: hidden;
 }
+
+.btn-disabled{
+  background-color: darkgray;
+}
