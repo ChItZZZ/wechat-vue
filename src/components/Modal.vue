@@ -9,45 +9,28 @@
             <li v-for="(size,index) in curItemConfig.size" class="select-food" :class="{active:curSizeIndex==index}"
                 @click="curSizeIndex=index">{{size}}</li>
             </li>
-            <!--<li class="select-food active">1123123123</li>
-            <li class="select-food">1123123123</li>-->
+            
           </ul>
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length != 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
+            <!--<i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length != 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>-->
 
             <!--<img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" -->
             <!--:showIndex="Math.floor(i/4)" @click="selectRecItem(i)">-->
-            <div class="recommend-p">
-              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
-              <div><span class="case-price">煎蛋<span>2元</span></span></div>
-            </div>
-            <div class="recommend-p">
-              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
-              <div><span class="case-price">煎蛋<span>2元</span></span></div>
-            </div>
-            <div class="recommend-p">
-              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
-              <div><span class="case-price">煎蛋<span>2元</span></span></div>
-            </div>
-            <div class="recommend-p" :class="{isHidden:true}">
-              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
-              <div><span class="case-price">煎蛋<span>2元</span></span></div>
+            <div class="recommend-p" v-for="(item,i) in configItemInfo">
+              <div><img :src="item.imageUrl" class="recommend-img"  @click="selectRecItem(i)"></div>
+              <div><span class="case-price">{{item.name}}<span>{{item.price}}元</span></span></div>
             </div>
 
-            <i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length == 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>
+            <!--<i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length == 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>-->
           </div>
           <div class="recommend-check">
             <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
             :showIndex="Math.floor(i/4)" >
             <i class="glyphicon glyphicon-ok" style="" v-show="i==recItemIndex"></i></span>
           </div>
-          <!--<div class="recommend-price">-->
-
-            <!--<span class="case-price">煎蛋<span>2元</span></span>-->
-            <!--<span class="case-price">煎蛋<span>2元</span></span>-->
-          <!--</div>-->
+         
         </div>
         <div class="part-case">
           <div class="part-case-name"  v-for="(flavor,index) in curItemConfig.flavor"
@@ -159,7 +142,7 @@
     background-color: rgba(89, 8, 9, 1);
     margin-top: 5px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 13px;
     color: white;
   }
 

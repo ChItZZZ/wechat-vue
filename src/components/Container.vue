@@ -125,7 +125,7 @@
     margin-top: 13px;
     height: 28px;
     line-height: 32px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .line-two {
