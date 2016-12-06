@@ -22,7 +22,9 @@
             <div style="flex: 2;">{{goods.price}}元</div>
             <div class="cart-act" style="flex: 2;display: flex;flex-wrap: nowrap" >
               <span class="item-act item-minus" id="test" @click='minusCount(index)'>-</span>
+              <span class="item-num" style="color:rgba(155,0,0,1)">0</span>
               <span class="item-num">{{goods.count}}</span>
+              <span class="item-num" style="color:rgba(155,0,0,1)">0</span>
               <span class="item-act item-plus" @click='incCount(index)'>+</span>
             </div>
           </li>
@@ -103,7 +105,7 @@
         useCoupon : false,
         couponId : -1,
         recWayIndex: -1,
-        isSelectCoupon : false
+        isSelectCoupon : false,
       }
     },
     methods: {
@@ -587,9 +589,9 @@
   }
   .item-act{
     display: inline-block;
-    width: 17px;
-    height: 17px;
-    line-height: 17px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
     background-color: white;
     border-radius: 50%;
     color: #000;
