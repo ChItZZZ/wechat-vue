@@ -4,16 +4,16 @@
       <div class="vip-title">目前你是{{myInfo.type}}会员</div>
       <table>
         <tr>
-          <!--<td>你最爱</td>
-          <td>红烧牛肉面</td>-->
-          <td>余额:{{myInfo.balance}}元</td>
+          <td>余额 :     {{myInfo.balance}}元</td>
+          <td v-show="myInfo.hasCard == 1">卡号 :     {{myInfo.cardNumber}}</td>
+          <!--<td>余额</td>-->
         </tr>
         <!--<tr>
-          <td>本月来店</td>
+          <td>卡号：</td>
           <td>12次</td>
           <td>累计:38次</td>
-        </tr>
-        <tr>
+        </tr>-->
+        <!--<tr>
           <td>本次消费</td>
           <td>123元</td>
           <td>累计:123元</td>

@@ -6,12 +6,12 @@
           <div class="item-title  ticket-content">优惠券</div>
           <div class="item-title ">数量</div>
           <div class="item-title">状态</div>
-          <div class="item-title">使用日期</div>
+          <div class="item-title">到期日期</div>
         </div>
         <div class="item-cont" style="display: flex"  v-for="coupon in list" v-show="hasCoupon">
           <div class="item-content ticket-content">{{coupon.description}}</div>
           <div class="item-content ">{{coupon.number}}</div>
-          <div class="item-content ticket-unused">未使用</div>
+          <div class="item-content ticket-unused">{{coupon.end_date.substring(0,10)}</div>
           <div class="item-content"></div>
         </div>
 
