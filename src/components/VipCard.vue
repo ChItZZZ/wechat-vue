@@ -43,7 +43,7 @@
     <div class="vip-main vip-three">
       <div class="vip-title">魔都的面 充值(优惠)</div>
       <div class="vip-payment">
-        <div class="vip-pay1 vip-pay" :class="{active:moneyIndex==0}" @click="selectMoney(0)">0.01元</div>
+        <div class="vip-pay1 vip-pay" :class="{active:moneyIndex==0}" @click="selectMoney(0)">10元</div>
         <div class="vip-pay2 vip-pay" :class="{active:moneyIndex==1}" @click="selectMoney(1)">20元</div>
         <div class="vip-pay3 vip-pay" :class="{active:moneyIndex==2}" @click="selectMoney(2)">50元</div>
         <div class="vip-pay4 vip-pay" :class="{active:moneyIndex==3}" @click="selectMoney(3)">100元</div>
@@ -92,8 +92,8 @@
       return{
         url : 'http://api.shmddm.com/',
         moneyIndex:0,
-        money:0.01,
-        moneyArr:[0.01,20,50,100]
+        money:10,
+        moneyArr:[10,20,50,100]
       }
     },
     methods:{
