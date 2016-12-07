@@ -9,7 +9,7 @@
           <div class="item-title">金额</div>
           <div class="item-title">状态</div>
         </div>
-        <div class="item-cont" style="display: flex" v-for="(order,index) in historyOrder">
+        <div class="item-cont" style="display: flex" v-for="(order,index) in payedOrder">
           <div class="item-content item-id">{{order.id}}</div>
           <div class="item-content item-name">{{orderDescription[index]}}</div>
           <div class="item-content">{{orderCount[index]}}</div>
