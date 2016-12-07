@@ -43,6 +43,9 @@
     },
     methods:{
       showModal: function (id) {
+        $('body').css({
+          'overflow-y': 'hidden'
+        })
         if( !(id in this.itemConfig) ){
           var api = this.url + 'itemConfig?item_id=' + parseInt(id);
           this.$http.get(api).then((response) => {

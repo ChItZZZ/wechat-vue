@@ -63,6 +63,7 @@
     computed: {
       ...mapGetters({
         openId:'openId',
+        isModalShow:'isModalShow'
       }),
     },
     created:function(){

@@ -57,7 +57,8 @@
 <style scoped>
   #mask {
     background-color: rgba(0, 0, 0, .4);
-    position: absolute;
+    position: fixed;
+    z-index: 1000;
     width: 100%;
     height: 100%;
     margin: auto;
@@ -65,7 +66,7 @@
   }
 
   #modal {
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     margin: auto;
     height: 70%;
@@ -339,6 +340,9 @@
         this.curFlavorIndex = -1;
       },
       closeModal: function () {
+        $('body').css({
+            'overflow-y':'auto'
+        })
         this.resetSelect();
         this.$store.dispatch("showModal", false);
       },
