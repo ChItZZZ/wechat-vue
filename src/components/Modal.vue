@@ -14,41 +14,25 @@
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length == 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
+            <i class="glyphicon glyphicon-chevron-left btn-disabled" ref="case-left" :class="{'btn-disabled':showIndex == 0}" @click="minusShowIndex" v-if="configItemInfo.length != 0"></i>
 
-            <!--<img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" -->
-            <!--:showIndex="Math.floor(i/4)" @click="selectRecItem(i)">-->
-            <div class="recommend-p" v-for="(item,i) in configItemInfo">
-              <div><img :src="item.imageUrl" class="recommend-img"  @click="selectRecItem(i)"></div>
-              <div><span class="case-price">{{item.name}}<span>{{item.price}}元</span></span></div>
+            <div class="recommend-p" v-for="(item,i) in configItemInfo" :class="{isHidden:item.name == 'test'}">
+              <div class="recommend-pimg"><img :src="item.imageUrl" class="recommend-img"  @click="selectRecItem(i)"></div>
+              <div class="recommend-pprice"><span class="case-price">{{item.name}}<span>{{item.price}}元</span></span></div>
             </div>
-            <div class="recommend-p" >
-              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
-              <div><span class="case-price"></span></div>
-            </div>
-            <div class="recommend-p" >
-              <div><img src="../public/img/egg.jpeg" class="recommend-img isHidden" ></div>
-              <div><span class="case-price"><span>wdaada</span></span></div>
-            </div>
-            <!--<div class="recommend-p" >-->
-              <!--<div><img src="../public/img/egg.jpeg" class="recommend-img isHidden" ></div>-->
-              <!--<div><span class="case-price"><span>wdaada</span></span></div>-->
-            <!--</div>-->
 
-            <i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length != 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>
+            <i class="glyphicon glyphicon-chevron-right" ref="case-right" :class="{'btn-disabled': showIndex == maxShowIndex}" @click="addShowIndex" v-if="configItemInfo.length != 0"></i>
           </div>
           <div class="recommend-check">
-            <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
-            :showIndex="Math.floor(i/4)" >
-            <i class="glyphicon glyphicon-ok" style="" v-show="i==recItemIndex"></i></span>
+              <i class="glyphicon glyphicon-chevron-left" style="visibility: hidden"></i>
+            <span v-for="(item,i) in configItemInfo"  :class="{isHidden:item.name == 'test'}" @click="selectRecItem(i)"><i class="glyphicon glyphicon-ok check-active" style="display: none" :checkIndex="i"></i></span>
+              <i class="glyphicon glyphicon-chevron-right"  style="visibility: hidden"></i>
           </div>
-         
+
         </div>
         <div class="part-case">
           <div class="part-case-name"  v-for="(flavor,index) in curItemConfig.flavor"
            :class="{active:curFlavorIndex==index}"  @click="curFlavorIndex=index">{{flavor}}</div>
-          <div class="part-case-name" @click="curFlavorIndex=index">sadsadas</div>
-          <div class="part-case-name" @click="curFlavorIndex=index">sadsadas</div>
         </div>
         <div class="part-three">
           <div class="food-act">
@@ -81,14 +65,6 @@
     right: 8%;
     border: 2px solid darkred;
   }
-  .recommend-food i{
-    color: white;
-    padding: 12px 6px;
-    background-color: rgba(60,0,0,1);
-    display: flex;
-      max-width: 26px;
-    border: 1px solid rgba(80,0,0,1);
-  }
   .recommend-food i:before{
     align-self: center;
   }
@@ -96,11 +72,15 @@
       background-color: darkgrey;
       color: white;
   }
-  .glyphicon-chevron-left{
+  .glyphicon-chevron-left,.glyphicon-chevron-right{
+      position:relative;z-index: 100;
+      color: white;
+      padding: 12px 6px;
+      background-color: rgba(60,0,0,1);
+      display: flex;
+      max-width: 26px;
+      border: 1px solid rgba(80,0,0,1);
       margin-left: -2px;
-  }
-  .glyphicon-chevron-right{
-      margin-right: -2px;
   }
   #detail-food {
     height: 60%;
@@ -204,26 +184,32 @@
   }
   .recommend-check{
     position: relative;
-    top: 16px;
+    top: 40px;
+
+      display: flex;
+  }
+  .recommend-check .hidden{
+      visibility: hidden;
   }
   .recommend-check span{
-    width: 18%;
+    /*width: 18%;*/
     height: 100%;
+      flex: 1;
 
     display: inline-block;
   }
   .glyphicon-ok{
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+      /*position: absolute;*/
     color: white;
     background-color: green;
-    width: 25px;
-    height: 25px;
+    width: 18px;
+    height: 18px;
     bottom: 40%;
   }
   .glyphicon-ok:before{
-    line-height: 25px;
+    line-height: 16px;
+      font-size: 9px;
   }
 
   .part-case-name{
@@ -317,6 +303,15 @@
             }
           }
         }
+          while(info.length%3 != 0){
+              info.push({
+                  name:'test',
+                  price:'1',
+                  id:'1',
+                  imageUrl: '../public/img/egg.jpeg',
+                  catalogue: '1'
+              })
+          }
         return info;
       },
       maxShowIndex: function(){
@@ -329,17 +324,37 @@
         curSizeIndex:-1,
         url:'http://api.shmddm.com/',
         showIndex:0,
-        maxShowIndex:3,
         curFlavorIndex:-1,
         recItemIndex:-1,
       }
     },
     methods: {
       selectRecItem:function(index){
-        if(index == this.recItemIndex)
-          this.recItemIndex = -1;
-        else
-          this.recItemIndex = index;
+          console.log(index);
+          var check = $('[checkindex="'+index+'"]');
+          console.log(check);
+          if(check.hasClass('check-active')){
+              check.hide()
+              check.removeClass('check-active')
+          }
+          else {
+              check.show()
+              check.addClass('check-active')
+          }
+
+
+//          if(check.hasClass('hidden')){
+//              check.removeClass('hidden');
+//          }
+//          else{
+//              check.css({
+//                  'visibility':"none"
+//              });
+//          }
+//        if(index == this.recItemIndex)
+//          this.recItemIndex = -1;
+//        else
+//          this.recItemIndex = index;
       },
       resetSelect:function(){
         this.recItemIndex = -1;
