@@ -303,11 +303,11 @@
             }
           }
         }
-          while(info.length%3 != 0){
-              info.push({
-                  name:'test',
-              })
-          }
+          // while(info.length%3 != 0){
+          //     info.push({
+          //         name:'test',
+          //     })
+          // }
         return info;
       },
       maxShowIndex: function(){
