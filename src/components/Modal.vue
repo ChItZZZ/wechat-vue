@@ -218,11 +218,12 @@
     background-color: white;
     color: black;
     font-size: 11px;
-    border-radius: 10px;
+    border-radius: 7px;
     margin-right: 10px;
   }
   .part-case-name.active{
-    background-color: grey;
+    background-color: rgba(0,0,0,.8);
+      color: white;
   }
   .recommend-p{
     display: inline-block;

@@ -79,6 +79,9 @@
     },
     methods:{
        showCart: function () {
+         $('body').css({
+           'overflow-y':'hidden'
+         })
         var obj = this.itemAddedCount;
         var items = this.item_data;
         var order = [];
