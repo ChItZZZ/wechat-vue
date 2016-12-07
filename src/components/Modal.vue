@@ -325,39 +325,40 @@
         url:'http://api.shmddm.com/',
         showIndex:0,
         curFlavorIndex:-1,
-        recItemIndex:-1,
+        recItemIndex:[],
       }
     },
     methods: {
       selectRecItem:function(index){
-          console.log(index);
-          var check = $('[checkindex="'+index+'"]');
-          console.log(check);
-          if(check.hasClass('check-active')){
-              check.hide()
-              check.removeClass('check-active')
+        var check = $('[checkindex="'+index+'"]');
+        if(check.hasClass('check-active')){
+          check.hide();
+          check.removeClass('check-active');
+          var r = 0;
+          for(var i in this.recItemIndex){
+            if(this.recItemIndex[i] == index){
+              r = i; 
+              this.recItemIndex.splice(r,1);
+              break;
+            }
           }
-          else {
-              check.show()
-              check.addClass('check-active')
-          }
-
-
-//          if(check.hasClass('hidden')){
-//              check.removeClass('hidden');
-//          }
-//          else{
-//              check.css({
-//                  'visibility':"none"
-//              });
-//          }
-//        if(index == this.recItemIndex)
-//          this.recItemIndex = -1;
-//        else
-//          this.recItemIndex = index;
+        }
+        else {
+          check.show();
+          check.addClass('check-active');
+          this.recItemIndex.push(index);
+        }
       },
       resetSelect:function(){
-        this.recItemIndex = -1;
+        for(var index in this.recItemIndex){
+          var check = $('[checkindex="'+index+'"]');
+          if(check.hasClass('check-active')){
+            check.hide();
+            check.removeClass('check-active');
+            console.log('avccc');
+          }
+        }
+        this.recItemIndex = [];
         this.curSizeIndex = -1;
         this.curFlavorIndex = -1;
       },
@@ -455,9 +456,9 @@
         });
       },
       addToCart: function(){
-        if(this.recItemIndex != -1){
+        for(var i in this.recItemIndex){
           var obj = this.itemAddedCount;
-          var id = this.configItemInfo[this.recItemIndex].id;
+          var id = this.configItemInfo[this.recItemIndex[i]].id;
           if(id in obj)
             ++obj[id];
           else
