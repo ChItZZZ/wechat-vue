@@ -159,7 +159,7 @@
     color: darkred;
     background-color: rgba(255, 233, 249, .9);
     border-radius: 3px;
-    width: 80px;
+    width: 115px;
     font-size: 12px;
     border: 0;
   }
