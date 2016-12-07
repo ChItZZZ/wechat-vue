@@ -116,6 +116,9 @@
         this.isSelectCoupon = false;
       },
       closeCart: function () {
+        $('body').css({
+          'overflow-y':'auto'
+        })
         this.resetData();
         this.$store.dispatch("showCart", false);
       },
