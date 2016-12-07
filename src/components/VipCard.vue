@@ -274,7 +274,7 @@
     margin-right: 6px;
   }
   .refresh{
-    border-radius: 8px;
+    border-radius: 4px;
     position: fixed;
     right: 20px;
     bottom: 50px;
@@ -286,11 +286,6 @@
     color: white;
     line-height: 1;
     text-align: center;
+    padding: 10px 20px;
   }
-  /*.vip-three{*/
-  /*position: absolute;*/
-  /*bottom: 100px;*/
-  /*right: 0;*/
-  /*left: 70px;;*/
-  /*}*/
 </style>

@@ -18,7 +18,7 @@
 
             <div class="recommend-p" v-for="(item,i) in configItemInfo" :class="{isHidden:item.name == 'test'}">
               <div class="recommend-pimg"><img :src="item.imageUrl" class="recommend-img"  @click="selectRecItem(i)"></div>
-              <div class="recommend-pprice"><span class="case-price">{{item.name}}<span>{{item.price}}元</span></span></div>
+              <div class="recommend-pprice"><span class="case-price">{{item.name}}<div>{{item.price}}元</div></span></div>
             </div>
 
             <i class="glyphicon glyphicon-chevron-right" ref="case-right" :class="{'btn-disabled': showIndex == maxShowIndex}" @click="addShowIndex" v-if="configItemInfo.length != 0"></i>
@@ -159,9 +159,10 @@
     color: darkred;
     background-color: rgba(255, 233, 249, .9);
     border-radius: 3px;
-    width: 80px;
+    width: 115px;
     font-size: 12px;
     border: 0;
+      padding: 6px 20px;
   }
 
   .part-one {
@@ -175,17 +176,15 @@
   }
 
   .part-case{
-    height: 18%;
+    height: 13%;
     margin-top: 20px;
   }
   .part-three {
-    height: 15%;
-    margin-top: 3px;
+    /*height: 15%;*/
   }
   .recommend-check{
     position: relative;
     top: 40px;
-
       display: flex;
   }
   .recommend-check .hidden{
@@ -306,10 +305,6 @@
           while(info.length%3 != 0){
               info.push({
                   name:'test',
-                  price:'1',
-                  id:'1',
-                  imageUrl: '../public/img/egg.jpeg',
-                  catalogue: '1'
               })
           }
         return info;

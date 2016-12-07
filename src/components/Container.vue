@@ -128,7 +128,7 @@
     margin-top: 13px;
     height: 28px;
     line-height: 32px;
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .line-two {
@@ -141,7 +141,7 @@
   .line-three {
     height: 32px;
     line-height: 18px;
-    font-size: 13px;
+    font-size: 11px;
     color: red;
   }
   .container{
