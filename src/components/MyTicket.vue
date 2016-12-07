@@ -11,7 +11,7 @@
         <div class="item-cont" style="display: flex"  v-for="coupon in list" v-show="hasCoupon">
           <div class="item-content ticket-content">{{coupon.description}}</div>
           <div class="item-content ">{{coupon.number}}</div>
-          <div class="item-content ticket-unused">{{coupon.end_date.substring(0,10)}</div>
+          <div class="item-content ticket-unused">{{coupon.end_date.substring(0,10)}}</div>
           <div class="item-content"></div>
         </div>
 
