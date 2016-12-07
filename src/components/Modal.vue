@@ -162,6 +162,7 @@
     width: 115px;
     font-size: 12px;
     border: 0;
+      padding: 6px 20px;
   }
 
   .part-one {
@@ -175,17 +176,15 @@
   }
 
   .part-case{
-    height: 18%;
+    height: 13%;
     margin-top: 20px;
   }
   .part-three {
-    height: 15%;
-    margin-top: 3px;
+    /*height: 15%;*/
   }
   .recommend-check{
     position: relative;
     top: 40px;
-
       display: flex;
   }
   .recommend-check .hidden{
