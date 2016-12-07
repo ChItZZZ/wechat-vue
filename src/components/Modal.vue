@@ -306,10 +306,6 @@
           while(info.length%3 != 0){
               info.push({
                   name:'test',
-                  price:'1',
-                  id:'1',
-                  imageUrl: '../public/img/egg.jpeg',
-                  catalogue: '1'
               })
           }
         return info;
@@ -330,9 +326,7 @@
     },
     methods: {
       selectRecItem:function(index){
-          console.log(index);
           var check = $('[checkindex="'+index+'"]');
-          console.log(check);
           if(check.hasClass('check-active')){
               check.hide()
               check.removeClass('check-active')

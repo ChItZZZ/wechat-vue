@@ -3,8 +3,7 @@
     <div class="join-title">{{shopInfo.title}}</div>
     <div class="join-content">
       <p>{{shopInfo.content}}</p>
-      <!--<h4 style="margin-top: 14px">魔都的面薪酬福利</h4>-->
-      <p>{{shopInfo.releae_date}}</p>
+      <p>{{this.date}}</p>
       <p>
         工作时间自由,24小时随时出勤,免费品尝美食,一日三餐不要钱;全职员工包住,温馨小窝,工作努力嘉奖
       </p>
@@ -33,16 +32,15 @@
           return true;
         return false;
       },
+      date:function(){
+        return this.shopInfo.releae_date.slice(0,10);
+      }
     },
     data(){
       return{
         url : 'http://api.shmddm.com/'
       }
-    },
-    methods:{
-
-    },
-
+    }
   }
 
 </script>
@@ -62,21 +60,22 @@
   }
 
   .join-title {
-    height: 40px;
+    /*height: 60px;*/
     padding: 10px;
     background-color: rgba(165, 0, 0, 1);
     color: white;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .join-content {
     margin-left:70px;
+    overflow: scroll;
     text-align: left;
     background-color: rgba(165, 0, 0, 1);
     color: white;
     position: absolute;
     bottom: 50px;
-    top: 200px;
+    top: 240px;
     left: 20px;
     right: 20px;
     font-size: 12px;
@@ -87,8 +86,8 @@
     text-align: left;
   }
   .join-content .contact-us {
-    bottom: 10px;
-    position: absolute;
+    /*bottom: 10px;*/
+    /*position: absolute;*/
   }
 </style>
 

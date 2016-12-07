@@ -256,7 +256,7 @@
     height: 1.8em;
   }
   .order-refresh{
-    border-radius: 8px;
+    border-radius: 4px;
     position: fixed;
     right: 20px;
     bottom: 50px;
@@ -268,5 +268,6 @@
     color: white;
     line-height: 1;
     text-align: center;
+    padding: 10px 20px;
   }
 </style>
