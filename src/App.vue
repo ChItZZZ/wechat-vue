@@ -181,7 +181,7 @@
     min-height: 100vh;
   }
   body{
-    background: #000 url(public/img/bg3.png) 0 / cover fixed;
+    background: #000 url(public/img/bg6.png) 0 / cover fixed;
   }
   .ad{
     position: fixed;

@@ -4,16 +4,16 @@
     <div class="join-content">
       <p>{{shopInfo.content}}</p>
       <!--<p>{{this.date}}</p>-->
-      <p>
+      <!--<p>
         工作时间自由,24小时随时出勤,免费品尝美食,一日三餐不要钱;全职员工包住,温馨小窝,工作努力嘉奖
-      </p>
+      </p>-->
 
-      <div class="contact-us">
+      <!--<div class="contact-us">
         <p class="contact-title">联系我们</p>
         <p>刘经理:1231231231</p>
         <p>刘经理:1231231231</p>
         <p>刘经理:1231231231</p>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -75,7 +75,7 @@
     color: white;
     position: absolute;
     bottom: 50px;
-    top: 240px;
+    top: 220px;
     left: 20px;
     right: 20px;
     font-size: 12px;
