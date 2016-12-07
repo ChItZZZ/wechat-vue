@@ -263,7 +263,7 @@
     z-index: 10003;
     background-color: rgba(165,0,0,1);
     padding: 3px 5px;
-    font-size: 10px;
+    font-size: 13px;
     font-weight: bold;
     color: white;
     line-height: 1;
