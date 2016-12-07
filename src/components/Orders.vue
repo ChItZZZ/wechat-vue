@@ -51,6 +51,15 @@
         historyOrder:'historyOrder',
         openId:'openId'
       }),
+      payedOrder:function(){
+        var payed = [];
+        var order = this.historyOrder;
+        for(var i in order){
+          if(order[i].state != 0)
+            payed.push(order[i]);
+        }
+        return payed;
+      },
       isCurFuncTab:function(){
         if(this.curFuncTab == '我的订单' && this.curNavBar == 2)
           return true;
@@ -58,7 +67,7 @@
       },
       orderDescription:function(){
         var des = [];
-        var order = this.historyOrder
+        var order = this.payedOrder
         for(var i in order){
           var str = '';
           for(var j in order[i].items){
@@ -70,7 +79,7 @@
       },
       orderCount:function(){
         var counts = [];
-        var order = this.historyOrder
+        var order = this.payedOrder
         for(var i in order){
           var count = 0;
           for(var j in order[i].items){
@@ -82,7 +91,7 @@
       },
       orderStateStr:function(){
         var strs = [];
-        var order = this.historyOrder;
+        var order = this.payedOrder;
         for(var i in order){
           var str = '';
           switch(order[i].state){
