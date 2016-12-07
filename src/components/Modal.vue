@@ -17,7 +17,7 @@
             <i class="glyphicon glyphicon-chevron-left btn-disabled" ref="case-left" :class="{'btn-disabled':showIndex == 0}" @click="minusShowIndex" v-if="configItemInfo.length != 0"></i>
 
             <div class="recommend-p" v-for="(item,i) in configItemInfo" :class="{isHidden:item.name == 'test'}">
-              <div class="recommend-pimg"><img :src="item.imageUrl" class="recommend-img"  @click="selectRecItem(i)"></div>
+              <div class="recommend-pimg"><img :src="item.imageUrl" class="recommend-img"  @click="selectrecItemIndex(i)"></div>
               <div class="recommend-pprice"><span class="case-price">{{item.name}}<div>{{item.price}}元</div></span></div>
             </div>
 
@@ -25,14 +25,15 @@
           </div>
           <div class="recommend-check">
               <i class="glyphicon glyphicon-chevron-left" style="visibility: hidden"></i>
-            <span v-for="(item,i) in configItemInfo"  :class="{isHidden:item.name == 'test'}" @click="selectRecItem(i)"><i class="glyphicon glyphicon-ok check-active" style="display: none" :checkIndex="i"></i></span>
+            <span v-for="(item,i) in configItemInfo"  :class="{isHidden:item.name == 'test'}" @click="selectrecItemIndex(i)">
+              <i class="glyphicon glyphicon-ok check-active" style="display: none" :checkIndex="i" v-show="recItemIndex[i] == 1"></i></span>
               <i class="glyphicon glyphicon-chevron-right"  style="visibility: hidden"></i>
           </div>
 
         </div>
         <div class="part-case">
           <div class="part-case-name"  v-for="(flavor,index) in curItemConfig.flavor"
-           :class="{active:curFlavorIndex==index}"  @click="curFlavorIndex=index">{{flavor}}</div>
+           :class="{active:curFlavorIndex[index] == 1}"  @click="selectFlavor(index)">{{flavor}}</div>
         </div>
         <div class="part-three">
           <div class="food-act">
@@ -320,43 +321,38 @@
         curSizeIndex:-1,
         url:'http://api.shmddm.com/',
         showIndex:0,
-        curFlavorIndex:-1,
-        recItemIndex:[],
+        curFlavorIndex:[0,0,0],
+        recItemIndex:[0,0,0]
       }
     },
     methods: {
-      selectRecItem:function(index){
-        var check = $('[checkindex="'+index+'"]');
-        if(check.hasClass('check-active')){
-          check.hide();
-          check.removeClass('check-active');
-          var r = 0;
-          for(var i in this.recItemIndex){
-            if(this.recItemIndex[i] == index){
-              r = i; 
-              this.recItemIndex.splice(r,1);
-              break;
-            }
-          }
+      selectFlavor:function(index){
+        if(this.curFlavorIndex[index] == 1)
+          this.curFlavorIndex[index] = 0;
+        else
+          this.curFlavorIndex[index] = 1;
+        var temp = [];
+        for(var i in this.curFlavorIndex){
+          temp.push(this.curFlavorIndex[i]);
         }
-        else {
-          check.show();
-          check.addClass('check-active');
-          this.recItemIndex.push(index);
+        this.curFlavorIndex = temp;
+      },
+      selectrecItemIndex:function(index){       
+        if(this.recItemIndex[index] == 1)
+          this.recItemIndex[index] = 0;
+        else
+          this.recItemIndex[index] = 1;
+        var temp = [];
+        for(var i in this.recItemIndex){
+          temp.push(this.recItemIndex[i]);
         }
+        this.recItemIndex = temp;
       },
       resetSelect:function(){
-        for(var index in this.recItemIndex){
-          var check = $('[checkindex="'+index+'"]');
-          if(check.hasClass('check-active')){
-            check.hide();
-            check.removeClass('check-active');
-            console.log('avccc');
-          }
-        }
-        this.recItemIndex = [];
+        this.recItemIndex = [0,0,0];
         this.curSizeIndex = -1;
-        this.curFlavorIndex = -1;
+        this.curFlavorIndex = [0,0,0];
+        this.recItemIndex = [0,0,0];
       },
       closeModal: function () {
         $('body').css({
@@ -453,14 +449,16 @@
       },
       addToCart: function(){
         for(var i in this.recItemIndex){
-          var obj = this.itemAddedCount;
-          var id = this.configItemInfo[this.recItemIndex[i]].id;
-          if(id in obj)
-            ++obj[id];
-          else
-            obj[id] = 1;
-          this.$store.dispatch('setItemAddedCount',obj);
-          this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+          if(this.recItemIndex[i] == 1){
+            var obj = this.itemAddedCount;
+            var id = this.configItemInfo[i].id;
+            if(id in obj)
+              ++obj[id];
+            else
+              obj[id] = 1;
+            this.$store.dispatch('setItemAddedCount',obj);
+            this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+          }
         }
         var obj = {};
         var item = this.curItem;
@@ -469,7 +467,14 @@
         obj.price = item.price;
         obj.catalogue = item.cls;
         obj.size = this.curSizeIndex == -1 ? '' : this.curItemConfig.size[this.curSizeIndex];
-        obj.flavor = this.curFlavorIndex == -1 ? '' : this.curItemConfig.flavor[this.curFlavorIndex];
+        //obj.flavor = this.curFlavorIndex == -1 ? '' : this.curItemConfig.flavor[this.curFlavorIndex];
+        var flavor = '';
+        for(var i in this.curFlavorIndex){
+          if(this.curFlavorIndex[i] == 1){
+            flavor = flavor + ' ' + this.curItemConfig.flavor[i];
+          }
+        }
+        obj.flavor= flavor;
         obj.count = 1;
         this.$store.dispatch("addConfigItemAdded",obj);
         this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
