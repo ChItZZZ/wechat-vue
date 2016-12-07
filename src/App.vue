@@ -78,12 +78,23 @@
         'setPersonalInfo',
         'setActivityInfo'
       ]),
+      // 硬编码满足排序需求
+      sortItemCatalogue:function(itemData){
+        var sorted = {};
+        sorted["魔都汤面"] = itemData["魔都汤面"] != null ? itemData["魔都汤面"]:[];
+        sorted["魔都拌面"] = itemData["魔都拌面"] != null ? itemData["魔都拌面"]:[];
+        sorted["魔都浇头"] = itemData["魔都浇头"] != null ? itemData["魔都浇头"]:[];
+        sorted["魔都小菜"] = itemData["魔都小菜"] != null ? itemData["魔都小菜"]:[];
+        sorted["魔都饮料"] = itemData["魔都饮料"] != null ? itemData["魔都饮料"]:[];
+        sorted["外卖打包"] = itemData["外卖打包"] != null ? itemData["外卖打包"]:[];
+        this.setItemData(sorted);
+      },
       getItemsFromServer: function () {
         var api = this.url + 'items';
         this.$http.get(api).then((response) => {
           // success callback
-          this.setItemData(response.data);
           console.log('get items from server');
+          this.sortItemCatalogue(response.data);
         }, (response) => {
           // error callback
           console.log('get server items error');
