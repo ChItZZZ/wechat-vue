@@ -14,7 +14,7 @@
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <!--<i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length != 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>-->
+            <i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length != 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
 
             <!--<img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" -->
             <!--:showIndex="Math.floor(i/4)" @click="selectRecItem(i)">-->
@@ -22,8 +22,16 @@
               <div><img :src="item.imageUrl" class="recommend-img"  @click="selectRecItem(i)"></div>
               <div><span class="case-price">{{item.name}}<span>{{item.price}}元</span></span></div>
             </div>
+            <div class="recommend-p" >
+              <div><img src="../public/img/egg.jpeg" class="recommend-img" ></div>
+              <div><span class="case-price"></span></div>
+            </div>
+            <div class="recommend-p" >
+              <div><img src="../public/img/egg.jpeg" class="recommend-img isHidden" ></div>
+              <div><span class="case-price"><span>wdaada</span></span></div>
+            </div>
 
-            <!--<i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length == 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>-->
+            <i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length == 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>
           </div>
           <div class="recommend-check">
             <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
@@ -233,7 +241,7 @@
   }
   .recommend-p img{
     width: 100%;
-    height: 100%;
+    height: 50px;
   }
 </style>
 <script>
