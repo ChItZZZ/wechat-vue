@@ -14,7 +14,7 @@
         </div>
         <div class="part-two">
           <div class="recommend-food">
-            <i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length != 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
+            <i class="glyphicon glyphicon-chevron-left" :class="{'btn-disabled':configItemInfo.length == 0}" @click="minusShowIndex" style="position:relative;z-index: 100"></i>
 
             <!--<img v-for="(item,i) in configItemInfo" :src="item.imageUrl" class="recommend-img" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" -->
             <!--:showIndex="Math.floor(i/4)" @click="selectRecItem(i)">-->
@@ -30,8 +30,12 @@
               <div><img src="../public/img/egg.jpeg" class="recommend-img isHidden" ></div>
               <div><span class="case-price"><span>wdaada</span></span></div>
             </div>
+            <!--<div class="recommend-p" >-->
+              <!--<div><img src="../public/img/egg.jpeg" class="recommend-img isHidden" ></div>-->
+              <!--<div><span class="case-price"><span>wdaada</span></span></div>-->
+            <!--</div>-->
 
-            <i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length == 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>
+            <i class="glyphicon glyphicon-chevron-right" :class="{'btn-disabled':configItemInfo.length != 0}" @click="addShowIndex" style="position: relative;z-index: 100"></i>
           </div>
           <div class="recommend-check">
             <span v-for="(item,i) in configItemInfo" v-show="Math.floor(i/4)>=showIndex && Math.floor(i/4)< showIndex + 1" 
@@ -43,6 +47,8 @@
         <div class="part-case">
           <div class="part-case-name"  v-for="(flavor,index) in curItemConfig.flavor"
            :class="{active:curFlavorIndex==index}"  @click="curFlavorIndex=index">{{flavor}}</div>
+          <div class="part-case-name" @click="curFlavorIndex=index">sadsadas</div>
+          <div class="part-case-name" @click="curFlavorIndex=index">sadsadas</div>
         </div>
         <div class="part-three">
           <div class="food-act">
@@ -80,6 +86,7 @@
     padding: 12px 6px;
     background-color: rgba(60,0,0,1);
     display: flex;
+      max-width: 26px;
     border: 1px solid rgba(80,0,0,1);
   }
   .recommend-food i:before{
@@ -96,14 +103,14 @@
       margin-right: -2px;
   }
   #detail-food {
-    height: 50%;
+    height: 60%;
     position: relative;
     background-color: rgba(155,0,0,1);
   }
 
   #detail-img {
     width: 100%;
-    height: 50%
+    height: 40%
   }
 
   li {
@@ -143,7 +150,7 @@
   .food-size {
     position: absolute;
     left: 35px;
-    top: 5%;
+    top: 5px;
     right: 35px;
   }
 
@@ -173,7 +180,7 @@
     background-color: rgba(255, 233, 249, .9);
     border-radius: 3px;
     width: 80px;
-    font-size: 11px;
+    font-size: 12px;
     border: 0;
   }
 
@@ -188,8 +195,8 @@
   }
 
   .part-case{
-    height: 15%;
-    margin-top: 10px;
+    height: 18%;
+    margin-top: 20px;
   }
   .part-three {
     height: 15%;
@@ -221,11 +228,11 @@
 
   .part-case-name{
     display: inline-block;
-    width: 15%;
+    width: 19%;
     padding: 2px;
     background-color: white;
     color: black;
-    font-size: 10px;
+    font-size: 11px;
     border-radius: 10px;
     margin-right: 10px;
   }
@@ -236,7 +243,7 @@
     display: inline-block;
     flex: 1;
     flex-direction: column;
-    font-size: 11px;
+    font-size: 10px;
     color: white;
       margin: 2px;;
   }
