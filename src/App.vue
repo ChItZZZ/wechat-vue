@@ -101,7 +101,11 @@
         this.$http.get(api).then((response) => {
           // success callback
           console.log('get items from server');
-          this.sortItemCatalogue(response.data);
+          // for prod
+          //this.sortItemCatalogue(response.data);
+
+          // for test
+          this.setItemData(response.data);
         }, (response) => {
           // error callback
           console.log('get server items error');
