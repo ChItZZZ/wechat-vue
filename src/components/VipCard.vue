@@ -114,7 +114,7 @@
             console.log('post recharge' + JSON.stringify(response.data));
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
-                alert('充值成功');               
+                alert('充值成功,请查看相关活动及优惠券');               
               } else if (result == "fail") {
                 alert('充值失败');
               } else if (result == "cancel") {
