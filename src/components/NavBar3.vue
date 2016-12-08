@@ -31,7 +31,7 @@ export default {
 
       if(item == '伯乐寻马'){
         if( !('title' in this.shopInfo) ){
-          var api = 'http://api.shmddm.com/' + 'getRecruit';
+          var api = 'http://api.qiancs.cn/' + 'getRecruit';
           this.$http.get(api).then((response) => {
             console.log('get shop info from server' + JSON.stringify(response.data));
             this.$store.dispatch('setShopInfo',response.data);

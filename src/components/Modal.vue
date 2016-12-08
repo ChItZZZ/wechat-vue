@@ -319,7 +319,7 @@
     data(){
       return {
         curSizeIndex:-1,
-        url:'http://api.shmddm.com/',
+        url:'http://api.qiancs.cn/',
         showIndex:0,
         curFlavorIndex:[0,0,0],
         recItemIndex:[0,0,0]
