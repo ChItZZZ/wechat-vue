@@ -74,7 +74,7 @@
     },
     data(){
       return {
-        url : 'http://api.shmddm.com/'
+        url : 'http://api.qiancs.cn/'
       }
     },
     methods:{
