@@ -13,7 +13,7 @@
           <div class="item-content item-id">{{order.id}}</div>
           <div class="item-content item-name">{{orderDescription[index]}}</div>
           <div class="item-content">{{orderCount[index]}}</div>
-          <div class="item-content">{{order.price}}</div>
+          <div class="item-content">{{order.realPrice}}</div>
           <div class="item-content" :class="{'item-unused':order.state==1 || order.state==0,'item-used':order.state==2}"
               @click='payForUnfinish(index)'>
             {{orderStateStr[index]}}</div>
@@ -140,12 +140,16 @@
       },
       payWx:function(index){
         var order = this.historyOrder[index];
-        if(!window.confirm('确定支付'+order.price+'元?'))
+        if(!window.confirm('确定支付'+order.realPrice+'元?'))
           return;
+        var price = order.realPrice;
+        if(price == 0){
+          price = 0.01;
+        }
         var api = this.url + 'getChargeForUnfinished'
         var param = {
           channel: 'wx_pub',
-          amount: order.price * 100,
+          amount: price * 100,
           order_id : order.id,
           openId: this.openId,
         }
