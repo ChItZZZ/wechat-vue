@@ -91,7 +91,7 @@
     },
     data(){
       return{
-        url : 'http://api.qiancs.cn/',
+        url : 'http://api.shmddm.com/',
         moneyIndex:0,
         money:10,
         moneyArr:[10,20,50,100]

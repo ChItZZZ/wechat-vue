@@ -22,7 +22,7 @@ export default {
     return {
       curFuncTab: "我是会员",
       funcTabIndex:["我是会员","我的优惠","我的订单"],
-      url : 'http://api.qiancs.cn/'
+      url : 'http://api.shmddm.com/'
     }
   },
   created: function(){
