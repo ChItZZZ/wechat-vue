@@ -460,17 +460,19 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    margin: auto;
+    margin: auto; 
   }
 
   #cart-modal {
     padding: 8px;
-    position: relative;
+    position: fixed;
     z-index: 1000;
     margin: auto;
     height: 80%;
-    width: 80%;
+    /*width: 80%;*/
     top: 5%;
+    left: 8%;
+    right: 8%;
     background-color: rgba(155,0,0,1);
     border: 2px solid darkred;
   }
