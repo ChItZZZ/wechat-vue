@@ -9,13 +9,12 @@
           <div class="item-title">金额</div>
           <div class="item-title">状态</div>
         </div>
-        <div class="item-cont" style="display: flex" v-for="(order,index) in historyOrder">
+        <div class="item-cont" style="display: flex" v-for="(order,index) in historyOrder"  @click='payForUnfinish(index)'>
           <div class="item-content item-id">{{order.id}}</div>
           <div class="item-content item-name">{{orderDescription[index]}}</div>
           <div class="item-content">{{orderCount[index]}}</div>
           <div class="item-content">{{order.realPrice}}</div>
-          <div class="item-content" :class="{'item-unused':order.state==1 || order.state==0,'item-used':order.state==2}"
-              @click='payForUnfinish(index)'>
+          <div class="item-content" :class="{'item-unused':order.state==1 || order.state==0,'item-used':order.state==2}">
             {{orderStateStr[index]}}</div>
           <!--<div class="item-content" :class="{'item-used':order.state == 1,'item-unused':order.state == 0}">{{order.state}}</div>-->
         </div>
@@ -35,6 +34,9 @@
         
         </tbody>
       </table>
+    </div>
+    <div class="tips">
+      <p class="tips-font">Tips:点击未支付订单可重新支付</p>
     </div>
     <div class='pay-way'>
       <input type="radio" value="" name="一" checked="true" id='wx'>微信支付</input>
@@ -112,7 +114,7 @@
     },
     data(){
       return{
-        url : 'http://api.qiancs.cn/'
+        url : 'http://api.shmddm.com/'
       }
     },
     methods:{
@@ -185,6 +187,12 @@
 </script>
 
 <style scoped>
+  .tips{
+    margin-top:5px;
+  }
+  .tips-font{
+    font-size:10px;
+  }
   .pay-way{
     margin-top: 50px; 
   }

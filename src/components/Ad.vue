@@ -63,7 +63,7 @@
     },
     data(){
       return{
-        url : 'http://api.qiancs.cn/',
+        url : 'http://api.shmddm.com/',
         picUrls : [],
         isAdd : false,
       }
