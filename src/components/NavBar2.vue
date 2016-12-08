@@ -20,13 +20,13 @@ export default {
   },
   data(){
     return {
-      curFuncTab: "我是会员",
-      funcTabIndex:["我是会员","我的优惠","我的订单"],
+      curFuncTab: "我的订单",
+      funcTabIndex:["我的订单","我的优惠","我是会员"],
       url : 'http://api.shmddm.com/'
     }
   },
   created: function(){
-    this.clickTab("我是会员");
+    this.clickTab("我的订单");
   },
   methods:{
     clickTab:function(item){

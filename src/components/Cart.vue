@@ -78,6 +78,7 @@
         itemAddedCount:'itemAddedCount',
         configItemAdded:'configItemAdded',
         openId:'openId',
+        
       }),
       couponList: function(){
         var list = [];
@@ -109,6 +110,10 @@
       }
     },
     methods: {
+      enterOrder:function(){
+        this.$store.dispatch('setNavBarCount',2);
+        this.$store.dispatch('setFuncTab','我的订单');
+      },
       resetData:function(){
         this.recWayIndex = -1;
         this.couponDes = '';
@@ -172,16 +177,16 @@
             isUse = true;
           }
           this.$http.post(api,param).then((response) => {
-            console.log('get pay charge ');
             if(isUse){
               this.resetCouponGetAfterUse(); //使用优惠券后更新本地优惠券数据
             }
             this.closeCart();
+            this.enterOrder();
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
-                alert('支付成功');
+                alert('支付成功，请刷新订单');
               } else if (result == "fail") {
-                alert('支付失败');
+                alert('支付失败，请刷新订单');
               } else if (result == "cancel") {
                 alert('支付取消');
               }
@@ -218,6 +223,8 @@
               }
               alert('支付成功!');
               this.closeCart();
+              this.enterOrder();
+              this.getHistoryOrder();
             }
             else
               alert('支付失败');
@@ -251,9 +258,6 @@
         console.log('des ' + this.activityDes + this.couponDes);
         this.realPrice = this.handleDecimal(this.realPrice);
         this.realPrice = this.realPrice > 0 ? this.realPrice : 0;
-        // if(this.realPrice == 0){
-        //   this.realPrice = 0.01;
-        // }
         return this.realPrice;
       },
       cataloguePrice:function(){    //订单中每种类型的总价  {"面类": 20, "酒水":10}
@@ -447,6 +451,17 @@
           return Math.round(num*100)/100;
         }
         return num;
+      },
+      getHistoryOrder:function(){
+        var api = this.url + 'order';
+        var param = {};
+        param.openId = this.openId;
+        this.$http.post(api,param).then((response) => {
+            console.log('get history order from server');
+            this.$store.dispatch('setHistoryOrder',response.data.historyOrder);
+          }, (response) => {
+            console.log('get history order error');
+          });
       }
 
     }

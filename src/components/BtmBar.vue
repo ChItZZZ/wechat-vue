@@ -2,8 +2,8 @@
   <table class="bar">
     <tr>
       <th :class="{active:curBarCount==1}" @click="clickBar(1)">快速点餐</th>
-      <th :class="{active:curBarCount==2}" @click="clickBar(2)">我是面粉</th>
-      <th :class="{active:curBarCount==3}" @click="clickBar(3)">魔都的面</th>
+      <th :class="{active:curBarCount==2}" @click="clickBar(2)">我的订单</th>
+      <th :class="{active:curBarCount==3}" @click="clickBar(3)">关于我们</th>
     </tr>
   </table>
 
