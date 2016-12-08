@@ -68,6 +68,8 @@
     },
     created:function(){
       this.$store.dispatch('setOpenId',this.getQueryString('openId'));
+      var tab = this.getQueryString('tab');
+      this.setNavBarCount(parseInt(tab));
       this.getItemsFromServer();
       this.getPersonalInfo();
       this.getActivityInfo();
@@ -76,7 +78,8 @@
       ...mapActions([
         'setItemData',
         'setPersonalInfo',
-        'setActivityInfo'
+        'setActivityInfo',
+        'setNavBarCount'
       ]),
       // 硬编码满足排序需求
       sortItemCatalogue:function(itemData){
