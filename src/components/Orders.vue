@@ -1,6 +1,9 @@
 <template>
 <div class="item-info" v-if='isCurFuncTab'>
   <div class="order-container">
+    <div class="tips">
+      <p class="tips-font">Tips:点击未支付订单可重新支付、并请关注订单编号及状态</p>
+    </div>
     <div class="order-main order-one" style="border-top: 1px solid black">
         <div class="" style="display: flex;font-size: 12px">
           <div class="item-title item-id">编号</div>
@@ -34,9 +37,6 @@
         
         </tbody>
       </table>
-    </div>
-    <div class="tips">
-      <p class="tips-font">Tips:点击未支付订单可重新支付</p>
     </div>
     <div class='pay-way'>
       <input type="radio" value="" name="一" checked="true" id='wx'>微信支付</input>
@@ -188,7 +188,7 @@
 
 <style scoped>
   .tips{
-    margin-top:5px;
+    text-align: left
   }
   .tips-font{
     font-size:10px;
