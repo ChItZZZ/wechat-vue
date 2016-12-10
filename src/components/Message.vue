@@ -2,6 +2,7 @@
   <div class="msg" v-if='isCurFuncTab'>
     <div class="tag" style="margin: 18px auto;">请留言</div>
     <textarea class="text" id="content"></textarea>
+    <p class="phonearea"><span class="phonelabel">留取电话</span><input id="phoneID" type="text" name="phoneNum" maxlength="18" /></p>
     <div class="btn-msg">
       <button class="btn btn-default btn-sub" @click="submit">提交</button>
     </div>
@@ -34,7 +35,7 @@
         var param = {};
         param.content = document.getElementById("content").value;
         param.name = 'haha';
-        param.phone = '110';
+        param.phone = document.getElementById("phoneID").value;
         this.$http.post(api,param).then((response) => {
           console.log('post comment ' + response.status);
         }, (response) => {
@@ -64,6 +65,17 @@
     width: 90%;
     min-height: 240px;
   }
+
+  .phonearea{
+    width:90%;
+    margin:10px;
+  }
+
+  .phonelabel {
+    background-color: darkred;
+    border-radius: 5px;
+    color: white;
+  }  
 
   .btn-sub {
     background-color: darkred;
