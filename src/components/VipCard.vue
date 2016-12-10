@@ -50,8 +50,8 @@
       </div>
     </div>
     <div class="vip-way" @click="recharge('wx_pub')">
+      <span style="font-size: 12px;margin-right: 5px">微信支付</span>
       <img src="../public/img/wechatpay.png" >
-      <p>微信支付</p>
       
       <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
       <img src="../public/img/alipay.png">-->
@@ -174,7 +174,7 @@
     min-height: 110px;
   }
 
-  .vip-main:nth-last-child(2) {
+  .vip-main:nth-last-child(3) {
     min-height: 0;
   }
 
