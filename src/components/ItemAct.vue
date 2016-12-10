@@ -13,6 +13,8 @@
         isMinusShow:'isMinusShow',
         itemAddedCount:'itemAddedCount',
         goodsCount:'goodsCount',
+        item_data:'item_data',
+        curTabIndex: 'curTabIndex',
       }),
       num:function(){
         var change = this.goodsCount;
@@ -36,6 +38,11 @@
         'setGoodsCount'
       ]),
       incItem:function(){
+        if(this.detectIsSaleOut(this.itemId)){
+          alert('该商品已售罄');
+          return;
+        }
+        console.log('bbbb');
         var obj = this.itemAddedCount;
         var id = this.itemId;
         if(id in obj)
@@ -61,10 +68,25 @@
       },
       hideMinusAndNum: function () {
         this.$store.dispatch("showMinus",false)
-      }
+      },
+      detectIsSaleOut:function(id){
+        var i = 0;
+        var data = [];
+        for(var key in this.item_data){
+          if(i == this.curTabIndex){
+            data = this.item_data[key];
+            break;
+          }
+          ++i;
+        }
+        for(var index in data){
+          if(data[index].id == id && data[index].saleOut == 'Y')
+            return true;
+        }
+        return false;
+      },
     },
     props:['itemId']
-
   }
 </script>
 <style scoped>

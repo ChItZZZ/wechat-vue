@@ -255,7 +255,8 @@
         couponInfo:'couponInfo',
         goodsCount:'goodsCount',
         openId:'openId',
-        isRecharged:'isRecharged'
+        isRecharged:'isRecharged',
+        curTabIndex: 'curTabIndex',
       }),
       curItem: function () {
         var item = {};
@@ -452,20 +453,29 @@
           if(this.recItemIndex[i] == 1){
             var obj = this.itemAddedCount;
             var id = this.configItemInfo[i].id;
-            if(id in obj)
-              ++obj[id];
-            else
-              obj[id] = 1;
-            this.$store.dispatch('setItemAddedCount',obj);
-            this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+            if(this.detectIsSaleOut(id,this.configItemInfo[i].catalogue)){
+              alert(this.configItemInfo[i].name + '已售罄');
+            }
+            else{
+              if(id in obj)
+                ++obj[id];
+              else
+                obj[id] = 1;
+              this.$store.dispatch('setItemAddedCount',obj);
+              this.$store.dispatch('setGoodsCount',this.goodsCount + 1);
+            }
           }
         }
         var obj = {};
         var item = this.curItem;
-        obj.id = item.id;
+        obj.id = item.id;     
         obj.name = item.name;
-        obj.price = item.price;
         obj.catalogue = item.cls;
+        if(this.detectIsSaleOut(obj.id,obj.catalogue)){
+          alert(obj.name + '已售罄');
+          return;
+        }
+        obj.price = item.price;
         obj.size = this.curSizeIndex == -1 ? '' : this.curItemConfig.size[this.curSizeIndex];
         //obj.flavor = this.curFlavorIndex == -1 ? '' : this.curItemConfig.flavor[this.curFlavorIndex];
         var flavor = '';
@@ -501,6 +511,15 @@
           return Math.round(num*100)/100;
         }
         return num;
+      },
+      detectIsSaleOut:function(id,cls){
+        var i = 0;
+        var data = this.item_data[cls];
+        for(var index in data){
+          if(data[index].id == id && data[index].saleOut == 'Y')
+            return true;
+        }
+        return false;
       },
 
     },
