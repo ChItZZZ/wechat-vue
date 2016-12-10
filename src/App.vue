@@ -103,7 +103,6 @@
           sorted[priority[i]] = items[priority[i]];
         };  
         this.setItemData(sorted);
-        console.log('ssss ' + JSON.stringify(sorted))
       },
       getItemsFromServer: function () {
         var api = this.url + 'items';
