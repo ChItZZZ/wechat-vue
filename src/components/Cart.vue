@@ -13,9 +13,9 @@
         </div>
       </div>
 
-      <div class="part">
+      <div class="part" style="height: 36%;">
         <p class="cart-title">购物清单</p>
-        <ul class="cart-cont" style="clear: both;">
+        <ul class="cart-cont" style="clear: both;overflow-y: auto;max-height: 100%">
           <li v-for="(goods,index) in orderInfo" class="cart-item" style="display: flex;flex-wrap: nowrap;">
             <div class="cart-item-name" style="flex: 3;">{{goods.name}}</div>
             <div class="cart-size" style="flex: 2">{{goods.detail}}</div>
@@ -479,7 +479,12 @@
   #cart-mask {
     color: white;
     background-color: rgba(0, 0, 0, .4);
-    position: absolute;
+    position: fixed;
+    z-index: 1000;
+    top:0;
+    right: 0;
+    left:0;
+    bottom:0;
     width: 100%;
     height: 100%;
     margin: auto; 
