@@ -150,7 +150,7 @@
         }
         var recTips = '';
         if(this.recWayIndex == 1){
-          recTips = '请注意您选择的取餐方式：送餐到座位号' + deskId + '。';
+          recTips = '请注意您选择的取餐方式：送餐到' + deskId + '号座位。';
         }
         else{
           recTips = '请注意您选择的取餐方式：到收银台自取。';
