@@ -17,7 +17,7 @@
             <i class="glyphicon glyphicon-chevron-left btn-disabled" ref="case-left" :class="{'btn-disabled':showIndex == 0}" @click="minusShowIndex" v-if="configItemInfo.length != 0"></i>
 
             <div class="recommend-p" v-for="(item,i) in configItemInfo" :class="{isHidden:item.name == 'test'}">
-              <div class="recommend-pimg"><img :src="item.imageUrl" class="recommend-img"  @click="selectrecItemIndex(i)"></div>
+              <div class="recommend-pimg"><img :src="item.smallImageUrl" class="recommend-img"  @click="selectrecItemIndex(i)"></div>
               <div class="recommend-pprice"><span class="case-price">{{item.name}}<div>{{item.price}}元</div></span></div>
             </div>
 
@@ -299,6 +299,7 @@
                 obj.price = data[key][index].price;
                 obj.id = data[key][index].id;
                 obj.imageUrl = data[key][index].imageUrl;
+                obj.smallImageUrl = data[key][index].smallImageUrl;
                 obj.catalogue = data[key][index].cls;
                 info.push(obj);
               }
