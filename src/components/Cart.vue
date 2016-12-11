@@ -651,5 +651,9 @@
   .active{
     background-color: lightcoral;
   }
+  .cart-item-name{
+    display: flex;
+    flex-wrap: nowrap;
+  }
 </style>
 

@@ -38,6 +38,7 @@
         param.phone = document.getElementById("phoneID").value;
         this.$http.post(api,param).then((response) => {
           console.log('post comment ' + response.status);
+          alert('留言成功，感谢您的惠顾！');
         }, (response) => {
           console.log('post comment error');
         });
@@ -68,9 +69,14 @@
 
   .phonearea{
     width:90%;
-    margin:10px;
+    /*margin:10px;*/
+    margin-bottom: 0;
+    margin-top: 5px;
   }
-
+  .phonearea span{
+    padding: 3px;
+    margin-right: 3px;
+  }
   .phonelabel {
     background-color: darkred;
     border-radius: 5px;
@@ -81,6 +87,6 @@
     background-color: darkred;
     color: white;
     width: 75%;
-    margin-top: 20px;
+    margin-top: 8px;
   }
 </style>

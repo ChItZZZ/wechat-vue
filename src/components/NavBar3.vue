@@ -59,7 +59,7 @@ export default {
     align-items: stretch;
     background-color: rgba(0,0,0,.4);
     overflow-y: auto;
-    width: 70px;
+    width: 100%;
     overflow-x: hidden;
     top:0;
     bottom: 40px;

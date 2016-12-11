@@ -163,7 +163,7 @@
     width: 115px;
     font-size: 12px;
     border: 0;
-      padding: 6px 20px;
+    padding: 5px 6px;
   }
 
   .part-one {

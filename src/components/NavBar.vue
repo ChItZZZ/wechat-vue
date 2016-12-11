@@ -26,8 +26,14 @@
       ]),
       clickTab(index)
       {
-        this.isCur = index;
-        this.setTabIndex(index);
+
+//        if($('[curIndex="index"]').length != 0){
+//          $('[curIndex="index"]').show();
+//        }
+//        else {
+          this.isCur = index;
+          this.setTabIndex(index);
+//        }
       }
     },
     data(){
@@ -47,7 +53,7 @@
     align-items: stretch;
     background-color: rgba(0, 0, 0, .4);
     overflow-y: auto;
-    width: 70px;
+    width: 100%;
     overflow-x: hidden;
     top: 0;
     bottom: 40px;
@@ -56,7 +62,7 @@
 
   .menu li {
     height: 60px;
-    font-size: 14px;
+    font-size: 1.2em;
     list-style: none;
     line-height: 60px;
     min-width: 55px;
