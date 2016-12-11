@@ -150,7 +150,7 @@
 <style scoped>
   .vip-container {
     text-align: center;
-    margin-left: 70px;
+    margin-left: 20%;
     padding-top: 130px;
     flex-grow: 5;
     padding-bottom: 40px;

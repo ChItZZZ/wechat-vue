@@ -69,9 +69,14 @@
 
   .phonearea{
     width:90%;
-    margin:10px;
+    /*margin:10px;*/
+    margin-bottom: 0;
+    margin-top: 5px;
   }
-
+  .phonearea span{
+    padding: 3px;
+    margin-right: 3px;
+  }
   .phonelabel {
     background-color: darkred;
     border-radius: 5px;
@@ -82,6 +87,6 @@
     background-color: darkred;
     color: white;
     width: 75%;
-    margin-top: 20px;
+    margin-top: 8px;
   }
 </style>

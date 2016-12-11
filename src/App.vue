@@ -7,11 +7,13 @@
     <Ad class="ad"></Ad>
     <Modal ></Modal>
     <Cart></Cart>
-    <div class="main" v-show="true">
+    <div style="display: flex">
+    <div class="main" v-show="true" style="flex: 1;width: 20%">
       <NavBar class="nav" id="nav"></NavBar>
       <NavBar2 class="nav" id="nav"></NavBar2>
       <NavBar3 class="nav" id="nav"></NavBar3>
-
+    </div>
+    <Container style="flex: 2"></Container>
     </div>
     <BtmBar></BtmBar>
     <vip-card></vip-card>
@@ -21,7 +23,7 @@
     <BrandStory></brandstory>
     <ActivityInfo></ActivityInfo>
     <my-ticket></my-ticket>
-    <Container></Container>
+
     <Message class="cont" ></Message>
 
   </div>
@@ -171,7 +173,7 @@
   }
 
   .cont {
-    margin-left: 70px;
+    left: 20%;
     padding-top: 130px;
     flex-grow: 5;
     overflow-y: auto;

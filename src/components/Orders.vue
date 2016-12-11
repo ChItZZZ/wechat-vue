@@ -198,7 +198,7 @@
   }
   .item-info {
     text-align: center;
-    margin-left: 70px;
+    margin-left: 20%;
     padding: 150px 5px 40px 5px;
     flex-grow: 5;
     overflow-y: auto;

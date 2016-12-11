@@ -58,7 +58,7 @@
 <style scoped>
   .story-container {
     text-align: center;
-    margin-left: 70px;
+    margin-left: 20%;
     padding: 150px 20px 40px 20px;
     flex-grow: 5;
     overflow-y: auto;

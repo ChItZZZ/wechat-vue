@@ -1,7 +1,7 @@
 <template>
-  <ul v-if='curNavBar == 1'  class="container" style="padding-bottom: 40px;;margin-bottom: 0"  :class="{active:isModalShow||isCartShow,inactive:!isModalShow && !isCartShow}">
+  <ul v-show='curNavBar == 1' :curIndex="curTabIndex" class="container" style="padding-bottom: 40px;;margin-bottom: 0"  :class="{active:isModalShow||isCartShow,inactive:!isModalShow && !isCartShow}">
     <li class="item-info" v-for="(item,index) in goods" >
-      <div class="item-img"><img :src="item.smallImageUrl != null ? item.smallImageUrl:item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%"></div>
+      <div class="item-img"><img :src="item.smallImageUrl != null ? item.smallImageUrl:item.imageUrl" @click="showModal(item.id)" style="width: 100%;height: 100%;max-width: 100%"></div>
       <div class="item-text" @click="showModal(item.id)">
         <p class="line-one">{{item.name}}<i class="fa fa-user"></i></p>
         <p class="line-two">月销量 {{item.sels}} 份 <i class="glyphicon glyphicon-thumbs-up"></i></p>
@@ -27,6 +27,7 @@
           isCartShow: 'isCartShow'
         }),
         goods: function(){
+
           var data = [];
           var i = 0;
           for(var key in this.item_data)
@@ -81,14 +82,14 @@
     overflow-y: hidden;
   }
   .active{
-    margin-left: 70px;
+    margin-left: 20%;
     flex-grow: 5;
     overflow-y: hidden;
     overflow-x: hidden;
     height: 100%;
   }
   .inactive{
-    margin-left: 70px;
+    margin-left: 20%;
     padding-top: 130px;
     flex-grow: 5;
     overflow-y: hidden;
@@ -107,6 +108,7 @@
   .item-img {
     flex: 2;
     display: flex;
+    height: 100%;
     align-items: center;
   }
 
