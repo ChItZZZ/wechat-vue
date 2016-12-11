@@ -42,7 +42,6 @@
           alert('该商品已售罄');
           return;
         }
-        console.log('bbbb');
         var obj = this.itemAddedCount;
         var id = this.itemId;
         if(id in obj)
