@@ -1,5 +1,5 @@
 <template>
-  <div class="msg" v-if='isCurFuncTab'>
+  <div class="msg" v-if='isCurFuncTab' style="margin-left: 20%">
     <div class="tag" style="margin: 18px auto;">请留言</div>
     <textarea class="text" id="content"></textarea>
     <p class="phonearea"><span class="phonelabel">留取电话</span><input id="phoneID" type="text" name="phoneNum" maxlength="18" /></p>
