@@ -38,6 +38,7 @@
         param.phone = document.getElementById("phoneID").value;
         this.$http.post(api,param).then((response) => {
           console.log('post comment ' + response.status);
+          alert('留言成功，感谢您的惠顾！');
         }, (response) => {
           console.log('post comment error');
         });
