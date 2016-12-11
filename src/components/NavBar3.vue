@@ -17,12 +17,12 @@ export default {
   },
   data(){
     return {
-      curFuncTab: "活动福利",
-      funcTabIndex:["活动福利","倾听留言","伯乐寻马","品牌故事"]
+      curFuncTab: "品牌故事",
+      funcTabIndex:["品牌故事","活动福利","倾听留言","伯乐寻马"]
     }
   },
   created: function(){
-    this.clickTab("活动福利");
+    this.clickTab("品牌故事");
   },
   methods:{
     clickTab:function(item){

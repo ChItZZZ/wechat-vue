@@ -343,9 +343,10 @@
         var coupon = this.couponInfo.couponList[this.couponIndex];
         var type = coupon.type;
         if(type == 3){
-          var name = coupon.catalogue;
+         // var name = coupon.catalogue;
+          var id = parseInt(coupon.catalogue);
           for(var i in this.orderInfo){
-            if(this.orderInfo[i].name == name && this.orderInfo[i].count >= 1){
+            if(this.orderInfo[i].id == id && this.orderInfo[i].count >= 1){
               this.realPrice = this.handleDecimal(this.realPrice - this.orderInfo[i].price);
               this.useCoupon = true;
               this.couponDes = (' 优惠券: ' + coupon.description);
