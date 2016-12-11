@@ -83,20 +83,25 @@
       ]),
       // 硬编码满足排序需求
       sortItemCatalogue:function(itemData){
+        // var sorted = {};
+        // if(itemData["魔都汤面"] != null)
+        //   sorted["魔都汤面"] = itemData["魔都汤面"];
+        // if(itemData["魔都拌面"] != null)
+        //   sorted["魔都拌面"] = itemData["魔都拌面"];
+        // if(itemData["魔都浇头"] != null)
+        //   sorted["魔都浇头"] = itemData["魔都浇头"];
+        // if(itemData["魔都小菜"] != null)
+        //   sorted["魔都小菜"] = itemData["魔都小菜"];
+        // if(itemData["魔都饮料"] != null)
+        //   sorted["魔都饮料"] = itemData["魔都饮料"];
+        // if(itemData["外卖打包"] != null)
+        //   sorted["外卖打包"] = itemData["外卖打包"];
+        var items = itemData.items;
+        var priority = itemData.priority;
         var sorted = {};
-        if(itemData["魔都汤面"] != null)
-          sorted["魔都汤面"] = itemData["魔都汤面"];
-        if(itemData["魔都拌面"] != null)
-          sorted["魔都拌面"] = itemData["魔都拌面"];
-        if(itemData["魔都浇头"] != null)
-          sorted["魔都浇头"] = itemData["魔都浇头"];
-        if(itemData["魔都小菜"] != null)
-          sorted["魔都小菜"] = itemData["魔都小菜"];
-        if(itemData["魔都饮料"] != null)
-          sorted["魔都饮料"] = itemData["魔都饮料"];
-        if(itemData["外卖打包"] != null)
-          sorted["外卖打包"] = itemData["外卖打包"];
-       
+        for(var i in priority){
+          sorted[priority[i]] = items[priority[i]];
+        };  
         this.setItemData(sorted);
       },
       getItemsFromServer: function () {

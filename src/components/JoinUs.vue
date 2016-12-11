@@ -1,8 +1,8 @@
 <template>
   <div class="join-container" v-if='isCurFuncTab'>
-    <div class="join-title">{{shopInfo.title}}</div>
+    <div class="join-title">{{info.title}}</div>
     <div class="join-content">
-      <p>{{shopInfo.content}}</p>
+      <p>{{info.content}}</p>
       <!--<p>{{this.date}}</p>-->
       <!--<p>
         工作时间自由,24小时随时出勤,免费品尝美食,一日三餐不要钱;全职员工包住,温馨小窝,工作努力嘉奖
@@ -34,6 +34,18 @@
       },
       date:function(){
         return this.shopInfo.releae_date.slice(0,10);
+      },
+      info:function(){
+        var info = {};
+        if(this.shopInfo.title == null)
+          info.title = '';
+        else
+          info.title = this.shopInfo.title;
+        if(this.shopInfo.content == null)
+          info.content = '';
+        else
+          info.content = this.shopInfo.content;
+        return info;
       }
     },
     data(){

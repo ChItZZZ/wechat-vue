@@ -7,7 +7,7 @@
         <p class="cart-title" style="">取餐方式</p>
         <div class="cart-cont" style="display: flex"> 
           <div class="cart-self" style="" :class="{active:recWayIndex==0}" @click="recWayIndex=0">收银台自取</div>
-          <div class="cart-send" style="flex: 2;" :class="{active:recWayIndex==1}" @click="recWayIndex=1">送餐</div>
+          <div class="cart-send" style="flex: 2;" :class="{active:recWayIndex==1}" @click="recWayIndex=1">送餐到座位</div>
           <input type="text" id="deskId" style="width: 15%;color: black" v-show="recWayIndex==1">
           <span style="margin-top: 4px"  v-show="recWayIndex==1">&nbsp;号座位</span>
         </div>
@@ -148,8 +148,15 @@
             return;
           }
         }
+        var recTips = '';
+        if(this.recWayIndex == 1){
+          recTips = '请注意您选择的取餐方式：送餐到' + deskId + '号座位。';
+        }
+        else{
+          recTips = '请注意您选择的取餐方式：到收银台自取。';
+        }
        
-        if (!window.confirm('确定支付'+this.realPrice+'元?'))
+        if (!window.confirm(recTips + '确定支付'+this.realPrice+'元?'))
           return;
 
        // this.calculatePrice();
@@ -184,7 +191,7 @@
             this.enterOrder();
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
-                alert('支付成功，请刷新订单');
+                alert('支付成功!请刷新订单,并关注订单编号及状态,魔都的面祝您用餐愉快');
               } else if (result == "fail") {
                 alert('支付失败，请刷新订单');
               } else if (result == "cancel") {
@@ -221,7 +228,7 @@
               if(isUse){
                 this.resetCouponGetAfterUse();   //使用优惠券后更新本地优惠券数据
               }
-              alert('支付成功!');
+              alert('支付成功!请关注订单编号及状态，魔都的面祝您用餐愉快');
               this.closeCart();
               this.enterOrder();
               this.getHistoryOrder();
@@ -336,9 +343,10 @@
         var coupon = this.couponInfo.couponList[this.couponIndex];
         var type = coupon.type;
         if(type == 3){
-          var name = coupon.catalogue;
+         // var name = coupon.catalogue;
+          var id = parseInt(coupon.catalogue);
           for(var i in this.orderInfo){
-            if(this.orderInfo[i].name == name && this.orderInfo[i].count >= 1){
+            if(this.orderInfo[i].id == id && this.orderInfo[i].count >= 1){
               this.realPrice = this.handleDecimal(this.realPrice - this.orderInfo[i].price);
               this.useCoupon = true;
               this.couponDes = (' 优惠券: ' + coupon.description);
