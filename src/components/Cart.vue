@@ -195,8 +195,8 @@
             }
             this.closeCart();
             this.enterOrder();
-            // if(payWay == 'alipay_wap')
-            //   pingpp.setAPURL('http://http://admin.shmddm.com/pay.htm');
+            if(payWay == 'alipay_wap')
+              pingpp.setAPURL('http://admin.shmddm.com/pay.htm');
 
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
