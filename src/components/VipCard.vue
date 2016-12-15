@@ -49,18 +49,16 @@
         <div class="vip-pay4 vip-pay" :class="{active:moneyIndex==3}" @click="selectMoney(3)">100元</div>
       </div>
     </div>
-    <div class="vip-way" @click="recharge('wx_pub')">
+    <!--<div class="vip-way" @click="recharge('wx_pub')">
       <span style="font-size: 12px;margin-right: 5px">微信支付</span>
       <img src="../public/img/wechatpay.png" >
-      
-      <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
-      <img src="../public/img/alipay.png">-->
-    </div>
 
-     <!--<div class="vip-way" >
+    </div>-->
+
+     <div class="vip-way" >
       <img style='margin-right:16px' src="../public/img/wechatpay.png" @click="recharge('wx_pub')">
       <img src="../public/img/alipay.png" @click="recharge('alipay_wap')">
-    </div>-->
+    </div>
      <div class="refresh" @click="getPersonalInfo">
             刷新
      </div>
