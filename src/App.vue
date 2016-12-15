@@ -131,7 +131,7 @@
         var param = {};
         param.openId = this.openId;
         this.$http.post(api,param).then((response) => {
-          console.log('get personal info from server ');
+          console.log('get personal info from server ' );
           this.setPersonalInfo(response.data);
         }, (response) => {
           console.log('get personal info error');

@@ -56,6 +56,11 @@
       <!--<input type="radio" value="" name="一" @click="recharge('alipay_wap')">支付宝支付</input>
       <img src="../public/img/alipay.png">-->
     </div>
+
+     <!--<div class="vip-way" >
+      <img style='margin-right:16px' src="../public/img/wechatpay.png" @click="recharge('wx_pub')">
+      <img src="../public/img/alipay.png" @click="recharge('alipay_wap')">
+    </div>-->
      <div class="refresh" @click="getPersonalInfo">
             刷新
      </div>

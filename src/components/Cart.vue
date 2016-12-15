@@ -51,7 +51,7 @@
 
       <div class="pay-sub">
         <span style="margin-right: 15px">支付方式</span>
-        <!--<div href="#" @click="pay('alipay_wap')" style=""><img src="../public/img/alipay.png"></div>-->
+        <div href="#" @click="pay('alipay_wap')" style=""><img src="../public/img/alipay.png"></div>
         <div href="#" @click="pay('wx_pub')"><img src="../public/img/wechatpay.png"></div>
         <div href="#" @click="pay('balance')"><img src="../public/img/modu.png"></div>
         <div href="#" style=""></div>
@@ -165,6 +165,10 @@
           this.payBalance(deskId);
         }
         else {
+          if(payWay == 'alipay_wap' && deskId != -666){
+            alert('支付宝支付功能未上线，请使用其他支付方式，谢谢');
+            return;
+          }
           var isUse = false;
           var api = this.url + 'getChargeNew'
           var param = {

@@ -2,7 +2,7 @@
 <div class="item-info" v-if='isCurFuncTab'>
   <div class="order-container">
     <div class="tips">
-      <p class="tips-font">Tips:点击未支付订单可重新支付、并请关注订单编号及状态</p>
+      <p class="tips-font">Tips:点击未支付订单可重新支付、并请关注订单编号及状态(未出表示支付成功后台正在制作)</p>
     </div>
     <div class="order-main order-one" style="border-top: 1px solid black">
         <div class="" style="display: flex;font-size: 12px">
