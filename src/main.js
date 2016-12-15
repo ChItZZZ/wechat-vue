@@ -8,7 +8,6 @@ import './public/static/bootstrap.min.css'
 import './public/css/global.css'
 import './public/static/jquery.min.js'
 import './public/static/bootstrap.min.js'
-import './public/static/ap.js'
 
 import store from './vuex/store'
 
