@@ -193,6 +193,9 @@
             }
             this.closeCart();
             this.enterOrder();
+            if(payWay == 'alipay_wap')
+              pingpp.setAPURL('http://http://admin.shmddm.com/pay.htm');
+              
             pingpp.createPayment(response.data, function (result, err) {
               if (result == "success") {
                 alert('支付成功!请刷新订单,并关注订单编号及状态,魔都的面祝您用餐愉快');
