@@ -167,10 +167,10 @@
           this.payBalance(deskId);
         }
         else {
-          if(payWay == 'alipay_wap' && deskId != -666){
-            alert('支付宝支付功能未上线，请使用其他支付方式，谢谢');
-            return;
-          }
+          // if(payWay == 'alipay_wap' && deskId != -666){
+          //   alert('支付宝支付功能未上线，请使用其他支付方式，谢谢');
+          //   return;
+          // }
           var isUse = false;
           var api = this.url + 'getChargeNew'
           var param = {
