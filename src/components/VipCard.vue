@@ -1,7 +1,7 @@
 <template>
   <div class="vip-container" v-if='isCurFuncTab'>
     <div class="vip-main vip-one" style="border-top: 1px solid black">
-      <div class="vip-title">目前你是{{myInfo.type}}会员</div>
+      <div class="vip-title">您目前是{{myInfo.type}}会员</div>
       <table>
         <tr>
           <td>余额 :     {{myInfo.balance}}元</td>
