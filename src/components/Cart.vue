@@ -49,13 +49,17 @@
       <div class="cart-sum"style="position: absolute;bottom: 65px;font-size: 14px">总计:{{totalMoney}}  优惠价:{{price}}<span style="font-size: 10px">
         {{activityDes}}{{couponDes}}</span></div>
 
-      <div class="pay-sub">
+      <div class="pay-sub" v-show="!isWaiting">
         <span style="margin-right: 15px">支付方式</span>
         <div href="#" @click="pay('alipay_wap')" style=""><img src="../public/img/alipay.png"></div>
         <div href="#" @click="pay('wx_pub')"><img src="../public/img/wechatpay.png"></div>
         <div href="#" @click="pay('balance')"><img src="../public/img/modu.png"></div>
         <div href="#" style=""></div>
         <!--<button @click="pay('balance')">余额支付</button>-->
+      </div>
+      <div class="pay-sub" v-show="isWaiting">
+        <span style="margin-right: 15px">正在等待支付结果，请稍等</span>
+        
       </div>
 
     </div>
@@ -109,6 +113,7 @@
         couponId : -1,
         recWayIndex: -1,
         isSelectCoupon : false,
+        isWaiting : false
       }
     },
     methods: {
@@ -121,6 +126,7 @@
         this.couponDes = '';
         this.useCoupon = false;
         this.isSelectCoupon = false;
+        this.isWaiting = false;
       },
       closeCart: function () {
         $('body').css({
@@ -167,10 +173,6 @@
           this.payBalance(deskId);
         }
         else {
-          // if(payWay == 'alipay_wap' && deskId != -666){
-          //   alert('支付宝支付功能未上线，请使用其他支付方式，谢谢');
-          //   return;
-          // }
           var isUse = false;
           var api = this.url + 'getChargeNew'
           var param = {
@@ -202,12 +204,13 @@
               if (result == "success") {
                 alert('支付成功!请刷新订单,并关注订单编号及状态,魔都的面祝您用餐愉快');
               } else if (result == "fail") {
-                alert('支付失败，请刷新订单');
+                alert('支付失败，请刷新订单,可对未支付订单进行重新支付');
               } else if (result == "cancel") {
-                alert('支付取消');
+                alert('支付取消，请刷新订单,可对未支付订单进行重新支付');
               }
             });
           }, (response) => {
+            alert('支付失败，请重新支付或联系店员');
             console.log('get charge error');
           });
         }
@@ -238,15 +241,17 @@
                 this.resetCouponGetAfterUse();   //使用优惠券后更新本地优惠券数据
               }
               alert('支付成功!请关注订单编号及状态，魔都的面祝您用餐愉快');
-              this.closeCart();
-              this.enterOrder();
-              this.getHistoryOrder();
             }
             else
-              alert('支付失败');
+              alert('支付失败,在订单界面可进行重新支付');
+            this.closeCart();
+            this.enterOrder();
+            this.getHistoryOrder();
+
             },(response) =>{
               console.log('post balance deduct error');
           });
+          this.isWaiting = true;
         }
         else {
           alert('余额不足请充值');

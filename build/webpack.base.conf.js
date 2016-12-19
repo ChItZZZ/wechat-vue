@@ -102,7 +102,7 @@ module.exports = {
       }
     ]
   },
-  postcsss: function () {
+  postcss: function () {
     return [postcssSprites(
       {	stylesheetPath: '../src/public/css',
         spritePath: '../src/public/icons',
