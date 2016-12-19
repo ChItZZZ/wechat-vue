@@ -40,6 +40,7 @@
     </div>
     <div class='pay-way'>
       <input type="radio" value="" name="一" checked="true" id='wx'>微信支付</input>
+      <input type="radio" value="" name="一" id='ali'>支付宝</input>
       <input type="radio" value="" name="一">余额支付</input>
     </div>
 
@@ -121,7 +122,10 @@
       payForUnfinish:function(index){
         if(this.historyOrder[index].state == 0){
           if(document.getElementById('wx').checked){
-            this.payWx(index);
+            this.pay(index,'wx_pub');
+          }
+          else if(document.getElementById('ali').checked){
+            this.pay(index,'alipay_wap');
           }
           else{
             this.payBalance(index);
@@ -138,9 +142,9 @@
         // else {
         //   alert('余额不足请充值');
         // }
-        alert('余额支付未付订单功能未上线,请选择微信支付');
+        alert('余额支付未付订单功能未上线,请选择微信或支付宝支付');
       },
-      payWx:function(index){
+      pay:function(index,payWay){
         var order = this.historyOrder[index];
         if(!window.confirm('确定支付'+order.realPrice+'元?'))
           return;
@@ -150,12 +154,14 @@
         }
         var api = this.url + 'getChargeForUnfinished'
         var param = {
-          channel: 'wx_pub',
+          channel: payWay,
           amount: price * 100,
           order_id : order.id,
           openId: this.openId,
         }
         this.$http.post(api,param).then((response) => {
+          if(payWay == 'alipay_wap')
+            pingpp.setAPURL('http://admin.shmddm.com/pay.htm');
           pingpp.createPayment(response.data, function (result, err) {
             if (result == "success") {
               alert('支付成功，请刷新订单');

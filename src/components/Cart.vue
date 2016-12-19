@@ -195,8 +195,6 @@
             if(isUse){
               this.resetCouponGetAfterUse(); //使用优惠券后更新本地优惠券数据
             }
-            this.closeCart();
-            this.enterOrder();
             if(payWay == 'alipay_wap')
               pingpp.setAPURL('http://admin.shmddm.com/pay.htm');
 
@@ -209,6 +207,8 @@
                 alert('支付取消，请刷新订单,可对未支付订单进行重新支付');
               }
             });
+            this.closeCart();
+            this.enterOrder();
           }, (response) => {
             alert('支付失败，请重新支付或联系店员');
             console.log('get charge error');
